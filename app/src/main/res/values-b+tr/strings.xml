@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="welcome_message">Hoşgeldiniz, %1$s.</string>
+    <string name="notepad_card_name">Not Defteri</string>
+    <string name="shop_button_name">Mağaza</string>
+    <string name="notifications_button_name">Bildirimler</string>
+    <string name="settings_button_name">Ayarlar</string>
+    <string name="questionnaire_button_name">Anket</string>
+</resources>

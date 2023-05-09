@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">BilStudy</string>
+    <string name="app_name" translatable="false">BilStudy</string>
+    <string name="welcome_message">Welcome, %1$s.</string>
+    <string name="leitner_card_name" translatable="false">Leitner</string>
+    <string name="notepad_card_name">Notepad</string>
+    <string name="pomodoro_card_name" translatable="false">Pomodoro</string>
+    <string name="shop_button_name">Shop</string>
+    <string name="notifications_button_name">Notifications</string>
+    <string name="settings_button_name">Settings</string>
+    <string name="questionnaire_button_name">Questionnaire</string>
 </resources>

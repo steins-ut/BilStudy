@@ -7,4 +7,9 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="bilstudy_gray">#D9D9D9</color>
+    <color name="leitner_primary">#76ADFF</color>
+    <color name="leitner_primary_variant">#A4C7FB</color>
+    <color name="notepad_primary">#FFE500</color>
+    <color name="pomodoro_primary">#AA0000</color>
 </resources>
