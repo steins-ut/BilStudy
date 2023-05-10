@@ -1,10 +1,14 @@
-package com.merko.bilstudy.activity;
+package com.merko.bilstudy;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,11 +27,17 @@ import com.merko.bilstudy.R;
 public class MainActivity extends AppCompatActivity {
 
     private static boolean firstActivity = true;
+    Button questionnaireButton;
+    CardView pomodoroButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        pomodoroButton = findViewById(R.id.pomodoroCard);
+        questionnaireButton = findViewById(R.id.questionnaireButton);
 
         Globals.setApplicationContext(getApplicationContext());
         if(getSupportActionBar() != null) {
@@ -51,5 +61,23 @@ public class MainActivity extends AppCompatActivity {
         Bitmap profileImage = locator.getProvider(ImageProvider.class)
                                         .getImages(ImageCategory.PROFILE, userProfile.imageUuid)[0];
         profileIcon.setImageBitmap(profileImage);
+
+        pomodoroButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent pomodoroHome = new Intent(MainActivity.this, PomodoroOptionsActivity.class);
+                startActivity(pomodoroHome);
+            }
+        });
+
+        questionnaireButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent questionnairePage = new Intent(MainActivity.this, QuestionnaireActivity.class);
+                startActivity(questionnairePage);
+            }
+        });
+
+
     }
 }

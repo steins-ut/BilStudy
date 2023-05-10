@@ -12,7 +12,7 @@
         android:theme="@style/Theme.BilStudy.Main"
         tools:targetApi="31">
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".MainActivity"
             android:theme="@style/Theme.BilStudy.Main"
             android:exported="true">
             <intent-filter>
@@ -20,6 +20,18 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".QuestionnaireActivity"
+            android:theme="@style/Theme.BilStudy.Main"
+            android:exported="true">
+
+        </activity>
+        <activity
+            android:name=".PomodoroOptionsActivity"
+            android:theme="@style/Theme.BilStudy.Main"
+            android:exported="true">
+
         </activity>
     </application>
 

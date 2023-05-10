@@ -12,4 +12,8 @@
     <color name="leitner_primary_variant">#A4C7FB</color>
     <color name="notepad_primary">#FFE500</color>
     <color name="pomodoro_primary">#AA0000</color>
+    <color name="red">#BC0707</color>
+    <color name="lightpurple">#C8C2F4</color>
+    <color name="lightred">#FFA7A7</color>
+    <color name="reallylightpurple">#F4F2FF</color>
 </resources>
