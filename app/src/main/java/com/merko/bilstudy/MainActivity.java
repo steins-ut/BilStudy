@@ -38,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        profileButton = findViewById(R.id.profileCard);
+
         pomodoroButton = findViewById(R.id.pomodoroCard);
         questionnaireButton = findViewById(R.id.questionnaireButton);
         notepadButton = findViewById(R.id.notepadCard);
