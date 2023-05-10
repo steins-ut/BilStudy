@@ -57,6 +57,30 @@
             android:theme="@style/Theme.BilStudy.Main"
             android:exported="true">
         </activity>
+        <activity
+            android:name=".PreviousNotesActivity"
+            android:theme="@style/Theme.BilStudy.Main"
+            android:exported="true"
+            >
+        </activity>
+        <activity
+            android:name=".ChooseTemplateActivity"
+            android:theme="@style/Theme.BilStudy.Main"
+            android:exported="true"
+            >
+        </activity>
+        <activity
+            android:name=".MindMapTemplatesActivity"
+            android:theme="@style/Theme.BilStudy.Main"
+            android:exported="true"
+            >
+        </activity>
+        <activity
+            android:name=".BlankPageActivity"
+            android:theme="@style/Theme.BilStudy.Main"
+            android:exported="true"
+            >
+        </activity>
     </application>
 
 </manifest>
