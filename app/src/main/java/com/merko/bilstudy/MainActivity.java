@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private static boolean firstActivity = true;
     Button questionnaireButton;
     CardView pomodoroButton;
+    CardView notepadButton;
 
 
     @Override
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         pomodoroButton = findViewById(R.id.pomodoroCard);
         questionnaireButton = findViewById(R.id.questionnaireButton);
+        notepadButton = findViewById(R.id.notepadCard);
 
         Globals.setApplicationContext(getApplicationContext());
         if(getSupportActionBar() != null) {
@@ -75,6 +77,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent questionnairePage = new Intent(MainActivity.this, QuestionnaireActivity.class);
                 startActivity(questionnairePage);
+            }
+        });
+        notepadButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent notepadPage = new Intent(MainActivity.this, PreviousNotesActivity.class);
+                startActivity(notepadPage);
             }
         });
 
