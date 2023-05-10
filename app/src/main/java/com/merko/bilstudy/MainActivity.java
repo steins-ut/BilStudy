@@ -27,6 +27,7 @@ import com.merko.bilstudy.R;
 public class MainActivity extends AppCompatActivity {
 
     private static boolean firstActivity = true;
+    CardView profileButton;
     Button questionnaireButton;
     CardView pomodoroButton;
     CardView notepadButton;
@@ -77,6 +78,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent questionnairePage = new Intent(MainActivity.this, QuestionnaireActivity.class);
                 startActivity(questionnairePage);
+            }
+        });
+
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent profilePage = new Intent(MainActivity.this, ProfileActivity.class);
+                startActivity(profilePage);
             }
         });
         notepadButton.setOnClickListener(new View.OnClickListener() {
