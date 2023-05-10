@@ -33,6 +33,30 @@
             android:exported="true">
 
         </activity>
+
+        <activity
+            android:name=".ProfileActivity"
+            android:theme="@style/Theme.BilStudy.Main"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".CalendarActivity"
+            android:theme="@style/Theme.BilStudy.Main"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".StudyHistoryActivity"
+            android:theme="@style/Theme.BilStudy.Main"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".StudyStatisticsActivity"
+            android:theme="@style/Theme.BilStudy.Main"
+            android:exported="true">
+        </activity>
     </application>
 
 </manifest>
