@@ -27,6 +27,8 @@ import com.merko.bilstudy.R;
 public class MainActivity extends AppCompatActivity {
 
     private static boolean firstActivity = true;
+
+    Button settingsButton;
     CardView profileButton;
     Button questionnaireButton;
     CardView pomodoroButton;
@@ -39,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         profileButton = findViewById(R.id.profileCard);
-
+        settingsButton = findViewById(R.id.settingsButton);
         pomodoroButton = findViewById(R.id.pomodoroCard);
         questionnaireButton = findViewById(R.id.questionnaireButton);
         notepadButton = findViewById(R.id.notepadCard);
@@ -88,6 +90,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent profilePage = new Intent(MainActivity.this, ProfileActivity.class);
                 startActivity(profilePage);
+            }
+        });
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent settingsPage = new Intent(MainActivity.this, SettingsActivity.class);
+                startActivity(settingsPage);
             }
         });
         notepadButton.setOnClickListener(new View.OnClickListener() {
