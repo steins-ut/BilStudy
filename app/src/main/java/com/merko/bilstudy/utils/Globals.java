@@ -1,7 +1,6 @@
 package com.merko.bilstudy.utils;
 
 import android.content.Context;
-
 /**
  * Utility class for keeping values
  * that are going to be valid and used throughout
@@ -18,4 +17,7 @@ public class Globals {
         }
         return APPLICATION_CONTEXT;
     }
+
+    public static final String PREFERENCES_NAME = "preferences";
+    public static final String PREFERENCES_VERSION_CODE_KEY = "version_code";
 }

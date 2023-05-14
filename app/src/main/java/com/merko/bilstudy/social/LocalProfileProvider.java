@@ -8,7 +8,7 @@ import com.merko.bilstudy.utils.Globals;
 import java.io.File;
 import java.util.UUID;
 
-public class ProfileLocalProvider extends ProfileProvider {
+public class LocalProfileProvider extends ProfileProvider {
 
     private static final String PROFILE_PATH = "profile";
     private static final String PROFILE_FILE_NAME = "profile.json";
@@ -17,7 +17,7 @@ public class ProfileLocalProvider extends ProfileProvider {
     private File profileFile;
     private ObjectMapper mapper;
 
-    public ProfileLocalProvider() {
+    public LocalProfileProvider() {
         load();
     }
 
@@ -66,7 +66,10 @@ public class ProfileLocalProvider extends ProfileProvider {
     }
 
     @Override
-    public Profile getUserProfile() {
+    public Profile getLoggedInProfile() { return new Profile(profile); }
+
+    @Override
+    public Profile getProfile(UUID id) {
         return new Profile(profile);
     }
 

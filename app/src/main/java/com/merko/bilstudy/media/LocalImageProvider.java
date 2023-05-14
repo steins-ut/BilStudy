@@ -20,20 +20,20 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class ImageLocalProvider extends ImageProvider{
+public class LocalImageProvider extends ImageProvider {
 
-    public ImageLocalProvider() {
+    public LocalImageProvider() {
         load();
     }
 
     private static final String IMAGE_FOLDER = "images";
 
     private static final Map<ImageCategory, String> CATEGORY_PATHS = Collections.unmodifiableMap(
-        new HashMap<ImageCategory, String>() {{
-            put(ImageCategory.ICON, "icon");
-            put(ImageCategory.PROFILE, "profile");
-            put(ImageCategory.QUESTION, "question");
-        }}
+            new HashMap<ImageCategory, String>() {{
+                put(ImageCategory.ICON, "icon");
+                put(ImageCategory.PROFILE, "profile");
+                put(ImageCategory.QUESTION, "question");
+            }}
     );
 
     private Map<ImageCategory, File> categoryFolders;
@@ -94,17 +94,35 @@ public class ImageLocalProvider extends ImageProvider{
     }
 
     @Override
-    public Bitmap[] getImages(ImageCategory category, UUID... imageIds) {
+    public Bitmap getImage(ImageCategory category, UUID id) {
+        if(category == ImageCategory.PROFILE) {
+            return profilePicture;
+        }
+        else {
+            File imageFile = new File(categoryFolders.get(category), id.toString() + ".png");
+            if(!imageFile.isFile() || !ImageFileFilter.getInstance().accept(imageFile)) {
+                Log.e(toString(), String.format("No image file with UUID %s in category %s.", id,
+                        category.toString()));
+            }
+            else {
+                return BitmapFactory.decodeFile(imageFile.getAbsolutePath());
+            }
+            return null;
+        }
+    }
+
+    @Override
+    public Bitmap[] getImages(ImageCategory category, UUID... ids) {
         if(category == ImageCategory.PROFILE) {
             return new Bitmap[] {profilePicture};
         }
         else {
             ArrayList<Bitmap> images = new ArrayList<>();
-            for(UUID id: imageIds) {
+            for(UUID id: ids) {
                 File imageFile = new File(categoryFolders.get(category), id.toString() + ".png");
                 if(!imageFile.isFile() || !ImageFileFilter.getInstance().accept(imageFile)) {
                     Log.e(toString(), String.format("No image file with UUID %s in category %s.", id,
-                                                                                                category.toString()));
+                            category.toString()));
                 }
                 else {
                     images.add(BitmapFactory.decodeFile(imageFile.getAbsolutePath()));
@@ -146,6 +164,24 @@ public class ImageLocalProvider extends ImageProvider{
             ids[i] = UUID.fromString(f.getName().split(".")[0]);
         }
         return ids;
+    }
+
+    @Override
+    public UUID putImage(ImageCategory category, Bitmap image) {
+        UUID imageId = UUID.randomUUID();
+        File f = new File(categoryFolders.get(category), imageId.toString() + ".png");
+        ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
+        image.compress(Bitmap.CompressFormat.PNG, 0, byteStream);
+        try {
+            FileOutputStream fileStream = new FileOutputStream(f);
+            fileStream.write(byteStream.toByteArray());
+            fileStream.flush();
+            fileStream.close();
+            return imageId;
+        } catch (Exception e) {
+            Log.e(toString(), String.format("Failed to save image file:\n%s", e.getMessage()));
+            return null;
+        }
     }
 
     @Override

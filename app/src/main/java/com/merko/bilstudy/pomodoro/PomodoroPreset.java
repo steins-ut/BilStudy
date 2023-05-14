@@ -14,4 +14,13 @@ public class PomodoroPreset {
     public int studyMinutes;
     /** Break minutes of the preset */
     public int breakMinutes;
+
+    public PomodoroPreset() {}
+
+    public PomodoroPreset(UUID uuid, String name, int studyMinutes, int breakMinutes) {
+        this.uuid = uuid;
+        this.name = name;
+        this.studyMinutes = studyMinutes;
+        this.breakMinutes = breakMinutes;
+    }
 }

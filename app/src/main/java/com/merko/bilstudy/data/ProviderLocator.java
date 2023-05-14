@@ -12,10 +12,12 @@ public class ProviderLocator {
 
     private static ProviderLocator INSTANCE = null;
 
-    private final HashMap<Class<?>, AbstractProvider> providers;
+    private final HashMap<Class<? extends AbstractProvider>, AbstractProvider> providers;
+    private final HashMap<Class<? extends AbstractProvider>, Class<? extends AbstractProvider>> preferredTypes;
 
     private ProviderLocator() {
         providers = new HashMap<>();
+        preferredTypes = new HashMap<>();
     }
 
     public static ProviderLocator getInstance() {
@@ -28,20 +30,25 @@ public class ProviderLocator {
     /**
      * Returns provider of type T if it exists, creates one if
      * it doesn't and returns the new provider.
-     * @param clazz Class object of T
+     * @param providerClass Class object of T
      * @return The provider of type T
      * @param <T> Type of the provider (Must extend AbstractProvider)
      */
     @SuppressWarnings({"unchecked", "cast"})
-    public <T extends AbstractProvider> T getProvider(Class<T> clazz) {
-        if(!providers.containsKey(clazz)) {
+    public <T extends AbstractProvider> T getProvider(Class<T> providerClass) {
+        if(!providers.containsKey(providerClass)) {
             try {
-                providers.put(clazz, clazz.newInstance());
+                if(preferredTypes.containsKey(providerClass)) {
+                    providers.put(providerClass, preferredTypes.get(providerClass).newInstance());
+                }
+                else {
+                    providers.put(providerClass, providerClass.newInstance());
+                }
             } catch (Exception e) {
                 Log.e(toString(), String.format("Could not create new provider:\n%s", e.getMessage()));
             }
         }
-        return (T)providers.get(clazz);
+        return (T)providers.get(providerClass);
     }
 
     /**
@@ -54,6 +61,12 @@ public class ProviderLocator {
     public <T extends AbstractProvider> void setProvider(Class<T> clazz, AbstractProvider provider) {
         if(clazz.isAssignableFrom(provider.getClass())) {
             providers.put(clazz, provider);
+        }
+    }
+
+    public <K extends AbstractProvider> void setPreferredType(Class<K> providerClass, Class<? extends K> preferredClass) {
+        if(providerClass.isAssignableFrom(preferredClass)) {
+            preferredTypes.put(providerClass, preferredClass);
         }
     }
 
