@@ -7,10 +7,10 @@ import java.util.UUID;
 public abstract class PomodoroProvider extends AbstractProvider {
     /**
      * Get preset with the provided id
-     * @param presetId Unique identifier of the preset
+     * @param id Unique identifier of the preset
      * @return Preset with the provided id
      */
-    public abstract PomodoroPreset getPreset(UUID presetId);
+    public abstract PomodoroPreset getPreset(UUID id);
 
     /**
      * Gets all presets
@@ -27,7 +27,7 @@ public abstract class PomodoroProvider extends AbstractProvider {
 
     /**
      * Deletes the presets with the provided ids
-     * @param presetId Identifier of the preset to delete
+     * @param id Identifier of the preset to delete
      */
-    public abstract void deletePreset(UUID presetId);
+    public abstract void deletePreset(UUID id);
 }

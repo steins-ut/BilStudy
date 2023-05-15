@@ -6,8 +6,8 @@ import java.util.UUID;
 
 public class RoomPomodoroProvider extends PomodoroProvider {
     @Override
-    public PomodoroPreset getPreset(UUID presetId) {
-        return BilStudyDatabase.getInstance().pomodoroDao().getPreset(presetId);
+    public PomodoroPreset getPreset(UUID id) {
+        return BilStudyDatabase.getInstance().pomodoroDao().getPreset(id);
     }
 
     @Override
@@ -28,8 +28,8 @@ public class RoomPomodoroProvider extends PomodoroProvider {
     }
 
     @Override
-    public void deletePreset(UUID presetId) {
-        BilStudyDatabase.getInstance().pomodoroDao().deletePreset(presetId);
+    public void deletePreset(UUID id) {
+        BilStudyDatabase.getInstance().pomodoroDao().deletePreset(id);
     }
 
     @Override

@@ -14,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.merko.bilstudy.data.ProviderLocator;
+import com.merko.bilstudy.leitner.LeitnerProvider;
+import com.merko.bilstudy.leitner.RoomLeitnerProvider;
 import com.merko.bilstudy.media.ImageCategory;
 import com.merko.bilstudy.media.LocalImageProvider;
 import com.merko.bilstudy.media.ImageProvider;
@@ -27,20 +29,12 @@ import com.merko.bilstudy.utils.Globals;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ImageView profileIcon;
-    private CardView profileCard;
-    private TextView welcomeText;
-
-    private Button questionnaireButton;
-
-    private CardView pomodoroCard;
-    private CardView notepadCard;
-
     static {
         ProviderLocator locator = ProviderLocator.getInstance();
         locator.setPreferredType(ProfileProvider.class, LocalProfileProvider.class);
         locator.setPreferredType(PomodoroProvider.class, RoomPomodoroProvider.class);
         locator.setPreferredType(ImageProvider.class, LocalImageProvider.class);
+        locator.setPreferredType(LeitnerProvider.class, RoomLeitnerProvider.class);
     }
 
     private void handleFirstRun() {
@@ -58,14 +52,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initialize() {
-        profileIcon = findViewById(R.id.profileIcon);
-        profileCard = findViewById(R.id.profileCard);
-        welcomeText = findViewById(R.id.welcomeText);
+        ImageView profileIcon = findViewById(R.id.profileIcon);
+        CardView profileCard = findViewById(R.id.profileCard);
+        TextView welcomeText = findViewById(R.id.welcomeText);
 
-        questionnaireButton = findViewById(R.id.questionnaireButton);
+        Button questionnaireButton = findViewById(R.id.questionnaireButton);
+        Button settingsButton = findViewById(R.id.settingsButton);
 
-        pomodoroCard = findViewById(R.id.pomodoroCard);
-        notepadCard = findViewById(R.id.notepadCard);
+        CardView pomodoroCard = findViewById(R.id.pomodoroCard);
+        CardView notepadCard = findViewById(R.id.notepadCard);
 
         ProviderLocator locator = ProviderLocator.getInstance();
         Profile userProfile = locator.getProvider(ProfileProvider.class).getProfile(null);
@@ -92,6 +87,11 @@ public class MainActivity extends AppCompatActivity {
         notepadCard.setOnClickListener((View view) -> {
             Intent notepadPage = new Intent(MainActivity.this, PreviousNotesActivity.class);
             startActivity(notepadPage);
+        });
+
+        settingsButton.setOnClickListener((View view) -> {
+            Intent settingsPage = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(settingsPage);
         });
     }
 

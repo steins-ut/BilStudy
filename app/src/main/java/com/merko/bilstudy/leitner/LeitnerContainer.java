@@ -6,6 +6,7 @@ import java.util.UUID;
 public class LeitnerContainer {
     public String name;
     public UUID uuid;
+    public UUID parentUuid;
     public LeitnerContainerType type;
     public UUID iconId;
     public List<UUID> objectIds;
