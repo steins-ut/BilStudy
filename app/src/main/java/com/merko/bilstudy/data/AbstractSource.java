@@ -6,7 +6,7 @@ import android.util.Log;
  * This class is the base for all providers used for
  * getting data.
  */
-public abstract class AbstractProvider {
+public abstract class AbstractSource {
     protected boolean autoSave = true;
     protected boolean saveOnUnload = true;
     protected boolean loadOnce = false;

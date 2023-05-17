@@ -8,21 +8,21 @@ import java.util.HashMap;
  * Singleton class for separating
  * data providers from the rest of the code.
  */
-public class ProviderLocator {
+public class SourceLocator {
 
-    private static ProviderLocator INSTANCE = null;
+    private static SourceLocator INSTANCE = null;
 
-    private final HashMap<Class<? extends AbstractProvider>, AbstractProvider> providers;
-    private final HashMap<Class<? extends AbstractProvider>, Class<? extends AbstractProvider>> preferredTypes;
+    private final HashMap<Class<? extends AbstractSource>, AbstractSource> providers;
+    private final HashMap<Class<? extends AbstractSource>, Class<? extends AbstractSource>> preferredTypes;
 
-    private ProviderLocator() {
+    private SourceLocator() {
         providers = new HashMap<>();
         preferredTypes = new HashMap<>();
     }
 
-    public static ProviderLocator getInstance() {
+    public static SourceLocator getInstance() {
         if(INSTANCE == null) {
-            INSTANCE = new ProviderLocator();
+            INSTANCE = new SourceLocator();
         }
         return INSTANCE;
     }
@@ -35,7 +35,7 @@ public class ProviderLocator {
      * @param <T> Type of the provider (Must extend AbstractProvider)
      */
     @SuppressWarnings({"unchecked", "cast"})
-    public <T extends AbstractProvider> T getProvider(Class<T> providerClass) {
+    public <T extends AbstractSource> T getProvider(Class<T> providerClass) {
         if(!providers.containsKey(providerClass)) {
             try {
                 if(preferredTypes.containsKey(providerClass)) {
@@ -58,13 +58,13 @@ public class ProviderLocator {
      * @param provider The provider to put in the locator
      * @param <T> Type of the provider (Must extend AbstractProvider)
      */
-    public <T extends AbstractProvider> void setProvider(Class<T> clazz, AbstractProvider provider) {
+    public <T extends AbstractSource> void setProvider(Class<T> clazz, AbstractSource provider) {
         if(clazz.isAssignableFrom(provider.getClass())) {
             providers.put(clazz, provider);
         }
     }
 
-    public <K extends AbstractProvider> void setPreferredType(Class<K> providerClass, Class<? extends K> preferredClass) {
+    public <K extends AbstractSource> void setPreferredType(Class<K> providerClass, Class<? extends K> preferredClass) {
         if(providerClass.isAssignableFrom(preferredClass)) {
             preferredTypes.put(providerClass, preferredClass);
         }
@@ -75,7 +75,7 @@ public class ProviderLocator {
      * @param clazz Class object of T
      * @param <T> Type of the provider (Must extend AbstractProvider)
      */
-    public <T extends AbstractProvider> void removeProvider(Class<T> clazz) {
+    public <T extends AbstractSource> void removeProvider(Class<T> clazz) {
         if(!providers.containsKey(clazz)) {
             providers.remove(clazz);
         }

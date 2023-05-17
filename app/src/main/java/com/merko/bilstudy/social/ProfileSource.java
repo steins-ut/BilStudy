@@ -1,10 +1,10 @@
 package com.merko.bilstudy.social;
 
-import com.merko.bilstudy.data.AbstractProvider;
+import com.merko.bilstudy.data.AbstractSource;
 
 import java.util.UUID;
 
-public abstract class ProfileProvider extends AbstractProvider {
+public abstract class ProfileSource extends AbstractSource {
     /**
      * Returns the profile of the one currently using the app
      * @return profile of the user

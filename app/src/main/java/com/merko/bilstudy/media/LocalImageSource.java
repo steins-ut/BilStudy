@@ -20,9 +20,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class LocalImageProvider extends ImageProvider {
+public class LocalImageSource extends ImageSource {
 
-    public LocalImageProvider() {
+    public LocalImageSource() {
         load();
     }
 

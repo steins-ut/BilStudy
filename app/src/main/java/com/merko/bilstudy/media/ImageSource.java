@@ -2,11 +2,11 @@ package com.merko.bilstudy.media;
 
 import android.graphics.Bitmap;
 
-import com.merko.bilstudy.data.AbstractProvider;
+import com.merko.bilstudy.data.AbstractSource;
 
 import java.util.UUID;
 
-public abstract class ImageProvider extends AbstractProvider {
+public abstract class ImageSource extends AbstractSource {
     /**
      * Checks whether the provider has an image or not.
      * @param category Category of the image

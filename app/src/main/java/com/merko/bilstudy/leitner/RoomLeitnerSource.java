@@ -4,7 +4,7 @@ import com.merko.bilstudy.data.BilStudyDatabase;
 
 import java.util.UUID;
 
-public class RoomLeitnerProvider extends LeitnerProvider {
+public class RoomLeitnerSource extends LeitnerSource {
     @Override
     public boolean save() {
         return true;

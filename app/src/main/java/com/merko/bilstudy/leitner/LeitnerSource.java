@@ -1,10 +1,10 @@
 package com.merko.bilstudy.leitner;
 
-import com.merko.bilstudy.data.AbstractProvider;
+import com.merko.bilstudy.data.AbstractSource;
 
 import java.util.UUID;
 
-public abstract class LeitnerProvider extends AbstractProvider {
+public abstract class LeitnerSource extends AbstractSource {
         public abstract LeitnerContainer getContainer(UUID id);
         public abstract LeitnerContainer[] getContainers(LeitnerContainer container);
         public abstract LeitnerContainer[] getAllContainers();

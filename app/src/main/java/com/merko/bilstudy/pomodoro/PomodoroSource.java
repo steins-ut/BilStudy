@@ -1,10 +1,10 @@
 package com.merko.bilstudy.pomodoro;
 
-import com.merko.bilstudy.data.AbstractProvider;
+import com.merko.bilstudy.data.AbstractSource;
 
 import java.util.UUID;
 
-public abstract class PomodoroProvider extends AbstractProvider {
+public abstract class PomodoroSource extends AbstractSource {
     /**
      * Get preset with the provided id
      * @param id Unique identifier of the preset

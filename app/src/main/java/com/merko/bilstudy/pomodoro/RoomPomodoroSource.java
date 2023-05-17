@@ -4,7 +4,7 @@ import com.merko.bilstudy.data.BilStudyDatabase;
 
 import java.util.UUID;
 
-public class RoomPomodoroProvider extends PomodoroProvider {
+public class RoomPomodoroSource extends PomodoroSource {
     @Override
     public PomodoroPreset getPreset(UUID id) {
         return BilStudyDatabase.getInstance().pomodoroDao().getPreset(id);

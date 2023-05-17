@@ -32,6 +32,7 @@ dependencies {
 
     def room_version = "2.5.1"
     def jackson_version = '2.15.0'
+    def fragment_version = "1.5.7"
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
@@ -43,8 +44,10 @@ dependencies {
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
 
-    testImplementation "androidx.room:room-testing:$room_version"
     implementation "androidx.room:room-paging:$room_version"
+    testImplementation "androidx.room:room-testing:$room_version"
+
+    implementation "androidx.fragment:fragment:$fragment_version"
 
     implementation "com.fasterxml.jackson.core:jackson-core:$jackson_version"
     implementation "com.fasterxml.jackson.core:jackson-annotations:$jackson_version"
