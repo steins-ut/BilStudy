@@ -13,9 +13,10 @@ public class LeitnerContainer {
 
     public LeitnerContainer() {}
 
-    public LeitnerContainer(String name, UUID uuid, LeitnerContainerType type, UUID iconId, List<UUID> objectIds) {
+    public LeitnerContainer(String name, UUID uuid, UUID parentUuid, LeitnerContainerType type, UUID iconId, List<UUID> objectIds) {
         this.name = name;
         this.uuid = uuid;
+        this.parentUuid = parentUuid;
         this.type = type;
         this.iconId = iconId;
         this.objectIds = objectIds;

@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import com.merko.bilstudy.data.AbstractSource;
 
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 
 public abstract class ImageSource extends AbstractSource {
     /**
@@ -13,14 +14,14 @@ public abstract class ImageSource extends AbstractSource {
      * @param id Unique identifier of the image
      * @return true if image exists, otherwise false
      */
-    public abstract boolean hasImage(ImageCategory category, UUID id);
+    public abstract CompletableFuture<Boolean> hasImage(ImageCategory category, UUID id);
 
     /**
      * Gets the ids of all images in category
      * @param category Category of the images
      * @return array containing all image ids in category
      */
-    public abstract UUID[] getImageIds(ImageCategory category);
+    public abstract CompletableFuture<UUID[]> getImageIds(ImageCategory category);
 
     /**
      * Gets image in category with the given id
@@ -28,7 +29,7 @@ public abstract class ImageSource extends AbstractSource {
      * @param id Unique identifier of the image
      * @return the image
      */
-    public abstract Bitmap getImage(ImageCategory category, UUID id);
+    public abstract CompletableFuture<Bitmap> getImage(ImageCategory category, UUID id);
 
 
     /**
@@ -37,7 +38,7 @@ public abstract class ImageSource extends AbstractSource {
      * @param ids Unique identifier of the image
      * @return the image
      */
-    public abstract Bitmap[] getImages(ImageCategory category, UUID... ids);
+    public abstract CompletableFuture<Bitmap[]> getImages(ImageCategory category, UUID... ids);
 
     /**
      * Gives a unique id to the provided image and stores it
@@ -45,7 +46,7 @@ public abstract class ImageSource extends AbstractSource {
      * @param image Image to put
      * @return array containing ids of the put images
      */
-    public abstract UUID putImage(ImageCategory category, Bitmap image);
+    public abstract CompletableFuture<UUID> putImage(ImageCategory category, Bitmap image);
 
     /**
      * Gives unique ids to all images and stores them
@@ -53,12 +54,12 @@ public abstract class ImageSource extends AbstractSource {
      * @param images Images to put
      * @return array containing ids of the put images
      */
-    public abstract UUID[] putImages(ImageCategory category, Bitmap... images);
+    public abstract CompletableFuture<UUID[]> putImages(ImageCategory category, Bitmap... images);
 
     /**
      * Gets all images in the specified category
      * @param category Category of the images
      * @return array containing all images in the category
      */
-    public abstract Bitmap[] getImagesInCategory(ImageCategory category);
+    public abstract CompletableFuture<Bitmap[]> getImagesInCategory(ImageCategory category);
 }

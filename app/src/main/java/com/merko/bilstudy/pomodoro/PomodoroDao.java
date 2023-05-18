@@ -15,7 +15,7 @@ public abstract class PomodoroDao {
     public abstract PomodoroPreset getPreset(UUID presetId);
     @Query("SELECT * FROM " + PomodoroPresetEntity.TABLE_NAME)
     public abstract PomodoroPreset[] getAllPresets();
-    @Insert(onConflict = OnConflictStrategy.IGNORE, entity = PomodoroPresetEntity.class)
+    @Insert(onConflict = OnConflictStrategy.REPLACE, entity = PomodoroPresetEntity.class)
     public abstract void putPreset(PomodoroPreset preset);
     @Query("DELETE FROM " + PomodoroPresetEntity.TABLE_NAME + " WHERE uuid = :presetId")
     public abstract void deletePreset(UUID presetId);

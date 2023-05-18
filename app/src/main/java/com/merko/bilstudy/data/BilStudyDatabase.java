@@ -33,7 +33,7 @@ public abstract class BilStudyDatabase extends RoomDatabase {
             //be removed when it is time.
             INSTANCE = Room.databaseBuilder(Globals.getApplicationContext(),
                     BilStudyDatabase.class,
-                    DATABASE_NAME).allowMainThreadQueries().build();
+                    DATABASE_NAME).build();
         }
 
         return INSTANCE;

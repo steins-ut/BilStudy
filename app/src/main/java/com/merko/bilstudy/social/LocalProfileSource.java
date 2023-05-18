@@ -7,6 +7,7 @@ import com.merko.bilstudy.utils.Globals;
 
 import java.io.File;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 
 public class LocalProfileSource extends ProfileSource {
 
@@ -66,11 +67,13 @@ public class LocalProfileSource extends ProfileSource {
     }
 
     @Override
-    public Profile getLoggedInProfile() { return new Profile(profile); }
+    public CompletableFuture<Profile> getLoggedInProfile() {
+        return CompletableFuture.supplyAsync(() -> new Profile(profile));
+    }
 
     @Override
-    public Profile getProfile(UUID id) {
-        return new Profile(profile);
+    public CompletableFuture<Profile> getProfile(UUID id) {
+        return CompletableFuture.supplyAsync(() -> new Profile(profile));
     }
 
     public void setUserProfile(Profile profile) {

@@ -19,6 +19,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 
 public class LocalImageSource extends ImageSource {
 
@@ -94,101 +95,96 @@ public class LocalImageSource extends ImageSource {
     }
 
     @Override
-    public Bitmap getImage(ImageCategory category, UUID id) {
-        if(category == ImageCategory.PROFILE) {
-            return profilePicture;
-        }
-        else {
-            File imageFile = new File(categoryFolders.get(category), id.toString() + ".png");
-            if(!imageFile.isFile() || !ImageFileFilter.getInstance().accept(imageFile)) {
-                Log.e(toString(), String.format("No image file with UUID %s in category %s.", id,
-                        category.toString()));
+    public CompletableFuture<Bitmap> getImage(ImageCategory category, UUID id) {
+        return CompletableFuture.supplyAsync(() -> {
+            if(category == ImageCategory.PROFILE) {
+                return profilePicture;
             }
             else {
-                return BitmapFactory.decodeFile(imageFile.getAbsolutePath());
-            }
-            return null;
-        }
-    }
-
-    @Override
-    public Bitmap[] getImages(ImageCategory category, UUID... ids) {
-        if(category == ImageCategory.PROFILE) {
-            return new Bitmap[] {profilePicture};
-        }
-        else {
-            ArrayList<Bitmap> images = new ArrayList<>();
-            for(UUID id: ids) {
                 File imageFile = new File(categoryFolders.get(category), id.toString() + ".png");
                 if(!imageFile.isFile() || !ImageFileFilter.getInstance().accept(imageFile)) {
                     Log.e(toString(), String.format("No image file with UUID %s in category %s.", id,
                             category.toString()));
                 }
                 else {
-                    images.add(BitmapFactory.decodeFile(imageFile.getAbsolutePath()));
+                    return BitmapFactory.decodeFile(imageFile.getAbsolutePath());
                 }
+                return null;
             }
-            return images.toArray(new Bitmap[0]);
-        }
+        });
+    }
+
+    @Override
+    public CompletableFuture<Bitmap[]> getImages(ImageCategory category, UUID... ids) {
+        return CompletableFuture.supplyAsync(() -> {
+            if(category == ImageCategory.PROFILE) {
+                return new Bitmap[] {profilePicture};
+            }
+            else {
+                ArrayList<Bitmap> images = new ArrayList<>();
+                for(UUID id: ids) {
+                    File imageFile = new File(categoryFolders.get(category), id.toString() + ".png");
+                    if(!imageFile.isFile() || !ImageFileFilter.getInstance().accept(imageFile)) {
+                        Log.e(toString(), String.format("No image file with UUID %s in category %s.", id,
+                                category.toString()));
+                    }
+                    else {
+                        images.add(BitmapFactory.decodeFile(imageFile.getAbsolutePath()));
+                    }
+                }
+                return images.toArray(new Bitmap[0]);
+            }
+        });
     }
 
     @Override
     @SuppressWarnings("ConstantConditions")
-    public Bitmap[] getImagesInCategory(ImageCategory category) {
-        File[] imageFiles = categoryFolders.get(category).listFiles(ImageFileFilter.getInstance());
-        Bitmap[] images = new Bitmap[imageFiles.length];
-        for(int i = 0; i < imageFiles.length; i++) {
-            images[i] = BitmapFactory.decodeFile(imageFiles[i].getAbsolutePath());
-        }
-        return images;
+    public CompletableFuture<Bitmap[]> getImagesInCategory(ImageCategory category) {
+        return CompletableFuture.supplyAsync(() -> {
+            File[] imageFiles = categoryFolders.get(category).listFiles(ImageFileFilter.getInstance());
+            Bitmap[] images = new Bitmap[imageFiles.length];
+            for(int i = 0; i < imageFiles.length; i++) {
+                images[i] = BitmapFactory.decodeFile(imageFiles[i].getAbsolutePath());
+            }
+            return images;
+        });
     }
 
     @Override
-    public boolean hasImage(ImageCategory category, UUID imageId) {
-        UUID[] ids = getImageIds(category);
-        for(UUID id: ids) {
-            if(imageId.equals(id)) {
-                return true;
+    public CompletableFuture<Boolean> hasImage(ImageCategory category, UUID imageId) {
+        return CompletableFuture.supplyAsync(() -> {
+            UUID[] ids;
+            try {
+                ids = getImageIds(category).get();
+                for(UUID id: ids) {
+                    if(imageId.equals(id)) {
+                        return true;
+                    }
+                }
+            } catch (Exception e) {
+                throw new RuntimeException(e);
             }
-        }
-        return false;
+            return false;
+        });
     }
 
     @Override
     @SuppressWarnings("ConstantConditions")
-    public UUID[] getImageIds(ImageCategory category) {
-        File[] imageFiles = categoryFolders.get(category).listFiles(ImageFileFilter.getInstance());
-        UUID[] ids = new UUID[imageFiles.length];
-        for(int i = 0; i < imageFiles.length; i++) {
-            File f = imageFiles[i];
-            ids[i] = UUID.fromString(f.getName().split(".")[0]);
-        }
-        return ids;
+    public CompletableFuture<UUID[]> getImageIds(ImageCategory category) {
+        return CompletableFuture.supplyAsync(() -> {
+            File[] imageFiles = categoryFolders.get(category).listFiles(ImageFileFilter.getInstance());
+            UUID[] ids = new UUID[imageFiles.length];
+            for(int i = 0; i < imageFiles.length; i++) {
+                File f = imageFiles[i];
+                ids[i] = UUID.fromString(f.getName().split(".")[0]);
+            }
+            return ids;
+        });
     }
 
     @Override
-    public UUID putImage(ImageCategory category, Bitmap image) {
-        UUID imageId = UUID.randomUUID();
-        File f = new File(categoryFolders.get(category), imageId.toString() + ".png");
-        ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
-        image.compress(Bitmap.CompressFormat.PNG, 0, byteStream);
-        try {
-            FileOutputStream fileStream = new FileOutputStream(f);
-            fileStream.write(byteStream.toByteArray());
-            fileStream.flush();
-            fileStream.close();
-            return imageId;
-        } catch (Exception e) {
-            Log.e(toString(), String.format("Failed to save image file:\n%s", e.getMessage()));
-            return null;
-        }
-    }
-
-    @Override
-    public UUID[] putImages(ImageCategory category, Bitmap... images) {
-        UUID[] ids = new UUID[images.length];
-        for(int i = 0; i < images.length; i++) {
-            Bitmap image = images[i];
+    public CompletableFuture<UUID> putImage(ImageCategory category, Bitmap image) {
+        return CompletableFuture.supplyAsync(() -> {
             UUID imageId = UUID.randomUUID();
             File f = new File(categoryFolders.get(category), imageId.toString() + ".png");
             ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
@@ -198,11 +194,35 @@ public class LocalImageSource extends ImageSource {
                 fileStream.write(byteStream.toByteArray());
                 fileStream.flush();
                 fileStream.close();
+                return imageId;
             } catch (Exception e) {
                 Log.e(toString(), String.format("Failed to save image file:\n%s", e.getMessage()));
+                return null;
             }
-            ids[i] = imageId;
-        }
-        return ids;
+        });
+    }
+
+    @Override
+    public CompletableFuture<UUID[]> putImages(ImageCategory category, Bitmap... images) {
+        return CompletableFuture.supplyAsync(() -> {
+            UUID[] ids = new UUID[images.length];
+            for(int i = 0; i < images.length; i++) {
+                Bitmap image = images[i];
+                UUID imageId = UUID.randomUUID();
+                File f = new File(categoryFolders.get(category), imageId.toString() + ".png");
+                ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
+                image.compress(Bitmap.CompressFormat.PNG, 0, byteStream);
+                try {
+                    FileOutputStream fileStream = new FileOutputStream(f);
+                    fileStream.write(byteStream.toByteArray());
+                    fileStream.flush();
+                    fileStream.close();
+                } catch (Exception e) {
+                    Log.e(toString(), String.format("Failed to save image file:\n%s", e.getMessage()));
+                }
+                ids[i] = imageId;
+            }
+            return ids;
+        });
     }
 }

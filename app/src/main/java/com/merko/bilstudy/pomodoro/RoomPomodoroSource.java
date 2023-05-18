@@ -3,33 +3,31 @@ package com.merko.bilstudy.pomodoro;
 import com.merko.bilstudy.data.BilStudyDatabase;
 
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 
 public class RoomPomodoroSource extends PomodoroSource {
     @Override
-    public PomodoroPreset getPreset(UUID id) {
-        return BilStudyDatabase.getInstance().pomodoroDao().getPreset(id);
+    public CompletableFuture<PomodoroPreset> getPreset(UUID id) {
+        return CompletableFuture.supplyAsync(() -> BilStudyDatabase.getInstance().pomodoroDao().getPreset(id));
     }
 
     @Override
-    public PomodoroPreset[] getAllPresets() {
-        return BilStudyDatabase.getInstance().pomodoroDao().getAllPresets();
+    public CompletableFuture<PomodoroPreset[]> getAllPresets() {
+        return CompletableFuture.supplyAsync(() -> BilStudyDatabase.getInstance().pomodoroDao().getAllPresets());
     }
 
     @Override
-    public UUID putPreset(PomodoroPreset preset) {
-        if(preset.uuid != null) {
-            if(BilStudyDatabase.getInstance().pomodoroDao().hasPreset(preset.uuid)) {
-                deletePreset(preset.uuid);
-            }
-        }
-        preset.uuid = UUID.randomUUID();
-        BilStudyDatabase.getInstance().pomodoroDao().putPreset(preset);
-        return preset.uuid;
+    public CompletableFuture<UUID> putPreset(PomodoroPreset preset) {
+        return CompletableFuture.supplyAsync(() -> {
+            preset.uuid = UUID.randomUUID();
+            BilStudyDatabase.getInstance().pomodoroDao().putPreset(preset);
+            return preset.uuid;
+        });
     }
 
     @Override
-    public void deletePreset(UUID id) {
-        BilStudyDatabase.getInstance().pomodoroDao().deletePreset(id);
+    public CompletableFuture<Void> deletePreset(UUID id) {
+        return CompletableFuture.runAsync(() -> BilStudyDatabase.getInstance().pomodoroDao().deletePreset(id));
     }
 
     @Override

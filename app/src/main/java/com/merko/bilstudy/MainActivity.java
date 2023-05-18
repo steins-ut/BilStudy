@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.merko.bilstudy.data.SourceLocator;
+import com.merko.bilstudy.dialog.LoadingDialog;
 import com.merko.bilstudy.leitner.LeitnerSource;
 import com.merko.bilstudy.leitner.RoomLeitnerSource;
 import com.merko.bilstudy.media.ImageCategory;
@@ -43,10 +44,12 @@ public class MainActivity extends AppCompatActivity {
         if(oldVersionCode != BuildConfig.VERSION_CODE) {
             Log.d(toString(), "Running app for the first time.");
             PomodoroSource pomodoroProvider = SourceLocator.getInstance().getProvider(PomodoroSource.class);
-            pomodoroProvider.putPreset(new PomodoroPreset(null, "Classic Pomodoro", 25, 5));
-            pomodoroProvider.putPreset(new PomodoroPreset(null, "Extended Pomodoro", 40, 10));
-            pomodoroProvider.putPreset(new PomodoroPreset(null, "Extreme Pomodoro", 60, 20));
-            pomodoroProvider.putPreset(new PomodoroPreset(null, "Bilkent Student", 120, 30));
+            LoadingDialog dialog = new LoadingDialog(this);
+            dialog.addFutures(pomodoroProvider.putPreset(new PomodoroPreset(null, "Classic Pomodoro", 25, 5)));
+            dialog.addFutures(pomodoroProvider.putPreset(new PomodoroPreset(null, "Extended Pomodoro", 40, 10)));
+            dialog.addFutures(pomodoroProvider.putPreset(new PomodoroPreset(null, "Extreme Pomodoro", 60, 20)));
+            dialog.addFutures(pomodoroProvider.putPreset(new PomodoroPreset(null, "Bilkent Student", 120, 30)));
+            dialog.show();
         }
         preferences.edit().putInt(Globals.PREFERENCES_VERSION_CODE_KEY, BuildConfig.VERSION_CODE).apply();
     }
@@ -63,11 +66,16 @@ public class MainActivity extends AppCompatActivity {
         CardView notepadCard = findViewById(R.id.notepadCard);
 
         SourceLocator locator = SourceLocator.getInstance();
-        Profile userProfile = locator.getProvider(ProfileSource.class).getProfile(null);
-        String str = getString(R.string.welcome_message, userProfile.name);
-        welcomeText.setText(str);
-        Bitmap profileImage = locator.getProvider(ImageSource.class).getImage(ImageCategory.PROFILE, userProfile.imageUuid);
-        profileIcon.setImageBitmap(profileImage);
+
+        try {
+            Profile userProfile = locator.getProvider(ProfileSource.class).getLoggedInProfile().get();
+            String str = getString(R.string.welcome_message, userProfile.name);
+            welcomeText.setText(str);
+            Bitmap profileImage = locator.getProvider(ImageSource.class).getImage(ImageCategory.PROFILE, userProfile.imageUuid).get();
+            profileIcon.setImageBitmap(profileImage);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
         pomodoroCard.setOnClickListener((View view) -> {
             Intent pomodoroHome = new Intent(MainActivity.this, PomodoroOptionsActivity.class);
@@ -92,6 +100,12 @@ public class MainActivity extends AppCompatActivity {
         settingsButton.setOnClickListener((View view) -> {
             Intent settingsPage = new Intent(MainActivity.this, SettingsActivity.class);
             startActivity(settingsPage);
+        });
+
+        locator.getProvider(PomodoroSource.class).getAllPresets().thenAccept((PomodoroPreset[] presets) -> {
+            for(PomodoroPreset p: presets) {
+                Log.d(toString(), p.name);
+            }
         });
     }
 

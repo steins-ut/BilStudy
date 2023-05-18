@@ -27,6 +27,10 @@ public abstract class LeitnerDao {
     public abstract LeitnerQuestion getQuestion(UUID id);
     @Query("SELECT * FROM " + LeitnerQuestionEntity.TABLE_NAME + " WHERE uuid IN (:ids)")
     public abstract LeitnerQuestion[] getQuestions(UUID... ids);
+    @Insert(onConflict = OnConflictStrategy.IGNORE, entity = LeitnerQuestionEntity.class)
+    public abstract void putQuestion(LeitnerQuestion question);
+    @Insert(onConflict = OnConflictStrategy.IGNORE, entity = LeitnerQuestionEntity.class)
+    public abstract void putQuestions(LeitnerQuestion... questions);
     @Query("DELETE FROM " + LeitnerQuestionEntity.TABLE_NAME + " WHERE uuid = :id")
     public abstract void deleteQuestion(UUID id);
     @Query("DELETE FROM " + LeitnerQuestionEntity.TABLE_NAME + " WHERE uuid IN (:ids)")
