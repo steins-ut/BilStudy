@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button questionnaireButton = findViewById(R.id.questionnaireButton);
         Button settingsButton = findViewById(R.id.settingsButton);
+        Button shopButton = findViewById(R.id.shopButton);
 
         CardView pomodoroCard = findViewById(R.id.pomodoroCard);
         CardView notepadCard = findViewById(R.id.notepadCard);
@@ -102,11 +103,17 @@ public class MainActivity extends AppCompatActivity {
             startActivity(settingsPage);
         });
 
+        shopButton.setOnClickListener((View view) -> {
+            Intent shopPage = new Intent(MainActivity.this, ShopActivity.class);
+            startActivity(shopPage);
+        });
+
         locator.getProvider(PomodoroSource.class).getAllPresets().thenAccept((PomodoroPreset[] presets) -> {
             for(PomodoroPreset p: presets) {
                 Log.d(toString(), p.name);
             }
         });
+
     }
 
     @Override

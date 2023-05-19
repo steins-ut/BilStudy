@@ -16,7 +16,7 @@ public class PomodoroOptionsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pomodoro_options);
 
-        backPomodoro = findViewById(R.id.backPomodoro);
+        backPomodoro = findViewById(R.id.backButtonShop);
         addPomodoro = findViewById(R.id.addPomodoro);
 
         backPomodoro.setOnClickListener(new View.OnClickListener() {

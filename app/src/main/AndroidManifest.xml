@@ -29,6 +29,14 @@
             android:exported="true"
             android:theme="@style/Theme.BilStudy.Main" />
         <activity
+            android:name=".QuestionnaireResultsActivity"
+            android:exported="true"
+            android:theme="@style/Theme.BilStudy.Main" />
+        <activity
+            android:name=".ShopActivity"
+            android:exported="true"
+            android:theme="@style/Theme.BilStudy.Main" />
+        <activity
             android:name=".PomodoroOptionsActivity"
             android:exported="true"
             android:theme="@style/Theme.BilStudy.Main" />

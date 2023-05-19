@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".pomodoro_optionss">
+    tools:context=".PomodoroOptionsActivity">
 
     <ScrollView
-        android:id="@+id/scrollView3"
+        android:id="@+id/PomodoroScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#FFE8E8">
@@ -278,7 +278,7 @@
     </ScrollView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/backPomodoro"
+        android:id="@+id/backButtonShop"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginStart="15dp"
@@ -290,7 +290,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/backArrow"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/lightred"

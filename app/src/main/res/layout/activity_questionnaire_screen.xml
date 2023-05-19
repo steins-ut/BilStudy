@@ -6,13 +6,15 @@
     android:layout_height="match_parent"
     android:background="@color/lightpurple"
     android:backgroundTint="@color/reallylightpurple"
-    tools:context=".questionnaire_screen">
+    tools:context=".QuestionnaireActivity">
 
     <ScrollView
-        android:id="@+id/scrollView2"
+        android:id="@+id/questionnaireScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity2">
+        tools:context=".MainActivity2"
+        tools:layout_editor_absoluteX="196dp"
+        tools:layout_editor_absoluteY="-51dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -20,15 +22,44 @@
             tools:context=".questionnaire">
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/seeResults"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="11dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginEnd="12dp"
+                android:backgroundTint="#440F5D"
+                android:clickable="true"
+                app:cardCornerRadius="9dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardViewq5">
+
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="match_parent"
+                    android:layout_height="72dp"
+                    android:layout_gravity="center"
+                    android:backgroundTint="@color/purple_700"
+                    android:foregroundGravity="center"
+                    android:gravity="center"
+                    android:text="See Results"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
                 android:id="@+id/questionnaireTitle"
                 android:layout_width="170dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="11dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginBottom="10dp"
                 android:backgroundTint="#C8C2F4"
                 app:cardCornerRadius="9dp"
                 app:layout_constraintBottom_toTopOf="@+id/questMessage"
-                app:layout_constraintStart_toStartOf="parent">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -100,8 +131,8 @@
 
                     <TextView
                         android:id="@+id/question3"
-                        android:layout_width="362dp"
-                        android:layout_height="53dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="10dp"
                         android:text="Do you study better with background noise?"
@@ -165,8 +196,8 @@
 
                     <TextView
                         android:id="@+id/question2"
-                        android:layout_width="366dp"
-                        android:layout_height="68dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="10dp"
                         android:text="Do you have a hard time staying focused for long period of times?"
@@ -196,8 +227,8 @@
 
                     <TextView
                         android:id="@+id/question1"
-                        android:layout_width="346dp"
-                        android:layout_height="45dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="15dp"
                         android:text="Are you a visual learner?"
@@ -210,33 +241,33 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:layout_marginTop="16dp"
                         android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="8dp"
                         android:backgroundTint="@color/white"
                         android:text="Yes"
                         android:textColor="@color/black"
                         android:textColorLink="@color/white"
                         android:textSize="18sp"
                         app:cornerRadius="12dp"
+                        app:layout_constraintBottom_toTopOf="@+id/no1"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/question1" />
+                        app:layout_constraintStart_toStartOf="parent" />
 
                     <Button
                         android:id="@+id/no1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:layout_marginTop="8dp"
                         android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
                         android:backgroundTint="@color/white"
                         android:text="No"
                         android:textColor="@color/black"
                         android:textSize="18sp"
                         app:cornerRadius="12dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/yes1" />
+                        app:layout_constraintStart_toStartOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
@@ -260,11 +291,11 @@
 
                     <TextView
                         android:id="@+id/question4"
-                        android:layout_width="346dp"
-                        android:layout_height="45dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="15dp"
-                        android:text="Are you?"
+                        android:text="Do you like seeing and organizing your tasks?"
                         android:textSize="22sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -324,11 +355,11 @@
 
                     <TextView
                         android:id="@+id/question5"
-                        android:layout_width="346dp"
-                        android:layout_height="45dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="15dp"
-                        android:text="in new screen"
+                        android:text="Do you have a hard time memorizing terms?"
                         android:textSize="22sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -391,9 +422,6 @@
                     android:textSize="20sp"
                     android:translationX="10dp" />
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
             </androidx.cardview.widget.CardView>
 
 
@@ -401,7 +429,7 @@
     </ScrollView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/backPomodoro"
+        android:id="@+id/backButtonShop"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginStart="15dp"
@@ -413,7 +441,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/backArrow"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:srcCompat="@drawable/return_arrow" />
