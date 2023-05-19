@@ -2,6 +2,7 @@ package com.merko.bilstudy;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.splashscreen.SplashScreen;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -118,6 +119,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SplashScreen splashScreen = SplashScreen.installSplashScreen(this);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 

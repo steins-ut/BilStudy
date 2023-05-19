@@ -21,7 +21,7 @@
         app:layout_constraintTop_toBottomOf="@+id/calendarView" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textViewProfile"
         android:layout_width="85dp"
         android:layout_height="26dp"
         android:layout_marginTop="16dp"
@@ -42,7 +42,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textViewProfile"
         app:layout_constraintVertical_bias="0.033" />
 
     <TextView
@@ -56,7 +56,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.87"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textViewProfile"
         app:layout_constraintVertical_bias="1.0"></TextView>
 
     <ScrollView

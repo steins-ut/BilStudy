@@ -47,9 +47,11 @@ dependencies {
     implementation "androidx.room:room-paging:$room_version"
     testImplementation "androidx.room:room-testing:$room_version"
 
+    //noinspection GradleDependency
     implementation "androidx.fragment:fragment:$fragment_version"
 
     implementation "com.fasterxml.jackson.core:jackson-core:$jackson_version"
     implementation "com.fasterxml.jackson.core:jackson-annotations:$jackson_version"
     implementation "com.fasterxml.jackson.core:jackson-databind:$jackson_version"
+    implementation "androidx.core:core-splashscreen:1.0.0"
 }

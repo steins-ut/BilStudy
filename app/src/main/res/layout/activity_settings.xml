@@ -5,7 +5,7 @@
     android:id="@+id/appSettings"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EDCDF3"
+    android:background="#E4DBF3"
     android:fadingEdge="vertical"
     android:orientation="vertical"
     tools:context=".MainActivity">
@@ -18,15 +18,34 @@
 
     </RelativeLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="30dp"
-        android:text=" Settings"
-        android:textColor="#261A3C"
-        android:textSize="30sp"
-        android:textStyle="normal" />
+    <androidx.cardview.widget.CardView
+        android:id="@+id/settingsTitle"
+        android:layout_width="170dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="#351B63"
+        app:cardCornerRadius="9dp"
+        app:layout_constraintBottom_toTopOf="@+id/pomodoroWelcome"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textViewProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginBottom="1dp"
+                android:text="Settings"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -36,24 +55,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15dp"
             android:layout_marginEnd="20dp"
-            android:background="#CA70DA"
+            android:background="#B092E4"
             android:orientation="vertical"
             android:padding="15dp">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="64dp"
-                app:cardBackgroundColor="#DDC3E1"
+                app:cardBackgroundColor="#E4DBF3"
                 app:cardCornerRadius="9dp">
 
                 <TextView
-                    android:id="@+id/textView10"
-                    android:layout_width="91dp"
+                    android:id="@+id/textViewSetting"
+                    android:layout_width="145dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="App Settings" />
+                    android:layout_gravity="center_vertical"
+                    android:text="App Settings"
+                    android:layout_marginStart="5dp"
+                    android:textSize="20dp" />
             </androidx.cardview.widget.CardView>
 
             <RelativeLayout
@@ -120,15 +141,17 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="64dp"
-                app:cardBackgroundColor="#DDC3E1"
+                app:cardBackgroundColor="#E4DBF3"
                 app:cardCornerRadius="9dp">
 
                 <TextView
-                    android:id="@+id/notificationSettings"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/textView10"
+                    android:layout_width="213dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Notification Settings" />
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="5dp"
+                    android:text="Notification Settings"
+                    android:textSize="20dp" />
             </androidx.cardview.widget.CardView>
 
             <RelativeLayout
