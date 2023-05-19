@@ -16,4 +16,5 @@
     <color name="lightpurple">#C8C2F4</color>
     <color name="lightred">#FFA7A7</color>
     <color name="reallylightpurple">#F4F2FF</color>
+    <color name="note_edit_date_gray">#242B2E</color>
 </resources>

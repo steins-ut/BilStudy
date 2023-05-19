@@ -12,9 +12,12 @@
         android:theme="@style/Theme.BilStudy.Main"
         tools:targetApi="31">
         <activity
+            android:name=".NotesTakerActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
-            android:theme="@style/Theme.BilStudy.Main"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.BilStudy.Main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,70 +26,48 @@
         </activity>
         <activity
             android:name=".QuestionnaireActivity"
-            android:theme="@style/Theme.BilStudy.Main"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"
+            android:theme="@style/Theme.BilStudy.Main" />
         <activity
             android:name=".PomodoroOptionsActivity"
-            android:theme="@style/Theme.BilStudy.Main"
-            android:exported="true">
-
-        </activity>
-
+            android:exported="true"
+            android:theme="@style/Theme.BilStudy.Main" />
         <activity
             android:name=".ProfileActivity"
-            android:theme="@style/Theme.BilStudy.Main"
-            android:exported="true">
-        </activity>
-
+            android:exported="true"
+            android:theme="@style/Theme.BilStudy.Main" />
         <activity
             android:name=".CalendarActivity"
-            android:theme="@style/Theme.BilStudy.Main"
-            android:exported="true">
-        </activity>
-
+            android:exported="true"
+            android:theme="@style/Theme.BilStudy.Main" />
         <activity
             android:name=".StudyHistoryActivity"
-            android:theme="@style/Theme.BilStudy.Main"
-            android:exported="true">
-        </activity>
-
+            android:exported="true"
+            android:theme="@style/Theme.BilStudy.Main" />
         <activity
             android:name=".StudyStatisticsActivity"
-            android:theme="@style/Theme.BilStudy.Main"
-            android:exported="true">
-        </activity>
+            android:exported="true"
+            android:theme="@style/Theme.BilStudy.Main" />
         <activity
             android:name=".SettingsActivity"
-            android:theme="@style/Theme.BilStudy.Main"
             android:exported="true"
-            >
-        </activity>
+            android:theme="@style/Theme.BilStudy.Main" />
         <activity
             android:name=".PreviousNotesActivity"
-            android:theme="@style/Theme.BilStudy.Main"
             android:exported="true"
-            >
-        </activity>
+            android:theme="@style/Theme.BilStudy.Main" />
         <activity
             android:name=".ChooseTemplateActivity"
-            android:theme="@style/Theme.BilStudy.Main"
             android:exported="true"
-            >
-        </activity>
+            android:theme="@style/Theme.BilStudy.Main" />
         <activity
             android:name=".MindMapTemplatesActivity"
-            android:theme="@style/Theme.BilStudy.Main"
             android:exported="true"
-            >
-        </activity>
+            android:theme="@style/Theme.BilStudy.Main" />
         <activity
             android:name=".BlankPageActivity"
-            android:theme="@style/Theme.BilStudy.Main"
             android:exported="true"
-            >
-        </activity>
+            android:theme="@style/Theme.BilStudy.Main" />
     </application>
 
 </manifest>
