@@ -1,4 +1,4 @@
-package com.merko.bilstudy.NotepadDatabase;
+package com.merko.bilstudy.notepad;
 
 import static androidx.room.OnConflictStrategy.REPLACE;
 import androidx.room.Dao;
@@ -6,12 +6,10 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
-import com.merko.bilstudy.NotepadModels.Notes;
-
 import java.util.List;
 
 @Dao
-public interface NotepadDAO {
+public interface NotepadDao {
     @Insert(onConflict = REPLACE)
     void insert(Notes notes);
 

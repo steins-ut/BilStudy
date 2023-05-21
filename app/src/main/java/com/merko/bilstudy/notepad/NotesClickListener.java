@@ -1,8 +1,8 @@
-package com.merko.bilstudy;
+package com.merko.bilstudy.notepad;
 
 import androidx.cardview.widget.CardView;
 
-import com.merko.bilstudy.NotepadModels.Notes;
+import com.merko.bilstudy.notepad.Notes;
 
 public interface NotesClickListener {
     void onClick(Notes notes);

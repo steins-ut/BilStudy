@@ -12,6 +12,8 @@ public class Profile {
     public String name;
     /** Identifier of the profile image */
     public UUID imageUuid;
+    /** Coins of the user */
+    public int coin;
 
     public Profile() {}
 

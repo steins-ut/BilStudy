@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.merko.bilstudy.NotepadModels.Notes;
+import com.merko.bilstudy.notepad.Notes;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

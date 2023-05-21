@@ -17,9 +17,10 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.merko.bilstudy.Adapters.NotesListAdapter;
-import com.merko.bilstudy.NotepadDatabase.NotepadRoomDB;
-import com.merko.bilstudy.NotepadModels.Notes;
+import com.merko.bilstudy.notepad.adapters.NotesListAdapter;
+import com.merko.bilstudy.notepad.Notes;
+import com.merko.bilstudy.data.BilStudyDatabase;
+import com.merko.bilstudy.notepad.NotesClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,7 @@ public class PreviousNotesActivity extends AppCompatActivity implements PopupMen
     RecyclerView recyclerView;
     NotesListAdapter notesListAdapter;
     List<Notes> notes = new ArrayList<>();
-    NotepadRoomDB database;
+    BilStudyDatabase database;
     FloatingActionButton newNoteButton;
     SearchView searchView_previous_notes;
     Notes selectedNote;
@@ -43,7 +44,7 @@ public class PreviousNotesActivity extends AppCompatActivity implements PopupMen
         newNoteButton = findViewById(R.id.newNoteButton);
         searchView_previous_notes = findViewById(R.id.searchView_previous_notes);
 
-        database = NotepadRoomDB.getInstance(this);
+        database = BilStudyDatabase.getInstance();
         notes = database.notepadDAO().getAll();
 
         updateRecycler(notes);

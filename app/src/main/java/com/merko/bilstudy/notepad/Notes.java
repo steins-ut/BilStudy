@@ -1,4 +1,4 @@
-package com.merko.bilstudy.NotepadModels;
+package com.merko.bilstudy.notepad;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
