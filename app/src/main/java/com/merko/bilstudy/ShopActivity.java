@@ -28,7 +28,7 @@ public class ShopActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.itemsRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new ShopAdapter(getApplicationContext(), shopItems));
-        backButton = findViewById(R.id.backButtonShop);
+        backButton = findViewById(R.id.backButtonPomodoro);
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override

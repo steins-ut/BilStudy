@@ -1,10 +1,8 @@
 package com.merko.bilstudy;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -44,7 +42,7 @@ public class QuestionnaireActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questionnaire_screen);
 
-        backButton = findViewById(R.id.backButtonShop);
+        backButton = findViewById(R.id.backButtonPomodoro);
         yes1 = findViewById(R.id.yes1);
         no1 = findViewById(R.id.no1);
         yes2 = findViewById(R.id.yes2);
