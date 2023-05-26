@@ -1,22 +1,44 @@
 package com.merko.bilstudy;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class CalendarActivity extends AppCompatActivity {
 
     CalendarView calendarView;
     TextView textView;
+    Button add;
+    EditText item;
+    ListView listView;
+    ArrayList<String> itemList = new ArrayList<>();
+    ArrayAdapter<String> arrayAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
         calendarView = findViewById(R.id.calendarView);
         textView = findViewById(R.id.textViewCal);
+        add = findViewById(R.id.buttonAdd);
+        item = findViewById(R.id.editText);
+        listView = findViewById(R.id.list);
+        arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, itemList);
+        listView.setAdapter(arrayAdapter);
 
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
@@ -26,5 +48,43 @@ public class CalendarActivity extends AppCompatActivity {
 
             }
         });
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String itemname = item.getText().toString();
+                itemList.add(itemname);
+                item.setText("");
+                FileHelper.writeData(itemList, getApplicationContext());
+                arrayAdapter.notifyDataSetChanged();
+            }
+        });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(CalendarActivity.this);
+                alert.setTitle("Delete");
+                alert.setMessage("Do you want to delete this event?");
+                alert.setCancelable(false);
+                alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+                alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        itemList.remove(pos);
+                        arrayAdapter.notifyDataSetChanged();
+                        FileHelper.writeData(itemList,getApplicationContext());
+
+                    }
+                });
+                AlertDialog alertDialog = alert.create();
+                alertDialog.show();
+            }
+        });
+
+
     }
 }

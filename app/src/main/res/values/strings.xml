@@ -8,4 +8,20 @@
     <string name="notifications_button_name">Notifications</string>
     <string name="settings_button_name">Settings</string>
     <string name="questionnaire_button_name">Questionnaire</string>
+
+    <string-array name="test_recycler">
+        <item>ayca</item>
+        <item>ece</item>
+        <item>ege</item>
+        <item>goktug</item>
+        <item>candan</item>
+        <item>elif</item>
+        <item>orhun</item>
+        <item>ozan</item>
+    </string-array>
+
+
 </resources>
+
+
+

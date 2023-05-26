@@ -18,7 +18,7 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        buttonHist = findViewById(R.id.button);
+        buttonHist = findViewById(R.id.buttonAdd);
         buttonHist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,7 +49,7 @@ public class ProfileActivity extends AppCompatActivity {
         buttonShop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ProfileActivity.this,CalendarActivity.class);
+                Intent intent = new Intent(ProfileActivity.this,ShopActivity.class);
                 startActivity(intent);
             }
         });

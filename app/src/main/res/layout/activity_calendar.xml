@@ -4,19 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E6C9EC"
+    android:background="#EAD3EF"
     tools:context=".CalendarActivity">
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:background="#C98FD3"
         android:text="Upcoming Events"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.083"
+        app:layout_constraintHorizontal_bias="0.086"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calendarView" />
 
@@ -35,9 +35,9 @@
 
     <CalendarView
         android:id="@+id/calendarView"
-        android:layout_width="377dp"
-        android:layout_height="302dp"
-        android:background="#F0E2F3"
+        android:layout_width="378dp"
+        android:layout_height="295dp"
+        android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -56,19 +56,80 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.87"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewProfile"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"></TextView>
 
-    <ScrollView
-        android:id="@+id/upcomingEvents"
-        android:layout_width="372dp"
-        android:layout_height="296dp"
-        android:background="#F2E1F4"
+    <androidx.cardview.widget.CardView
+        android:layout_width="377dp"
+        android:layout_height="241dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="11dp"
+        android:layout_marginBottom="109dp"
+        app:cardCornerRadius="9dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.589"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
-        app:layout_constraintVertical_bias="0.483" />
+        app:layout_constraintTop_toBottomOf="@+id/textView6">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="302dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="#00956F6F"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/editText"
+                    android:layout_width="247dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="Add" />
+
+                <Button
+                    android:id="@+id/buttonAdd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/lightpurple"
+                    android:text="Add Event"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/backButtonCalendar"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/lightpurple"
+        android:clickable="true"
+        app:cardCornerRadius="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/backArrow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/lightpurple"
+            app:srcCompat="@drawable/return_arrow" />
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

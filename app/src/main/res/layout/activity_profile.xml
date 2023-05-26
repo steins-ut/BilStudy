@@ -74,7 +74,7 @@
                     android:layout_marginStart="10dp"
                     android:text="Coins:"
                     android:textColor="@color/black"
-                    android:textSize="22sp"
+                    android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -106,7 +106,7 @@
                     android:layout_marginStart="10dp"
                     android:text="Streak:"
                     android:textColor="@color/black"
-                    android:textSize="22sp"
+                    android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -114,7 +114,7 @@
         </androidx.cardview.widget.CardView>
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/imageViewCheck"
             android:layout_width="108dp"
             android:layout_height="80dp"
             android:layout_alignParentBottom="true"
@@ -141,29 +141,31 @@
             android:orientation="vertical">
 
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="175dp"
+                android:layout_width="362dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="12dp"
                 android:background="#C8B7E6">
 
+
                 <TextView
                     android:id="@+id/textView2"
-                    android:layout_width="178dp"
-                    android:layout_height="40dp"
+                    android:layout_width="185dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_centerVertical="true"
                     android:text="Study History"
                     android:textSize="20dp" />
 
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/buttonAdd"
                     android:layout_width="62dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="8dp"
+                    android:backgroundTint="#673AB7"
                     android:text="GO" />
 
             </RelativeLayout>
@@ -177,7 +179,7 @@
                 android:background="#C8B7E6">
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/textViewStudy"
                     android:layout_width="178dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="10dp"
@@ -192,7 +194,75 @@
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="8dp"
+                    android:backgroundTint="#673AB7"
                     android:text="GO" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginBottom="0dp">
+
+                    <ProgressBar
+                        android:id="@+id/progressBar4"
+                        style="?android:attr/progressBarStyle"
+                        android:layout_width="74dp"
+                        android:layout_height="67dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginBottom="52dp"
+                        android:indeterminateTint="#673AB7"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <ProgressBar
+                        android:id="@+id/progressBar5"
+                        style="?android:attr/progressBarStyle"
+                        android:layout_width="74dp"
+                        android:layout_height="67dp"
+                        android:layout_marginStart="112dp"
+                        android:layout_marginBottom="52dp"
+                        android:indeterminateTint="#673AB7"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <ProgressBar
+                        android:id="@+id/progressBar6"
+                        style="?android:attr/progressBarStyle"
+                        android:layout_width="74dp"
+                        android:layout_height="67dp"
+                        android:layout_marginStart="200dp"
+                        android:layout_marginBottom="52dp"
+                        android:indeterminateTint="#673AB7"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="60dp"
+                        android:layout_height="43dp"
+                        android:text="Biology Folder"
+                        app:layout_constraintEnd_toEndOf="@+id/progressBar4"
+                        app:layout_constraintStart_toStartOf="@+id/progressBar4"
+                        app:layout_constraintTop_toBottomOf="@+id/progressBar4" />
+
+                    <TextView
+                        android:id="@+id/textView12"
+                        android:layout_width="60dp"
+                        android:layout_height="43dp"
+                        android:text="Biology Folder"
+                        app:layout_constraintEnd_toEndOf="@+id/progressBar5"
+                        app:layout_constraintStart_toStartOf="@+id/progressBar5"
+                        app:layout_constraintTop_toBottomOf="@+id/progressBar5" />
+                    <TextView
+                        android:id="@+id/textView13"
+                        android:layout_width="60dp"
+                        android:layout_height="43dp"
+                        android:text="Biology Folder"
+                        app:layout_constraintEnd_toEndOf="@+id/progressBar6"
+                        app:layout_constraintStart_toStartOf="@+id/progressBar6"
+                        app:layout_constraintTop_toBottomOf="@+id/progressBar6" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </RelativeLayout>
 
@@ -203,6 +273,70 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="12dp"
                 android:background="#C8B7E6">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="259dp"
+                        android:layout_height="107dp"
+                        app:cardCornerRadius="12dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.158"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.764" >
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/cardView8"
+                                android:layout_width="239dp"
+                                android:layout_height="58dp"
+                                android:layout_marginBottom="16dp"
+                                android:backgroundTint="#C7B6E5"
+                                app:cardCornerRadius="9dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent" >
+
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                    <TextView
+                                        android:id="@+id/textView9"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="4dp"
+                                        android:text="Upcoming Event:"
+                                        android:textSize="10dp"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintHorizontal_bias="0.088"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+                            </androidx.cardview.widget.CardView>
+
+                            <TextView
+                                android:id="@+id/textView7"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Today: 24 May 2023"
+                                app:layout_constraintBottom_toTopOf="@+id/cardView8"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.12"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.cardview.widget.CardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
                     android:id="@+id/textView4"
@@ -220,38 +354,54 @@
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="8dp"
+                    android:backgroundTint="#673AB7"
                     android:text="GO" />
+
             </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="175dp"
+                android:layout_height="60dp"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="12dp"
                 android:background="#C8B7E6">
 
-                <TextView
-                    android:id="@+id/textView5"
-                    android:layout_width="178dp"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="5dp"
-                    android:text="Shop"
-                    android:textSize="20dp" />
-
                 <Button
                     android:id="@+id/button3"
-                    android:layout_width="62dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="327dp"
+                    android:layout_height="36dp"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginEnd="17dp"
                     android:layout_marginBottom="5dp"
-                    android:text="GO" />
+                    android:backgroundTint="#673AB7"
+                    android:text="GO TO YOUR SHOP PAGE"
+                    android:textColor="@color/white"
+                    android:textSize="10dp" />
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/backButtonCalendar"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/lightpurple"
+        android:clickable="true"
+        app:cardCornerRadius="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/backArrow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/lightpurple"
+            app:srcCompat="@drawable/return_arrow" />
+    </androidx.cardview.widget.CardView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
