@@ -135,25 +135,4 @@
             app:srcCompat="@drawable/return_arrow" />
     </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/editPomodoro"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="15dp"
-        android:background="@color/lightred"
-        android:backgroundTint="@color/lightred"
-        android:clickable="true"
-        app:cardCornerRadius="25dp"
-        app:layout_constraintBottom_toTopOf="@+id/addPomodoro"
-        app:layout_constraintEnd_toEndOf="@+id/PomodoroScrollView">
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="50dp"
-            android:layout_height="47dp"
-            android:layout_gravity="center"
-            app:srcCompat="@drawable/pomodoro_edit_icon" />
-    </androidx.cardview.widget.CardView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

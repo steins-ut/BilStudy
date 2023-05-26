@@ -1,9 +1,12 @@
 package com.merko.bilstudy.shop;
 
+import androidx.cardview.widget.CardView;
+
 public class ShopItem {
     String type;
     String name;
     String price;
+
     int image;
 
     public ShopItem(String type, String name, String price, int image) {
@@ -29,8 +32,8 @@ public class ShopItem {
         this.name = name;
     }
 
-    public String getPrice() {
-        return price;
+    public int getPrice() {
+        return Integer.parseInt(price);
     }
 
     public void setPrice(String price) {

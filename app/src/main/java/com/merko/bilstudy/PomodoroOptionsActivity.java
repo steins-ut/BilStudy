@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.merko.bilstudy.data.SourceLocator;
@@ -23,19 +24,14 @@ public class PomodoroOptionsActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     PomodoroAdapter adapter;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pomodoro_options);
         recyclerView = findViewById(R.id.PomodoroRecyclerView);
         pomodoroOptions = new ArrayList<PomodoroPreset>();
-        PomodoroSource pomodoro = SourceLocator.getInstance().getProvider(PomodoroSource.class);
-        if(!pomodoro.equals(null)){
-            CompletableFuture<PomodoroPreset[]> all = pomodoro.getAllPresets();
-            pomodoroOptions = Arrays.asList(all.join());
-        }
-
-
+        loadOptions();
         CardView addButton = findViewById(R.id.addPomodoro);
         CardView backButton = findViewById(R.id.backButtonPomodoro);
 
@@ -66,8 +62,11 @@ public class PomodoroOptionsActivity extends AppCompatActivity {
         loadOptions();
     }
 
-    public void loadOptions() {
-        adapter.setOptions(pomodoroOptions);
+    public static void loadOptions() {
+        PomodoroSource pomodoro = SourceLocator.getInstance().getProvider(PomodoroSource.class);
+        if(!pomodoro.equals(null)){
+            CompletableFuture<PomodoroPreset[]> all = pomodoro.getAllPresets();
+            pomodoroOptions = Arrays.asList(all.join());
+        }
     }
-
 }

@@ -20,6 +20,10 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopViewHolder> {
         this.shopItems = shopItems;
     }
 
+    public void setShopItems(List<ShopItem> shopItems) {
+        this.shopItems = shopItems;
+    }
+
     @NonNull
     @Override
     public ShopViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -29,7 +33,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ShopViewHolder holder, int position) {
         holder.itemName.setText(shopItems.get(position).getName());
-        holder.itemPrice.setText(shopItems.get(position).getPrice());
+        holder.itemPrice.setText("" + shopItems.get(position).getPrice());
         holder.itemImage.setImageResource(shopItems.get(position).getImage());
     }
 
