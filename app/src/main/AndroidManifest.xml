@@ -80,6 +80,10 @@
             android:exported="true"
             android:theme="@style/Theme.BilStudy.Main" />
         <activity
+            android:name=".ToDoListActivity"
+            android:exported="true"
+            android:theme="@style/Theme.BilStudy.Main" />
+        <activity
             android:name=".MindMapTemplatesActivity"
             android:exported="true"
             android:theme="@style/Theme.BilStudy.Main" />

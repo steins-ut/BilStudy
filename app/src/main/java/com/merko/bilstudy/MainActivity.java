@@ -140,7 +140,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         channelNotification();
 
         Calendar calendar = Calendar.getInstance();
@@ -158,7 +157,6 @@ public class MainActivity extends AppCompatActivity {
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M) {
             alarm.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),pendingIntent);
         }
-
 
         Globals.setApplicationContext(getApplicationContext());
 

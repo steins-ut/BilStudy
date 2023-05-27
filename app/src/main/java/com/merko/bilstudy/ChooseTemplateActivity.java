@@ -12,6 +12,7 @@ public class ChooseTemplateActivity extends AppCompatActivity {
     private View back;
     private View mindMaps;
     private View standardNotes;
+    private View toDoList;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -22,6 +23,7 @@ public class ChooseTemplateActivity extends AppCompatActivity {
         back = findViewById(R.id.back_button);
         mindMaps = findViewById(R.id.mind_maps);
         standardNotes = findViewById(R.id.blank_note);
+        toDoList = findViewById(R.id.todo);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,6 +43,14 @@ public class ChooseTemplateActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ChooseTemplateActivity.this, MindMapTemplatesActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        toDoList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ChooseTemplateActivity.this, ToDoListActivity.class);
                 startActivity(intent);
             }
         });
