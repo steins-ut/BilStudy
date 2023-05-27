@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<item
+    android:id="@+id/left"
+    android:title="New Left"/>
+    <item
+        android:id="@+id/right"
+        android:title="New Right"/>
+    <item
+        android:id="@+id/top"
+        android:title="New Top"/>
+    <item
+        android:id="@+id/bottom"
+        android:title="New Bottom"/>
+    <item
+        android:id="@+id/delete"
+        android:title="Delete"/>
+</menu>

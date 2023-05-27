@@ -1,9 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.merko.bilstudy.notepad.MindMapModels.MindMapView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mind_mapping_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FAF7D9"
     tools:context=".MindMapActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <RadioGroup
+        android:id="@+id/toolbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:checkedButton="@id/drag"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="horizontal">
+
+
+        <RadioButton
+            android:id="@+id/connect"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/radio_button_icon"
+            android:button="@drawable/radio_button_icon"
+            android:layoutDirection="ltr"
+            android:onClick="onRadioButtonClicked"
+            android:text="Link"
+            android:textAlignment="center"
+            android:textSize="12dp" />
+
+        <RadioButton
+            android:id="@+id/drag"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/radio_button_icon"
+            android:button="@drawable/radio_button_icon"
+            android:layoutDirection="ltr"
+            android:onClick="onRadioButtonClicked"
+            android:text="Drag"
+            android:textAlignment="center" />
+
+        <RadioButton
+            android:id="@+id/edit"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/radio_button_icon"
+            android:button="@drawable/radio_button_icon"
+            android:layoutDirection="ltr"
+            android:onClick="onRadioButtonClicked"
+            android:text="Edit"
+            android:textAlignment="center" />
+
+        <RadioButton
+            android:id="@+id/addRemove"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/radio_button_icon"
+            android:button="@drawable/radio_button_icon"
+            android:layoutDirection="ltr"
+            android:onClick="onRadioButtonClicked"
+            android:text="Add/Remove"
+            android:textAlignment="center" />
+
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save as Image"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"/>
+</com.merko.bilstudy.notepad.MindMapModels.MindMapView>
+
+

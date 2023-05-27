@@ -11,6 +11,7 @@ import android.view.View;
 public class ChooseTemplateActivity extends AppCompatActivity {
     private View back;
     private View mindMaps;
+    private View standardNotes;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -20,8 +21,16 @@ public class ChooseTemplateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_choose_template);
         back = findViewById(R.id.back_button);
         mindMaps = findViewById(R.id.mind_maps);
+        standardNotes = findViewById(R.id.blank_note);
 
         back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ChooseTemplateActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+        standardNotes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ChooseTemplateActivity.this, PreviousNotesActivity.class);

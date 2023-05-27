@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         notepadCard.setOnClickListener((View view) -> {
-            Intent notepadPage = new Intent(MainActivity.this, PreviousNotesActivity.class);
+            Intent notepadPage = new Intent(MainActivity.this, ChooseTemplateActivity.class);
             startActivity(notepadPage);
         });
 
