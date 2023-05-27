@@ -15,6 +15,9 @@
             android:name=".PomodoroCountdownActivity"
             android:exported="false" />
         <activity
+            android:name=".MindMapActivity"
+            android:exported="false" />
+        <activity
             android:name=".NotesTakerActivity"
             android:exported="false" />
         <activity

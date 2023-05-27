@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#FAF7D9"
     tools:context=".NotesTakerActivity">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_notes"
@@ -41,9 +42,11 @@
     <EditText
         android:id="@+id/editText_notes"
         android:hint="Add Notes:"
+        android:background="@null"
         android:padding="8dp"
         android:textSize="18sp"
         android:textStyle="normal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
 </LinearLayout>
