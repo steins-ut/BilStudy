@@ -61,7 +61,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="556dp"
+                android:layout_height="498dp"
 
                 android:background="#B092E4"
                 android:orientation="vertical"
@@ -145,29 +145,6 @@
                         android:textColor="@color/white"
                         android:textSize="10dp" />
 
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="64dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="20dp"
-                        android:text="Language" />
-
-                    <Button
-                        android:id="@+id/button5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginEnd="15dp"
-                        android:layout_marginBottom="11dp"
-                        android:text="Select" />
 
                 </RelativeLayout>
 
@@ -260,16 +237,14 @@
     </ScrollView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/backButtonSettings"
+        android:id="@+id/backButtonPomodoro"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginBottom="20dp"
         android:backgroundTint="@color/lightpurple"
         android:clickable="true"
-        app:cardCornerRadius="25dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="60dp"
+        app:cardCornerRadius="25dp">
 
         <ImageView
             android:id="@+id/backArrow"

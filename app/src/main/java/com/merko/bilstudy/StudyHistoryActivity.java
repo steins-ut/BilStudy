@@ -1,8 +1,11 @@
 package com.merko.bilstudy;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,11 +16,22 @@ public class StudyHistoryActivity extends AppCompatActivity {
     int image= R.drawable.baseline_assignment_turned_in_24;
     String date = "20.05.2023";
 
+    CardView backButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_study_history);
         RecyclerView recyclerView = findViewById(R.id.recyclerViewHistory);
+        backButton = findViewById(R.id.backButtonCalendar);
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent profile = new Intent(getBaseContext(), ProfileActivity.class);
+                startActivity(profile);
+            }
+        });
 
         setUpOldStudies();
 

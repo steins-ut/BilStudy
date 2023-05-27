@@ -1,18 +1,31 @@
 package com.merko.bilstudy;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.core.splashscreen.SplashScreen;
 
+import android.Manifest;
+import android.app.AlarmManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.merko.bilstudy.data.SourceLocator;
 import com.merko.bilstudy.dialog.LoadingDialog;
@@ -29,7 +42,10 @@ import com.merko.bilstudy.social.LocalProfileSource;
 import com.merko.bilstudy.social.ProfileSource;
 import com.merko.bilstudy.utils.Globals;
 
+import java.util.Calendar;
+
 public class MainActivity extends AppCompatActivity {
+
 
     static {
         SourceLocator locator = SourceLocator.getInstance();
@@ -63,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
         Button questionnaireButton = findViewById(R.id.questionnaireButton);
         Button settingsButton = findViewById(R.id.settingsButton);
         Button shopButton = findViewById(R.id.shopButton);
-
         CardView pomodoroCard = findViewById(R.id.pomodoroCard);
         CardView notepadCard = findViewById(R.id.notepadCard);
 
@@ -109,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(shopPage);
         });
 
+
         locator.getProvider(PomodoroSource.class).getAllPresets().thenAccept((PomodoroPreset[] presets) -> {
             for(PomodoroPreset p: presets) {
                 Log.d(toString(), p.name);
@@ -124,9 +140,43 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        channelNotification();
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY,10);
+        calendar.set(Calendar.MINUTE,30);
+        calendar.set(Calendar.SECOND,00);
+        if(Calendar.getInstance().after(calendar)) {
+            calendar.add(Calendar.DAY_OF_MONTH,1);
+        }
+        Intent i = new Intent(MainActivity.this,BilStudyBroadCast.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(),0,i,PendingIntent.FLAG_UPDATE_CURRENT);
+
+        AlarmManager alarm = (AlarmManager)getSystemService(ALARM_SERVICE);
+        alarm.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent);
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M) {
+            alarm.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),pendingIntent);
+        }
+
+
         Globals.setApplicationContext(getApplicationContext());
 
         handleFirstRun();
         initialize();
+
     }
+
+    private void channelNotification() {
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O) {
+            CharSequence name = "BilStudy";
+            String message = "BilStudy's Channel";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel("Notification",name,importance);
+            channel.setDescription(message);
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+
 }

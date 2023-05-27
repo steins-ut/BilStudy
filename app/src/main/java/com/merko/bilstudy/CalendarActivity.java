@@ -3,6 +3,7 @@ package com.merko.bilstudy;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -27,6 +28,7 @@ public class CalendarActivity extends AppCompatActivity {
     ListView listView;
     ArrayList<String> itemList = new ArrayList<>();
     ArrayAdapter<String> arrayAdapter;
+    CardView backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,7 @@ public class CalendarActivity extends AppCompatActivity {
         listView = findViewById(R.id.list);
         arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, itemList);
         listView.setAdapter(arrayAdapter);
+        backButton = findViewById(R.id.backButtonCalendar);
 
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
@@ -46,6 +49,13 @@ public class CalendarActivity extends AppCompatActivity {
                 String date = day + "/" + month + "/" + year;
                 textView.setText(date);
 
+            }
+        });
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent profile = new Intent(getBaseContext(), ProfileActivity.class);
+                startActivity(profile);
             }
         });
         add.setOnClickListener(new View.OnClickListener() {

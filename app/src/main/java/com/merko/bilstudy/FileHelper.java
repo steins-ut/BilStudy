@@ -16,7 +16,7 @@ public class FileHelper {
     public static final String FILE_NAME = "listinfo.dat";
     public static void writeData(ArrayList<String>item, Context context){
         try {
-            FileOutputStream fos = context.openFileOutput(FILE_NAME,Context.MODE_PRIVATE);
+            FileOutputStream fos = context.openFileOutput(FILE_NAME,Context.MODE_APPEND);
             ObjectOutputStream oas = new ObjectOutputStream(fos);
             oas.writeObject(item);
             oas.close();

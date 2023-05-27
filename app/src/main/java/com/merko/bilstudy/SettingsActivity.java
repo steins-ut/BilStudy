@@ -11,22 +11,31 @@ import android.widget.Switch;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 public class SettingsActivity extends AppCompatActivity {
     MediaPlayer play;
     MediaPlayer play2;
     Button playSound;
     Button stopSound;
-    Button back;
+    CardView backButton;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         playSound = findViewById(R.id.buttonPlay);
         stopSound = findViewById(R.id.buttonStop);
-        play = MediaPlayer.create(SettingsActivity.this,R.raw.rain);
-        play2 = MediaPlayer.create(SettingsActivity.this,R.raw.lofi);
-        back = findViewById(R.id.backButtonSettings);
+        backButton = findViewById(R.id.backButtonPomodoro);
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent homepage = new Intent(getBaseContext(), MainActivity.class);
+                startActivity(homepage);
+            }
+        });
         playSound.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -37,13 +46,61 @@ public class SettingsActivity extends AppCompatActivity {
                 alert.setNegativeButton("Rain", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        play.start();
+                        try {
+                            play.stop();
+                            play.release();
+                        }
+                        catch(Exception e) {
+                            //null
+                        }
+                        try {
+                            play.reset();
+                        }
+                        catch(Exception e) {
+                            //null
+                        }
+                        play = MediaPlayer.create(SettingsActivity.this,R.raw.rain);
+                        try {
+                            play.prepare();
+                        }
+                        catch(Exception e){
+                        }
+                        try {
+                            play.start();
+                        }
+                        catch (IllegalStateException e) {
+
+                        }
                     }
                 });
                 alert.setPositiveButton("LoFi", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        play2.start();
+                        try {
+                            play2.stop();
+                            play2.release();
+                        }
+                        catch(Exception e) {
+                            //null
+                        }
+                        try {
+                            play2.reset();
+                        }
+                        catch(Exception e) {
+                            //null
+                        }
+                        play2 = MediaPlayer.create(SettingsActivity.this,R.raw.lofi);
+                        try {
+                            play2.prepare();
+                        }
+                        catch(Exception e){
+                        }
+                        try {
+                            play2.start();
+                        }
+                        catch (IllegalStateException e) {
+
+                        }
 
                     }
                 });
@@ -54,12 +111,19 @@ public class SettingsActivity extends AppCompatActivity {
         stopSound.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                play.stop();
-                play2.stop();
+                finish(play);
+                finish(play2);
             }
         });
-
-
     }
+    public void finish(MediaPlayer player) {
+        try {
+            player.release();
+        }
+        catch(Exception e) {
+
+        }
+    }
+
 
 }
