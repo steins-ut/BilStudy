@@ -45,7 +45,7 @@ import com.merko.bilstudy.utils.Globals;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
-
+    protected static Boolean notifications = true;
 
     static {
         SourceLocator locator = SourceLocator.getInstance();
@@ -75,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
         ImageView profileIcon = findViewById(R.id.profileIcon);
         CardView profileCard = findViewById(R.id.profileCard);
         TextView welcomeText = findViewById(R.id.welcomeText);
-
         Button questionnaireButton = findViewById(R.id.questionnaireButton);
         Button settingsButton = findViewById(R.id.settingsButton);
         Button shopButton = findViewById(R.id.shopButton);
@@ -140,24 +139,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        channelNotification();
+            if(notifications) {
+                channelNotification();
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY,10);
-        calendar.set(Calendar.MINUTE,30);
-        calendar.set(Calendar.SECOND,00);
-        if(Calendar.getInstance().after(calendar)) {
-            calendar.add(Calendar.DAY_OF_MONTH,1);
-        }
-        Intent i = new Intent(MainActivity.this,BilStudyBroadCast.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(),0,i,PendingIntent.FLAG_IMMUTABLE);
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(Calendar.HOUR_OF_DAY,16);
+                calendar.set(Calendar.MINUTE,57);
+                calendar.set(Calendar.SECOND,00);
+                if(Calendar.getInstance().after(calendar)) {
+                    calendar.add(Calendar.DAY_OF_MONTH,1);
+                }
+                Intent i = new Intent(MainActivity.this,BilStudyBroadCast.class);
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(),0,i,PendingIntent.FLAG_IMMUTABLE);
 
-
-        AlarmManager alarm = (AlarmManager)getSystemService(ALARM_SERVICE);
-        alarm.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent);
-        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M) {
-            alarm.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),pendingIntent);
-        }
+                AlarmManager alarm = (AlarmManager)getSystemService(ALARM_SERVICE);
+                alarm.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent);
+                if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M) {
+                    alarm.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),pendingIntent);
+                }
+            }
 
         Globals.setApplicationContext(getApplicationContext());
 
@@ -177,5 +177,6 @@ public class MainActivity extends AppCompatActivity {
             notificationManager.createNotificationChannel(channel);
         }
     }
+
 
 }

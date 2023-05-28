@@ -40,6 +40,7 @@ public class CalendarActivity extends AppCompatActivity {
         add = findViewById(R.id.buttonAdd);
         item = findViewById(R.id.editText);
         listView = findViewById(R.id.list);
+        itemList = FileHelper.readData(this);
         arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, itemList);
         listView.setAdapter(arrayAdapter);
         backButton = findViewById(R.id.backButtonCalendar);
@@ -63,11 +64,12 @@ public class CalendarActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String itemname = item.getText().toString();
-                if(itemname != null && !itemname.equals("")){
+                if(itemname != null && !itemname.equals("")) {
                     itemList.add(itemname);
                     item.setText("");
                     FileHelper.writeData(itemList, getApplicationContext());
                     arrayAdapter.notifyDataSetChanged();
+                }
                 else{
                     Toast.makeText(CalendarActivity.this, "Please add some content!", Toast.LENGTH_SHORT).show();
                 }
@@ -92,7 +94,7 @@ public class CalendarActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         itemList.remove(pos);
                         arrayAdapter.notifyDataSetChanged();
-                        FileHelper.writeData(itemList,getApplicationContext());
+                        FileHelper.writeData(itemList,CalendarActivity.this);
 
                     }
                 });

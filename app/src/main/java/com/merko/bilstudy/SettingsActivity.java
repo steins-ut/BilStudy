@@ -18,6 +18,9 @@ public class SettingsActivity extends AppCompatActivity {
     MediaPlayer play2;
     Button playSound;
     Button stopSound;
+    Button notificationsOn;
+    Button notificationsOff;
+    Button selectTime;
     CardView backButton;
 
 
@@ -28,6 +31,9 @@ public class SettingsActivity extends AppCompatActivity {
         playSound = findViewById(R.id.buttonPlay);
         stopSound = findViewById(R.id.buttonStop);
         backButton = findViewById(R.id.backButtonPomodoro);
+        notificationsOff = findViewById(R.id.buttonOFF);
+        notificationsOn = findViewById(R.id.buttonOn);
+        selectTime = findViewById(R.id.buttonSelectTime);
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,6 +121,25 @@ public class SettingsActivity extends AppCompatActivity {
                 finish(play2);
             }
         });
+        notificationsOff.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //changeNotification(false);
+            }
+        });
+        notificationsOn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //changeNotification(true);
+            }
+        });
+        selectTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent homepage = new Intent(getBaseContext(), MainActivity.class);
+                startActivity(homepage);
+            }
+        });
     }
     public void finish(MediaPlayer player) {
         try {
@@ -124,6 +149,8 @@ public class SettingsActivity extends AppCompatActivity {
 
         }
     }
-
+    //public void changeNotification(Boolean booleanVal) {
+        //MainActivity.notifications = booleanVal;
+    //}
 
 }

@@ -28,6 +28,8 @@ public class BilStudyBroadCast extends BroadcastReceiver {
                 .setPriority(Notification.PRIORITY_DEFAULT)
                 .setAutoCancel(true);
         NotificationManagerCompat managerCompat = NotificationManagerCompat.from(context);
+
+
         if (ActivityCompat.checkSelfPermission(context, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions

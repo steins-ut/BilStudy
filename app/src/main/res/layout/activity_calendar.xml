@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EAD3EF"
+    android:background="#F7E3FB"
     tools:context=".CalendarActivity">
 
     <TextView
@@ -12,8 +12,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:background="#C98FD3"
         android:text="Upcoming Events"
+        android:background="@drawable/rounded_corner_purple"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.086"
@@ -25,8 +25,8 @@
         android:layout_width="85dp"
         android:layout_height="26dp"
         android:layout_marginTop="16dp"
-        android:background="#C98FD3"
         android:text="Calendar"
+        android:background="@drawable/rounded_corner_purple"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.069"
