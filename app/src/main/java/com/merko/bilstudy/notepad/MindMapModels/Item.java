@@ -29,6 +29,7 @@ public class Item extends androidx.appcompat.widget.AppCompatEditText {
         this.context = context;
         this.setHint("Write your thoughts:");
         this.setGravity(Gravity.CENTER);
+        this.setPadding(20,15,20,15);
     }
 
     public Item(Context context, AttributeSet attrs) {
@@ -98,7 +99,6 @@ public class Item extends androidx.appcompat.widget.AppCompatEditText {
         GradientDrawable shape = new GradientDrawable();
         shape.setColor(Color.GRAY);
         shape.setCornerRadius(100);
-        this.setBackground(getResources().getDrawable(R.drawable.square));
         this.setBorder(Color.BLACK, 5);
         this.setGravity(Gravity.CENTER);
         this.setPadding(50, 20, 50, 20);

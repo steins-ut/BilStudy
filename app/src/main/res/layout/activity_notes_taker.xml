@@ -7,29 +7,37 @@
     android:orientation="vertical"
     android:background="#FAF7D9"
     tools:context=".NotesTakerActivity">
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_notes"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize">
-
-
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/notepadTitle"
+        android:layout_width="66dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_corner"
+        android:clickable="false"
+        android:contentDescription="Notepad title, shown in all notepad screens "
+        android:gravity="center"
+        android:text="Notepad"
+        android:layout_marginTop="18dp"
+        android:layout_marginLeft="11dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText,TextSizeCheck" />
 
             <ImageView
                 android:id="@+id/imageView_save"
                 android:src="@drawable/note_save_icon"
                 android:padding="8dp"
                 android:layout_alignParentEnd="true"
+                android:layout_marginTop="5dp"
                 android:background="@android:color/transparent"
                 android:layout_width="?attr/actionBarSize"
                 android:layout_height="?attr/actionBarSize"/>
-        </RelativeLayout>
+    </RelativeLayout>
 
-
-    </androidx.appcompat.widget.Toolbar>
     <EditText
         android:id="@+id/editText_title"
         android:hint="Title: "

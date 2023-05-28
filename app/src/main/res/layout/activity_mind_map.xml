@@ -7,6 +7,23 @@
     android:layout_height="match_parent"
     android:background="#FAF7D9"
     tools:context=".MindMapActivity">
+    <TextView
+        android:id="@+id/notepadTitle"
+        android:layout_width="66dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_corner"
+        android:clickable="false"
+        android:contentDescription="Notepad title, shown in all notepad screens "
+        android:gravity="center"
+        android:text="Notepad"
+        android:layout_marginTop="18dp"
+        android:layout_marginLeft="11dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText,TextSizeCheck" />
+
 
     <RadioGroup
         android:id="@+id/toolbar"
@@ -31,8 +48,7 @@
             android:layoutDirection="ltr"
             android:onClick="onRadioButtonClicked"
             android:text="Link"
-            android:textAlignment="center"
-            android:textSize="12dp" />
+            android:textAlignment="center" />
 
         <RadioButton
             android:id="@+id/drag"
@@ -81,6 +97,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"/>
+
 </com.merko.bilstudy.notepad.MindMapModels.MindMapView>
 
 

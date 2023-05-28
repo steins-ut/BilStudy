@@ -9,6 +9,7 @@ import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
+import android.graphics.drawable.GradientDrawable;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.MenuItem;
@@ -44,6 +45,7 @@ public class MindMapView extends RelativeLayout {
     private Item temp1;
     private Item temp2;
     private OnClickListener storeOnItemClicked;
+    private GradientDrawable shape;
 
     public MindMapView(Context context) {
         super(context);
@@ -52,6 +54,11 @@ public class MindMapView extends RelativeLayout {
         mindMapView = this;
         radioGroup = findViewById(R.id.toolbar);
         this.setOnItemClicked(new itemClickedListener());
+        shape = new GradientDrawable();
+        shape.setShape(GradientDrawable.RECTANGLE);
+        shape.setCornerRadii(new float[] { 16, 16, 16, 16, 0, 0, 0, 0 });
+        shape.setColor(Color.GRAY);
+        shape.setStroke(3, Color.GREEN);
 
     }
 
@@ -61,6 +68,12 @@ public class MindMapView extends RelativeLayout {
         mindMapView = this;
         radioGroup = findViewById(R.id.toolbar);
         this.setOnItemClicked(new itemClickedListener());
+        shape = new GradientDrawable();
+        shape.setShape(GradientDrawable.RECTANGLE);
+        shape.setCornerRadii(new float[] { 16, 16, 16, 16, 0, 0, 0, 0 });
+        shape.setCornerRadius(50);
+        shape.setColor(0xFFFFE500);
+        shape.setStroke(10, Color.TRANSPARENT);
 
     }
 
@@ -71,6 +84,11 @@ public class MindMapView extends RelativeLayout {
         mindMapView = this;
         radioGroup =  findViewById(R.id.toolbar);
         this.setOnItemClicked(new itemClickedListener());
+        shape = new GradientDrawable();
+        shape.setShape(GradientDrawable.RECTANGLE);
+        shape.setCornerRadii(new float[] { 16, 16, 16, 16, 0, 0, 0, 0 });
+        shape.setColor(Color.GRAY);
+        shape.setStroke(3, Color.GREEN);
 
     }
 
@@ -214,6 +232,7 @@ public class MindMapView extends RelativeLayout {
     @SuppressLint("ClickableViewAccessibility")
     public void addCentralItem(Item item, boolean dragAble){
         allItems.add(item);
+        item.setBackground(shape);
         item.setHint("Write your thoughts:");
         if (dragAble){
             dragItem(item);
@@ -303,12 +322,14 @@ public class MindMapView extends RelativeLayout {
     //Adding an item that has the parent already on the view
     public void addItem(Item item, Item parent, int distance, int spacing, int location,
                         boolean dragAble){
-
+        item.setBackground(shape);
         if (location == ItemLocation.TOP){
 
             this.addView(item);
             allItems.add(item);
             item.setOnClickListener(onClickListener);
+
+
 
             item.measure(MeasureSpec.AT_MOST, MeasureSpec.AT_MOST);
             parent.measure(MeasureSpec.AT_MOST, MeasureSpec.AT_MOST);
