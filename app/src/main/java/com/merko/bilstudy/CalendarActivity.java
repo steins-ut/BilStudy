@@ -16,6 +16,7 @@ import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -62,10 +63,15 @@ public class CalendarActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String itemname = item.getText().toString();
-                itemList.add(itemname);
-                item.setText("");
-                FileHelper.writeData(itemList, getApplicationContext());
-                arrayAdapter.notifyDataSetChanged();
+                if(itemname != null && !itemname.equals("")){
+                    itemList.add(itemname);
+                    item.setText("");
+                    FileHelper.writeData(itemList, getApplicationContext());
+                    arrayAdapter.notifyDataSetChanged();
+                else{
+                    Toast.makeText(CalendarActivity.this, "Please add some content!", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
