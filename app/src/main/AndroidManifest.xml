@@ -38,6 +38,18 @@
             android:exported="true"
             android:theme="@style/Theme.BilStudy.Main" />
         <activity
+            android:name=".LeitnerHomeActivity"
+            android:exported="true"
+            android:theme="@style/Theme.BilStudy.Leitner" />
+        <activity
+            android:name=".LeitnerBoxActivity"
+            android:exported="true"
+            android:theme="@style/Theme.BilStudy.Leitner" />
+        <activity
+            android:name=".LeitnerFolderActivity"
+            android:exported="true"
+            android:theme="@style/Theme.BilStudy.Leitner" />
+        <activity
             android:name=".QuestionnaireActivity"
             android:exported="true"
             android:theme="@style/Theme.BilStudy.Main" />

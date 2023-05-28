@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import com.merko.bilstudy.data.SourceLocator;
@@ -39,20 +38,14 @@ public class PomodoroOptionsActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent createOption = new Intent(getBaseContext(), AddOptionActivity.class);
-                startActivity(createOption);
-            }
+        addButton.setOnClickListener((View view)  -> {
+            Intent createOption = new Intent(getBaseContext(), AddOptionActivity.class);
+            startActivity(createOption);
         });
 
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent home = new Intent(getBaseContext(), MainActivity.class);
-                startActivity(home);
-            }
+        backButton.setOnClickListener((View view) -> {
+            Intent home = new Intent(getBaseContext(), MainActivity.class);
+            startActivity(home);
         });
     }
 
@@ -63,7 +56,7 @@ public class PomodoroOptionsActivity extends AppCompatActivity {
     }
 
     public static void loadOptions() {
-        PomodoroSource pomodoro = SourceLocator.getInstance().getProvider(PomodoroSource.class);
+        PomodoroSource pomodoro = SourceLocator.getInstance().getSource(PomodoroSource.class);
         if(!pomodoro.equals(null)){
             CompletableFuture<PomodoroPreset[]> all = pomodoro.getAllPresets();
             pomodoroOptions = Arrays.asList(all.join());

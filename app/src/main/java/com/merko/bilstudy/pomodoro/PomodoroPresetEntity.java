@@ -1,7 +1,6 @@
 package com.merko.bilstudy.pomodoro;
 
 import androidx.room.Entity;
-import androidx.room.Fts4;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
@@ -11,7 +10,7 @@ import androidx.room.PrimaryKey;
  */
 @Entity(tableName = PomodoroPresetEntity.TABLE_NAME,
         indices = {@Index(value = {"uuid"}, unique = true),
-                    @Index("rowid")})
+                    @Index(value = {"rowid"}, unique = true)})
 public class PomodoroPresetEntity extends PomodoroPreset {
     public static final String TABLE_NAME = "pomodoro";
 

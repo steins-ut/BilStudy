@@ -15,9 +15,6 @@
     android:background="#FAF7D9"
     tools:context=".PreviousNotesActivity">
     <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
@@ -44,31 +41,36 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp" />
 
-    <TextView
-        android:id="@+id/notepadTitle"
-        android:layout_width="66dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rounded_corner"
-        android:clickable="false"
-        android:contentDescription="Notepad title, shown in all notepad screens "
-        android:gravity="center"
-        android:text="Notepad"
-        android:layout_marginTop="18dp"
-        android:layout_marginLeft="11dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="HardcodedText,TextSizeCheck" />
+        <TextView
+            android:id="@+id/notepadTitle"
+            android:layout_width="66dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="11dp"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/rounded_corner"
+            android:backgroundTint="#FFE600"
+            android:clickable="false"
+            android:contentDescription="Notepad title, shown in all notepad screens "
+            android:gravity="center"
+            android:text="Notepad"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText,TextSizeCheck" />
     </RelativeLayout>
 </ScrollView>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/backButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_margin = "24dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
         android:clickable="true"
         app:backgroundTint="#FFF271"
         app:srcCompat="@drawable/back_arrow" />

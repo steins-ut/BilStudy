@@ -8,6 +8,21 @@
     <string name="notifications_button_name">Notifications</string>
     <string name="settings_button_name">Settings</string>
     <string name="questionnaire_button_name">Questionnaire</string>
+    <string name="back">Back</string>
+    <string name="add">Add</string>
+    <string name="delete">Delete</string>
+    <string name="filter">Filter</string>
+    <string name="name">Name:</string>
+    <string name="tags">Tags:</string>
+    <string name="hide_solved">Hide Solved</string>
+    <string name="show">Show:</string>
+    <string name="enter_name">Enter name here…</string>
+    <string name="boxes">Boxes</string>
+    <string name="folders">Folders</string>
+    <string name="all">All</string>
+    <string name="add_tag">Add Tag</string>
+    <string name="ok">OK</string>
+    <string name="icon">Icon</string>
 
     <string-array name="test_recycler">
         <item>ayca</item>

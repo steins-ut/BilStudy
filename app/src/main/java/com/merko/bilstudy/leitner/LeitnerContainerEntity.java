@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = LeitnerContainerEntity.TABLE_NAME,
         indices = {@Index(value = {"uuid"}, unique = true),
-                @Index("rowid")})
+                @Index(value = {"rowid"}, unique = true)})
 public class LeitnerContainerEntity extends LeitnerContainer {
     public static final String TABLE_NAME = "leitner_containers";
 

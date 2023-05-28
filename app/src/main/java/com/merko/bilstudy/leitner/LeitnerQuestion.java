@@ -5,8 +5,9 @@ import java.util.UUID;
 
 public class LeitnerQuestion {
     public UUID uuid;
-    public UUID containerId;
     public String question;
+    public UUID containerId;
+    public LeitnerQuestionType type;
     public List<String> choices;
     public List<Integer> correctChoices;
 

@@ -18,19 +18,30 @@
         <item name="android:textColor">@color/black</item>
         <item name="android:textAppearance">@style/Theme.BilStudy.Main.TextAppearance</item>
         <item name="iconPadding">0dp</item>
+        <item name="cornerRadius">9dp</item>
     </style>
 
     <style name="Theme.BilStudy.Leitner" parent="Theme.BilStudy.Main">
         <item name="colorPrimary">@color/leitner_primary</item>
         <item name="colorPrimaryVariant">@color/leitner_primary_variant</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorOnPrimary">@color/leitner_on_primary</item>
+        <item name="colorAccent">@color/leitner_accent</item>
 
+        <item name="android:textAppearance">@style/Theme.BilStudy.Leitner.TextAppearance</item>
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:background">@color/leitner_background</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
 
     <style name="Theme.BilStudy.Main.TextAppearance">
         <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:textSize">16sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="Theme.BilStudy.Leitner.TextAppearance" parent="Theme.BilStudy.Main.TextAppearance">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">22sp</item>
     </style>
 </resources>

@@ -3,6 +3,7 @@ package com.merko.bilstudy.dialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.view.Window;
+import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 
@@ -29,6 +30,8 @@ public class LoadingDialog extends Dialog {
         this.onException = null;
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
         setContentView(R.layout.dialog_loading);
         setCanceledOnTouchOutside(false);
         setCancelable(false);
@@ -67,7 +70,12 @@ public class LoadingDialog extends Dialog {
             return;
         }
         locked = true;
+        WindowManager.LayoutParams params = new WindowManager.LayoutParams();
+        params.copyFrom(getWindow().getAttributes());
+        params.width = WindowManager.LayoutParams.MATCH_PARENT;
+        params.height = WindowManager.LayoutParams.MATCH_PARENT;
         super.show();
+        getWindow().setAttributes(params);
         CompletableFuture<Void> future = loadingFuture.thenAccept((Object o) -> {
             locked = false;
             dismiss();

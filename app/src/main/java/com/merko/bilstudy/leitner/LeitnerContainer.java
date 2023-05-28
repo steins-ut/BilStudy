@@ -5,6 +5,7 @@ import java.util.UUID;
 
 public class LeitnerContainer {
     public String name;
+    public List<String> tags;
     public UUID uuid;
     public UUID parentUuid;
     public LeitnerContainerType type;
@@ -13,8 +14,9 @@ public class LeitnerContainer {
 
     public LeitnerContainer() {}
 
-    public LeitnerContainer(String name, UUID uuid, UUID parentUuid, LeitnerContainerType type, UUID iconId, List<UUID> objectIds) {
+    public LeitnerContainer(String name, List<String> tags, UUID uuid, UUID parentUuid, LeitnerContainerType type, UUID iconId, List<UUID> objectIds) {
         this.name = name;
+        this.tags = tags;
         this.uuid = uuid;
         this.parentUuid = parentUuid;
         this.type = type;

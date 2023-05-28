@@ -6,4 +6,19 @@
     <string name="notifications_button_name">Bildirimler</string>
     <string name="settings_button_name">Ayarlar</string>
     <string name="questionnaire_button_name">Anket</string>
+    <string name="back">Geri</string>
+    <string name="add">Ekle</string>
+    <string name="delete">Sil</string>
+    <string name="filter">Filtre</string>
+    <string name="name">İsim:</string>
+    <string name="tags">Tagler:</string>
+    <string name="hide_solved">Çözülmüşleri Gizle:</string>
+    <string name="show">Göster:</string>
+    <string name="enter_name">Buraya isim girin…</string>
+    <string name="boxes">Kutular</string>
+    <string name="folders">Klasörler</string>
+    <string name="all">Hepsi</string>
+    <string name="add_tag">Tag Ekle</string>
+    <string name="ok">Tamam</string>
+    <string name="icon">İkon</string>
 </resources>

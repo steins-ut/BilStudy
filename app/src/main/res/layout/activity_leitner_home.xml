@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:theme="@style/Theme.BilStudy.Leitner"
+    tools:context=".LeitnerHomeActivity">
+
+    <TextView
+        android:id="@+id/lnHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/rounded_corner"
+        android:backgroundTint="?attr/colorOnPrimary"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center"
+        android:paddingStart="10dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="4dp"
+        android:text="@string/leitner_card_name"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/lnContainerHomeFilter"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="11dp"
+        android:background="@null"
+        app:cardBackgroundColor="?attr/colorPrimary"
+        app:cardCornerRadius="?attr/cornerRadius"
+        app:contentPadding="9dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lnHome">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:divider="?android:attr/dividerHorizontal"
+            android:showDividers="none">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:gravity="center"
+                    android:text="@string/filter"
+                    android:textAppearance="?android:attr/textAppearance" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="4dp"
+                android:background="@null">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:gravity="center"
+                    android:text="@string/name"
+                    android:textAppearance="?android:attr/textAppearance"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/lnContainerFilterNameField"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_corner"
+                    android:ems="10"
+                    android:hint="@string/enter_name"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:paddingStart="9sp"
+                    android:paddingTop="8dp"
+                    android:paddingEnd="9sp"
+                    android:paddingBottom="8dp"
+                    android:text=""
+                    android:textSize="20sp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="4dp"
+                android:background="@null">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:gravity="center"
+                    android:text="@string/tags"
+                    android:textAppearance="?android:attr/textAppearance"
+                    android:textSize="20sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/lnContainerFilterAddTag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:backgroundTint="@android:color/white"
+                        android:contentDescription="@string/add_tag"
+                        android:minWidth="0dp"
+                        android:minHeight="40dp"
+                        android:paddingLeft="6dp"
+                        android:paddingRight="6dp"
+                        app:icon="@drawable/ic_add"
+                        app:iconPadding="0dp" />
+
+                </LinearLayout>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="4dp"
+                android:background="@null">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:gravity="center"
+                    android:text="@string/show"
+                    android:textAppearance="?android:attr/textAppearance"
+                    android:textSize="20sp" />
+
+                <RadioGroup
+                    android:id="@+id/lnContainerFilterShowRadio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/lnContainerFilterShowAll"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/rounded_corner"
+                        android:backgroundTint="?attr/colorPrimaryVariant"
+                        android:minHeight="40dp"
+                        android:text="@string/all"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        tools:text="@string/all" />
+
+                    <RadioButton
+                        android:id="@+id/lnContainerFilterShowBoxes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/rounded_corner"
+                        android:backgroundTint="?attr/colorPrimaryVariant"
+                        android:minHeight="40dp"
+                        android:text="@string/boxes"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <RadioButton
+                        android:id="@+id/lnContainerFilterShowFolders"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/rounded_corner"
+                        android:backgroundTint="?attr/colorPrimaryVariant"
+                        android:minHeight="40dp"
+                        android:text="@string/folders"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+                </RadioGroup>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="4dp"
+                android:background="@null">
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/lnContainerFilterHideSolved"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:background="@drawable/rounded_corner"
+                        android:backgroundTint="?attr/colorPrimaryVariant"
+                        android:minWidth="0dp"
+                        android:minHeight="40dp"
+                        android:paddingEnd="8dp"
+                        android:text="@string/hide_solved"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+            </TableRow>
+
+        </TableLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/lnHomeDeleteButton"
+        android:layout_width="80dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginBottom="23dp"
+        android:contentDescription="@string/delete"
+        android:foreground="@drawable/ic_edit"
+        android:foregroundGravity="center"
+        app:backgroundTint="?attr/colorAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/lnHomeBackButton"
+        android:layout_width="80dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginBottom="23dp"
+        android:contentDescription="@string/back"
+
+        android:foreground="@drawable/back_arrow"
+        android:foregroundGravity="center|center_horizontal"
+        app:backgroundTint="?attr/colorAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/lnHomeAddButton"
+        android:layout_width="80dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="23dp"
+        android:contentDescription="@string/add"
+        android:foreground="@drawable/ic_add"
+        android:foregroundGravity="center"
+        app:backgroundTint="?attr/colorAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="11dp"
+        android:layout_marginBottom="180dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:outlineProvider="none"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="0dp"
+        app:cardUseCompatPadding="false"
+        app:contentPadding="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lnContainerHomeFilter"
+        app:layout_constraintVertical_bias="0.0">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/lnHomeContainers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:outlineProvider="none" />
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LeitnerHomeActivity">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:foregroundTint="#232323"
+        app:cardBackgroundColor="?attr/colorPrimary"
+        app:cardCornerRadius="9dp"
+        app:cardElevation="4dp"
+        app:contentPadding="9dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null">
+
+            <ImageView
+                android:id="@+id/lnContainerImage"
+                android:layout_width="119dp"
+                android:layout_height="0dp"
+                android:contentDescription="@string/icon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_launcher_background" />
+
+            <TextView
+                android:id="@+id/lnContainerName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/rounded_corner"
+                android:backgroundTint="?attr/colorAccent"
+                android:fontFamily="sans-serif-black"
+                android:gravity="center|start"
+                android:paddingStart="12sp"
+                android:paddingTop="4dp"
+                android:paddingEnd="12sp"
+                android:paddingBottom="4dp"
+                android:text="Name goes here"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/lnContainerImage"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/lnContainerTags"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/rounded_corner"
+                android:backgroundTint="?attr/colorAccent"
+                android:fontFamily="sans-serif-black"
+                android:gravity="center|start"
+                android:paddingStart="12sp"
+                android:paddingTop="4dp"
+                android:paddingEnd="12sp"
+                android:paddingBottom="4dp"
+                android:text="#tag1 #tag2"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/lnContainerImage"
+                app:layout_constraintTop_toBottomOf="@+id/lnContainerName" />
+
+            <TextView
+                android:id="@+id/lnContainerSolved"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/rounded_corner"
+                android:backgroundTint="?attr/colorAccent"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center|start"
+                android:paddingStart="8sp"
+                android:paddingTop="4dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="4dp"
+                android:text="Solved: 999/999"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@+id/lnContainerImage"
+                app:layout_constraintTop_toBottomOf="@+id/lnContainerTags" />
+
+            <TextView
+                android:id="@+id/lnContainerBoxCount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/rounded_corner"
+                android:backgroundTint="?attr/colorAccent"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center|start"
+                android:paddingStart="8sp"
+                android:paddingTop="4dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="4dp"
+                android:text="Boxes: 99"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@+id/lnContainerSolved"
+                app:layout_constraintTop_toBottomOf="@+id/lnContainerTags" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

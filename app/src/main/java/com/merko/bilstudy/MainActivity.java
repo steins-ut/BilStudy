@@ -1,22 +1,15 @@
 package com.merko.bilstudy;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.core.content.ContextCompat;
 import androidx.core.splashscreen.SplashScreen;
 
-import android.Manifest;
 import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
@@ -25,7 +18,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.merko.bilstudy.data.SourceLocator;
 import com.merko.bilstudy.dialog.LoadingDialog;
@@ -60,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         int oldVersionCode = preferences.getInt(Globals.PREFERENCES_VERSION_CODE_KEY, -1);
         if(oldVersionCode != BuildConfig.VERSION_CODE) {
             Log.d(toString(), "Running app for the first time.");
-            PomodoroSource pomodoroProvider = SourceLocator.getInstance().getProvider(PomodoroSource.class);
+            PomodoroSource pomodoroProvider = SourceLocator.getInstance().getSource(PomodoroSource.class);
             LoadingDialog dialog = new LoadingDialog(this);
             dialog.addFutures(pomodoroProvider.putPreset(new PomodoroPreset(null, "Classic Pomodoro", 25, 5)));
             dialog.addFutures(pomodoroProvider.putPreset(new PomodoroPreset(null, "Extended Pomodoro", 40, 10)));
@@ -80,18 +72,20 @@ public class MainActivity extends AppCompatActivity {
         Button shopButton = findViewById(R.id.shopButton);
         CardView pomodoroCard = findViewById(R.id.pomodoroCard);
         CardView notepadCard = findViewById(R.id.notepadCard);
+        CardView leitnerCard = findViewById(R.id.leitnerCard);
 
         SourceLocator locator = SourceLocator.getInstance();
 
-        try {
-            Profile userProfile = locator.getProvider(ProfileSource.class).getLoggedInProfile().get();
-            String str = getString(R.string.welcome_message, userProfile.name);
-            welcomeText.setText(str);
-            Bitmap profileImage = locator.getProvider(ImageSource.class).getImage(ImageCategory.PROFILE, userProfile.imageUuid).get();
-            profileIcon.setImageBitmap(profileImage);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        Profile userProfile = locator.getSource(ProfileSource.class).getLoggedInProfile().join();
+        String str = getString(R.string.welcome_message, userProfile.name);
+        welcomeText.setText(str);
+        Bitmap profileImage = locator.getSource(ImageSource.class).getImage(ImageCategory.PROFILE, userProfile.imageUuid).join();
+        profileIcon.setImageBitmap(profileImage);
+
+        leitnerCard.setOnClickListener((View view) -> {
+            Intent leitnerHomeIntent = new Intent(MainActivity.this, LeitnerHomeActivity.class);
+            startActivity(leitnerHomeIntent);
+        });
 
         pomodoroCard.setOnClickListener((View view) -> {
             Intent pomodoroHome = new Intent(MainActivity.this, PomodoroOptionsActivity.class);
@@ -124,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        locator.getProvider(PomodoroSource.class).getAllPresets().thenAccept((PomodoroPreset[] presets) -> {
+        locator.getSource(PomodoroSource.class).getAllPresets().thenAccept((PomodoroPreset[] presets) -> {
             for(PomodoroPreset p: presets) {
                 Log.d(toString(), p.name);
             }
@@ -145,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
                 Calendar calendar = Calendar.getInstance();
                 calendar.set(Calendar.HOUR_OF_DAY,16);
                 calendar.set(Calendar.MINUTE,57);
-                calendar.set(Calendar.SECOND,00);
+                calendar.set(Calendar.SECOND,0);
                 if(Calendar.getInstance().after(calendar)) {
                     calendar.add(Calendar.DAY_OF_MONTH,1);
                 }
@@ -154,16 +148,13 @@ public class MainActivity extends AppCompatActivity {
 
                 AlarmManager alarm = (AlarmManager)getSystemService(ALARM_SERVICE);
                 alarm.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent);
-                if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M) {
-                    alarm.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),pendingIntent);
-                }
+                alarm.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),pendingIntent);
             }
 
         Globals.setApplicationContext(getApplicationContext());
 
         handleFirstRun();
         initialize();
-
     }
 
     private void channelNotification() {
