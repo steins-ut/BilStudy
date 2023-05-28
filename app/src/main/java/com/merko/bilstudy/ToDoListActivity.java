@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -47,10 +48,15 @@ public class ToDoListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String itemname = item.getText().toString();
-                itemList.add(itemname);
-                item.setText("");
-                FileHelper.writeData(itemList,getApplicationContext());
-                arrayAdapter.notifyDataSetChanged();
+                if(itemname != null && !itemname.equals("")){
+                    itemList.add(itemname);
+                    item.setText("");
+                    FileHelper.writeData(itemList,getApplicationContext());
+                    arrayAdapter.notifyDataSetChanged();
+                }
+                else{
+                    Toast.makeText(ToDoListActivity.this, "Please write a note before adding!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
