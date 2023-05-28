@@ -11,6 +11,6 @@ public abstract class ProfileSource extends AbstractSource {
      * @return profile of the user
      */
     public abstract CompletableFuture<Profile> getLoggedInProfile();
-
     public abstract CompletableFuture<Profile> getProfile(UUID id);
+    public abstract CompletableFuture<Boolean> updateProfile(Profile profile);
 }

@@ -32,13 +32,11 @@ public class AddOptionActivity extends AppCompatActivity {
         backButton.setOnClickListener((View view) ->
                 startActivity(new Intent(getBaseContext(), PomodoroOptionsActivity.class)));
 
-        createOption.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        createOption.setOnClickListener((View view) -> {
                 if(optionName.getText().toString().isEmpty()){
                     Toast.makeText(getApplicationContext(), "Option name can not be empty", Toast.LENGTH_LONG).show();
                 }
-                PomodoroSource pomodoro = SourceLocator.getInstance().getProvider(PomodoroSource.class);
+                PomodoroSource pomodoro = SourceLocator.getInstance().getSource(PomodoroSource.class);
                 boolean sameName = false;
                 if(!pomodoro.equals(null)){
                     CompletableFuture<PomodoroPreset[]> all = pomodoro.getAllPresets();
@@ -62,12 +60,11 @@ public class AddOptionActivity extends AppCompatActivity {
                     saveOption(optionName.getText().toString(),
                             studyDuration.getText().toString(), breakDuration.getText().toString());
                 }
-            }
-        });
+            });
     }
 
     public void saveOption(String optionName, String studyDuration, String breakDuration) {
-        PomodoroSource pomodoro = SourceLocator.getInstance().getProvider(PomodoroSource.class);
+        PomodoroSource pomodoro = SourceLocator.getInstance().getSource(PomodoroSource.class);
         pomodoro.putPreset(
                 new PomodoroPreset(null, optionName, Integer.parseInt(studyDuration), Integer.parseInt(breakDuration)));
         finish();

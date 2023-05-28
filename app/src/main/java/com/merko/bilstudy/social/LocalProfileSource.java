@@ -56,6 +56,7 @@ public class LocalProfileSource extends ProfileSource {
             profile.uuid = UUID.randomUUID();
             profile.name = "User";
             profile.imageUuid = null;
+            profile.coin = 0;
             saveIfAutoSave();
         }
         return true;
@@ -76,8 +77,14 @@ public class LocalProfileSource extends ProfileSource {
         return CompletableFuture.supplyAsync(() -> new Profile(profile));
     }
 
-    public void setUserProfile(Profile profile) {
-        this.profile = profile;
-        saveIfAutoSave();
+    @Override
+    public CompletableFuture<Boolean> updateProfile(Profile profile) {
+        return CompletableFuture.supplyAsync(() -> {
+            if(this.profile.uuid.equals(profile.uuid)) {
+                this.profile = profile;
+                saveIfAutoSave();
+            }
+            return true;
+        });
     }
 }

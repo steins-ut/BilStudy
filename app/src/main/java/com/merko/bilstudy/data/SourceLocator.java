@@ -6,17 +6,17 @@ import java.util.HashMap;
 
 /**
  * Singleton class for separating
- * data providers from the rest of the code.
+ * data sources from the rest of the code.
  */
 public class SourceLocator {
 
     private static SourceLocator INSTANCE = null;
 
-    private final HashMap<Class<? extends AbstractSource>, AbstractSource> providers;
+    private final HashMap<Class<? extends AbstractSource>, AbstractSource> sources;
     private final HashMap<Class<? extends AbstractSource>, Class<? extends AbstractSource>> preferredTypes;
 
     private SourceLocator() {
-        providers = new HashMap<>();
+        sources = new HashMap<>();
         preferredTypes = new HashMap<>();
     }
 
@@ -28,56 +28,51 @@ public class SourceLocator {
     }
 
     /**
-     * Returns provider of type T if it exists, creates one if
-     * it doesn't and returns the new provider.
-     * @param providerClass Class object of T
-     * @return The provider of type T
-     * @param <T> Type of the provider (Must extend AbstractProvider)
+     * Returns source of type T if it exists, creates one if
+     * it doesn't and returns the new source.
+     * @param sourceClass Class object of T
+     * @return The source of type T
+     * @param <T> Type of the source (Must extend AbstractProvider)
      */
     @SuppressWarnings({"unchecked", "cast"})
-    public <T extends AbstractSource> T getProvider(Class<T> providerClass) {
-        if(!providers.containsKey(providerClass)) {
+    public <T extends AbstractSource> T getSource(Class<T> sourceClass) {
+        if(!sources.containsKey(sourceClass)) {
             try {
-                if(preferredTypes.containsKey(providerClass)) {
-                    providers.put(providerClass, preferredTypes.get(providerClass).newInstance());
-                }
-                else {
-                    providers.put(providerClass, providerClass.newInstance());
-                }
+                sources.put(sourceClass, preferredTypes.getOrDefault(sourceClass, sourceClass).newInstance());
             } catch (Exception e) {
-                Log.e(toString(), String.format("Could not create new provider:\n%s", e.getMessage()));
+                Log.e(toString(), String.format("Could not create new source:\n%s", e.getMessage()));
             }
         }
-        return (T)providers.get(providerClass);
+        return (T)sources.get(sourceClass);
     }
 
     /**
-     * Sets the provider of type T in the locator to the
+     * Sets the source of type T in the locator to the
      * provided one.
      * @param clazz Class object of T
-     * @param provider The provider to put in the locator
-     * @param <T> Type of the provider (Must extend AbstractProvider)
+     * @param source The source to put in the locator
+     * @param <T> Type of the source (Must extend AbstractProvider)
      */
-    public <T extends AbstractSource> void setProvider(Class<T> clazz, AbstractSource provider) {
-        if(clazz.isAssignableFrom(provider.getClass())) {
-            providers.put(clazz, provider);
+    public <T extends AbstractSource> void setSource(Class<T> clazz, AbstractSource source) {
+        if(clazz.isAssignableFrom(source.getClass())) {
+            sources.put(clazz, source);
         }
     }
 
-    public <K extends AbstractSource> void setPreferredType(Class<K> providerClass, Class<? extends K> preferredClass) {
-        if(providerClass.isAssignableFrom(preferredClass)) {
-            preferredTypes.put(providerClass, preferredClass);
+    public <K extends AbstractSource> void setPreferredType(Class<K> sourceClass, Class<? extends K> preferredClass) {
+        if(sourceClass.isAssignableFrom(preferredClass)) {
+            preferredTypes.put(sourceClass, preferredClass);
         }
     }
 
     /**
-     * Removes provider of type T from the locator.
+     * Removes source of type T from the locator.
      * @param clazz Class object of T
-     * @param <T> Type of the provider (Must extend AbstractProvider)
+     * @param <T> Type of the source (Must extend AbstractProvider)
      */
-    public <T extends AbstractSource> void removeProvider(Class<T> clazz) {
-        if(!providers.containsKey(clazz)) {
-            providers.remove(clazz);
+    public <T extends AbstractSource> void removeSource(Class<T> clazz) {
+        if(!sources.containsKey(clazz)) {
+            sources.remove(clazz);
         }
     }
 

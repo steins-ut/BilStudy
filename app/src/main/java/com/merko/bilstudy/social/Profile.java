@@ -25,5 +25,6 @@ public class Profile {
         this.uuid = original.uuid;
         this.name = original.name;
         this.imageUuid = original.imageUuid;
+        this.coin = original.coin;
     }
 }

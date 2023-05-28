@@ -19,6 +19,9 @@ public class RoomTypeConverters {
 
     @TypeConverter
     public static UUID stringToUuid(String str) {
+        if(str == null) {
+            return null;
+        }
         return UUID.fromString(str);
     }
 

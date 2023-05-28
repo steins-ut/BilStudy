@@ -38,7 +38,7 @@ public abstract class BilStudyDatabase extends RoomDatabase {
                     BilStudyDatabase.class,
                     DATABASE_NAME)
                     .fallbackToDestructiveMigration()
-                    .allowMainThreadQueries()
+                    .createFromAsset("testdb.db")
                     .build();
         }
 
