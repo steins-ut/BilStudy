@@ -2,12 +2,19 @@ package com.merko.bilstudy.shop;
 
 import androidx.cardview.widget.CardView;
 
+
+import com.merko.bilstudy.pomodoro.PomodoroPresetEntity;
+
+
 public class ShopItem {
     String type;
     String name;
     String price;
 
     int image;
+
+    public static final String TABLE_NAME = "shop";
+
 
     public ShopItem(String type, String name, String price, int image) {
         this.type = type;

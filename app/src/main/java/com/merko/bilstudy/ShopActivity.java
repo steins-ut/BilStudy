@@ -31,6 +31,10 @@ public class ShopActivity extends AppCompatActivity {
     CardView categoryAll;
 
     CardView sortButton;
+    CardView sortPanel;
+
+    Button lowToHigh;
+    Button highToLow;
 
 
     @Override
@@ -47,8 +51,9 @@ public class ShopActivity extends AppCompatActivity {
         categoryPens = findViewById(R.id.categoryPens);
         categoryAll = findViewById(R.id.categoryAll);
         sortButton = findViewById(R.id.sortButton);
-
-
+        sortPanel = findViewById(R.id.sortPanel);
+        lowToHigh = findViewById(R.id.lowToHigh);
+        highToLow = findViewById(R.id.highToLow);
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,6 +122,30 @@ public class ShopActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 recyclerView.setAdapter(new ShopAdapter(getApplicationContext(), shopItems));
+            }
+        });
+
+        sortButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sortPanel.setVisibility(View.VISIBLE);
+                lowToHigh.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        recyclerView.setAdapter(new ShopAdapter(getApplicationContext(), cheapToExpensive));
+                        sortPanel.setVisibility(View.INVISIBLE);
+                    }
+                });
+
+                highToLow.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        recyclerView.setAdapter(new ShopAdapter(getApplicationContext(), expensiveToCheap));
+                        sortPanel.setVisibility(View.INVISIBLE);
+                    }
+                });
+
+
             }
         });
 

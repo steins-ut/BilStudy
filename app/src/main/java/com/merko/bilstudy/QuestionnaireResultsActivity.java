@@ -53,6 +53,12 @@ public class QuestionnaireResultsActivity extends AppCompatActivity {
             advises[currentAdviseNo].setTextSize(16);
             advises[currentAdviseNo].setTextColor(Color.BLACK);
             adviseButtons[currentAdviseNo].setVisibility(View.VISIBLE);
+            adviseButtons[currentAdviseNo].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //goes to mind maps
+                }
+            });
             currentAdviseNo++;
 
         }
@@ -62,6 +68,13 @@ public class QuestionnaireResultsActivity extends AppCompatActivity {
             advises[currentAdviseNo].setTextSize(16);
             advises[currentAdviseNo].setTextColor(Color.BLACK);
             adviseButtons[currentAdviseNo].setVisibility(View.VISIBLE);
+            adviseButtons[currentAdviseNo].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent pomodoro = new Intent(QuestionnaireResultsActivity.this, PomodoroOptionsActivity.class);
+                    startActivity(pomodoro);
+                }
+            });
             currentAdviseNo++;
         }
         if(QuestionnaireActivity.n2){
@@ -70,6 +83,13 @@ public class QuestionnaireResultsActivity extends AppCompatActivity {
             advises[currentAdviseNo].setTextSize(16);
             advises[currentAdviseNo].setTextColor(Color.BLACK);
             adviseButtons[currentAdviseNo].setVisibility(View.VISIBLE);
+            adviseButtons[currentAdviseNo].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent pomodoro = new Intent(QuestionnaireResultsActivity.this, PomodoroOptionsActivity.class);
+                    startActivity(pomodoro);
+                }
+            });
             currentAdviseNo++;
         }
         if(QuestionnaireActivity.y3){
@@ -78,6 +98,13 @@ public class QuestionnaireResultsActivity extends AppCompatActivity {
             advises[currentAdviseNo].setTextSize(16);
             advises[currentAdviseNo].setTextColor(Color.BLACK);
             adviseButtons[currentAdviseNo].setVisibility(View.VISIBLE);
+            adviseButtons[currentAdviseNo].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent settings = new Intent(QuestionnaireResultsActivity.this, SettingsActivity.class);
+                    startActivity(settings);
+                }
+            });
             currentAdviseNo++;
         }
         if(QuestionnaireActivity.y4){
@@ -86,6 +113,12 @@ public class QuestionnaireResultsActivity extends AppCompatActivity {
             advises[currentAdviseNo].setTextSize(16);
             advises[currentAdviseNo].setTextColor(Color.BLACK);
             adviseButtons[currentAdviseNo].setVisibility(View.VISIBLE);
+            adviseButtons[currentAdviseNo].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //goes to to-do list
+                }
+            });
             currentAdviseNo++;
         }
         if(QuestionnaireActivity.n4){
@@ -95,6 +128,12 @@ public class QuestionnaireResultsActivity extends AppCompatActivity {
                 advises[currentAdviseNo].setTextSize(16);
                 advises[currentAdviseNo].setTextColor(Color.BLACK);
                 adviseButtons[currentAdviseNo].setVisibility(View.VISIBLE);
+                adviseButtons[currentAdviseNo].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //goes to leitner system
+                    }
+                });
                 currentAdviseNo++;
                 leitner = true;
             }
@@ -107,6 +146,12 @@ public class QuestionnaireResultsActivity extends AppCompatActivity {
                 advises[currentAdviseNo].setTextSize(16);
                 advises[currentAdviseNo].setTextColor(Color.BLACK);
                 adviseButtons[currentAdviseNo].setVisibility(View.VISIBLE);
+                adviseButtons[currentAdviseNo].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //goes to leitner system
+                    }
+                });
                 currentAdviseNo++;
                 leitner = true;
             }

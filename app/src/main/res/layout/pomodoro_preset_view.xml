@@ -59,11 +59,31 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
-                android:layout_marginBottom="0dp"
                 android:textColor="@color/black"
                 app:layout_constraintBottom_toTopOf="@id/breakDuration"
                 app:layout_constraintStart_toEndOf="@+id/studyDuration"
                 tools:text="studyMinutes" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:text="minutes"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toTopOf="@+id/textView7"
+                app:layout_constraintStart_toEndOf="@+id/studyMinutes" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginBottom="12dp"
+                android:text="minutes"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/breakMinutes" />
 
             <TextView
                 android:id="@+id/breakMinutes"

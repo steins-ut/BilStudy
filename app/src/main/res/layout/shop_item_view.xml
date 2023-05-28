@@ -72,6 +72,16 @@
                 tools:text="itemPrice"></TextView>
 
 
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="24dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="4dp"
+                app:layout_constraintBottom_toTopOf="@+id/purchaseButton"
+                app:layout_constraintStart_toEndOf="@+id/itemPrice"
+                app:srcCompat="@drawable/shop_coin" />
+
             <TextView
                 android:id="@+id/textView20"
                 android:layout_width="wrap_content"
