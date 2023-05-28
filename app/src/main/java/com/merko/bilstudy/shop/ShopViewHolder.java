@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.merko.bilstudy.R;
 import com.merko.bilstudy.ShopActivity;
+import com.merko.bilstudy.data.SourceLocator;
+import com.merko.bilstudy.pomodoro.PomodoroSource;
 
 public class ShopViewHolder extends RecyclerView.ViewHolder {
     ImageView itemImage;

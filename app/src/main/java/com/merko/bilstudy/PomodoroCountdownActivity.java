@@ -1,7 +1,9 @@
 package com.merko.bilstudy;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -19,6 +21,7 @@ public class PomodoroCountdownActivity extends AppCompatActivity {
     TextView motivationText;
 
     Button startPauseButton;
+    CardView backButton;
     CountDownTimer timer;
     boolean timerActive = false;
     long startTime;
@@ -40,6 +43,15 @@ public class PomodoroCountdownActivity extends AppCompatActivity {
         countdownText = findViewById(R.id.countDownText);
         startPauseButton = findViewById(R.id.startPauseButton);
         motivationText = findViewById(R.id.motivationText);
+        backButton = findViewById(R.id.backButtonPomodoro);
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent options = new Intent(getBaseContext(), PomodoroOptionsActivity.class);
+                startActivity(options);
+            }
+        });
 
         startPauseButton.setOnClickListener(new View.OnClickListener() {
             @Override
