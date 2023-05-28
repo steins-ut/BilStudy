@@ -12,8 +12,10 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.merko.bilstudy.notepad.MindMapModels.Item;
@@ -29,6 +31,7 @@ public class MindMapActivity extends AppCompatActivity {
     private MindMapView mindMapView;
     private RadioGroup radioGroup;
     private Button save;
+    private TextView title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,7 @@ public class MindMapActivity extends AppCompatActivity {
         save = findViewById(R.id.save);
         mindMapView = findViewById(R.id.mind_mapping_view);
         radioGroup = findViewById(R.id.toolbar);
+        title = findViewById(R.id.notepadTitle);
 
 
         Item item = new Item(MindMapActivity.this);
@@ -53,9 +57,15 @@ public class MindMapActivity extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ((ViewGroup)v.getParent()).removeView(title);
+                ((ViewGroup)v.getParent()).removeView(radioGroup);
+                ((ViewGroup)v.getParent()).removeView(save);
                 mindMapView.setDrawingCacheEnabled(true);
                 Bitmap b = mindMapView.getDrawingCache();
                 saveImageToGallery(b);
+                mindMapView.addView(title);
+                mindMapView.addView(radioGroup);
+                mindMapView.addView(save);
             }
         });
 
@@ -66,7 +76,7 @@ public class MindMapActivity extends AppCompatActivity {
             if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q){
                 ContentResolver resolver = getContentResolver();
                 ContentValues contentValues = new ContentValues();
-                contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME,"Image_" + ".jpg");
+                contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME,"MindMap_" + ".jpg");
                 contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "image/jpg");
                 contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_PICTURES + File.separator + "MindMaps");
                 Uri imageUri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
