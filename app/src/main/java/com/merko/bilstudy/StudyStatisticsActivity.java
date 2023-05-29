@@ -9,6 +9,9 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.merko.bilstudy.social.LeitnerStatistics;
+import com.merko.bilstudy.social.StatisticsAdapter;
+
 import java.util.ArrayList;
 
 public class StudyStatisticsActivity extends AppCompatActivity {
@@ -35,7 +38,7 @@ public class StudyStatisticsActivity extends AppCompatActivity {
 
         setUpOldStudies();
 
-        statisticsAdapter adapter = new statisticsAdapter(this,leitnerStatisticsArrayList);
+        StatisticsAdapter adapter = new StatisticsAdapter(this,leitnerStatisticsArrayList);
         recyclerView.setAdapter(adapter);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2);
         recyclerView.setLayoutManager(gridLayoutManager);

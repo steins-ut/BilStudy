@@ -106,7 +106,7 @@
             android:exported="true"
             android:theme="@style/Theme.BilStudy.Main" />
 
-        <receiver android:name=".BilStudyBroadCast"
+        <receiver android:name=".utils.BilStudyBroadCast"
             android:enabled="true"
             android:exported="true">
             <intent-filter>

@@ -1,4 +1,4 @@
-package com.merko.bilstudy;
+package com.merko.bilstudy.utils;
 
 import android.app.Notification;
 import android.app.PendingIntent;
@@ -10,6 +10,9 @@ import android.content.pm.PackageManager;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+
+import com.merko.bilstudy.MainActivity;
+import com.merko.bilstudy.R;
 
 public class BilStudyBroadCast extends BroadcastReceiver {
     @Override

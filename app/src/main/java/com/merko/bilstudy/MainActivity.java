@@ -34,6 +34,7 @@ import com.merko.bilstudy.pomodoro.RoomPomodoroSource;
 import com.merko.bilstudy.social.LocalProfileSource;
 import com.merko.bilstudy.social.Profile;
 import com.merko.bilstudy.social.ProfileSource;
+import com.merko.bilstudy.utils.BilStudyBroadCast;
 import com.merko.bilstudy.utils.Globals;
 
 import java.util.Calendar;
@@ -146,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
                 if(Calendar.getInstance().after(calendar)) {
                     calendar.add(Calendar.DAY_OF_MONTH,1);
                 }
-                Intent i = new Intent(MainActivity.this,BilStudyBroadCast.class);
+                Intent i = new Intent(MainActivity.this, BilStudyBroadCast.class);
                 PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(),0,i,PendingIntent.FLAG_IMMUTABLE);
 
                 AlarmManager alarm = (AlarmManager)getSystemService(ALARM_SERVICE);

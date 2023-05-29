@@ -1,4 +1,4 @@
-package com.merko.bilstudy;
+package com.merko.bilstudy.social;
 
 public class LeitnerStatistics {
 

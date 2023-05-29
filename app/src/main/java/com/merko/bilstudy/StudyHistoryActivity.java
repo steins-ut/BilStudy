@@ -9,6 +9,9 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.merko.bilstudy.social.HistoryAdapter;
+import com.merko.bilstudy.social.OldStudies;
+
 import java.util.ArrayList;
 
 public class StudyHistoryActivity extends AppCompatActivity {
@@ -35,7 +38,7 @@ public class StudyHistoryActivity extends AppCompatActivity {
 
         setUpOldStudies();
 
-        historyAdapter adapter = new historyAdapter(this,oldStudiesArrayList);
+        HistoryAdapter adapter = new HistoryAdapter(this,oldStudiesArrayList);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }

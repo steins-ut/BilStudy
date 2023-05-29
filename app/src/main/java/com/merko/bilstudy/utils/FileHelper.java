@@ -1,4 +1,4 @@
-package com.merko.bilstudy;
+package com.merko.bilstudy.utils;
 
 import android.content.Context;
 
