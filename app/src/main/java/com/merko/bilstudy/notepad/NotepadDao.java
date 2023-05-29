@@ -4,24 +4,30 @@ import static androidx.room.OnConflictStrategy.REPLACE;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+
+import com.merko.bilstudy.notepad.NotesEntity;
+import com.merko.bilstudy.pomodoro.PomodoroPresetEntity;
+
+import java.util.UUID;
 
 import java.util.List;
 
 @Dao
-public interface NotepadDao {
-    @Insert(onConflict = REPLACE)
-    void insert(Notes notes);
+public abstract class NotepadDao {
+    @Insert(onConflict = OnConflictStrategy.REPLACE, entity = NotesEntity.class)
+    public abstract void insertNote(Notes notes);
 
-    @Query("SELECT * FROM notes ORDER BY id DESC")
-    List<Notes> getAll();
+    @Query("SELECT * FROM " + NotesEntity.TABLE_NAME)
+    public abstract List<Notes> getAllNotes();
 
-    @Query("UPDATE notes SET title = :title, notes = :notes WHERE ID = :id")
-    void update(int id, String title, String notes);
+    @Query("UPDATE " + NotesEntity.TABLE_NAME + " SET title = :title, notes = :notes WHERE uuid = :uuid")
+    public abstract void updateNote(UUID uuid, String title, String notes);
 
-    @Delete
-    void delete(Notes notes);
+    @Query("DELETE FROM " + NotesEntity.TABLE_NAME + " WHERE uuid = :uuid")
+    public abstract void deleteNote(UUID uuid);
 
-    @Query("UPDATE notes SET pinned = :pin WHERE ID = :id")
-    void pin(int id, boolean pin);
+    @Query("UPDATE " + NotesEntity.TABLE_NAME + " SET pinned = :pin WHERE uuid = :id")
+    public abstract void pinNote(UUID id, boolean pin);
 }

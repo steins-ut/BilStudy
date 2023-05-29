@@ -26,6 +26,8 @@ import com.merko.bilstudy.leitner.RoomLeitnerSource;
 import com.merko.bilstudy.media.ImageCategory;
 import com.merko.bilstudy.media.LocalImageSource;
 import com.merko.bilstudy.media.ImageSource;
+import com.merko.bilstudy.notepad.NotepadSource;
+import com.merko.bilstudy.notepad.RoomNotepadSource;
 import com.merko.bilstudy.pomodoro.PomodoroPreset;
 import com.merko.bilstudy.pomodoro.PomodoroSource;
 import com.merko.bilstudy.pomodoro.RoomPomodoroSource;
@@ -45,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         locator.setPreferredType(PomodoroSource.class, RoomPomodoroSource.class);
         locator.setPreferredType(ImageSource.class, LocalImageSource.class);
         locator.setPreferredType(LeitnerSource.class, RoomLeitnerSource.class);
+        locator.setPreferredType(NotepadSource.class, RoomNotepadSource.class);
     }
 
     private void handleFirstRun() {

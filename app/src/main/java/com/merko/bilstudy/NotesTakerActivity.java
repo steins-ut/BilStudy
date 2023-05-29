@@ -10,7 +10,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.merko.bilstudy.data.SourceLocator;
+import com.merko.bilstudy.notepad.NotepadSource;
 import com.merko.bilstudy.notepad.Notes;
+import com.merko.bilstudy.pomodoro.PomodoroPreset;
+import com.merko.bilstudy.pomodoro.PomodoroSource;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

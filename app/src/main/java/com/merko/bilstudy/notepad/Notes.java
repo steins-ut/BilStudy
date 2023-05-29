@@ -1,63 +1,53 @@
 package com.merko.bilstudy.notepad;
 
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
-
 import java.io.Serializable;
+import java.util.UUID;
 
-@Entity(tableName = "notes")
 public class Notes implements Serializable {
 
-    @PrimaryKey(autoGenerate = true) //auto generate ID every time we add a new item
-    int ID = 0;
-
-    @ColumnInfo(name = "title")
-    String title = "";
-
-    @ColumnInfo(name = "notes")
-    String notes = "";
-
-    @ColumnInfo(name = "date")
-    String date = "";
-
-    @ColumnInfo(name = "pinned")
-    boolean pinned = false; //to pin a note to that specific position
-
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
+    public UUID uuid;
+    public String title;
+    public String notes;
+    public String date;
+    public boolean pinned; //to pin create a pin icon on the right hand corner
+    public Notes(){}
+    public Notes(UUID uuid, String title, String notes, String date){
+        this.uuid = uuid;
         this.title = title;
-    }
-
-    public String getNotes() {
-        return notes;
-    }
-
-    public void setNotes(String notes) {
         this.notes = notes;
+        this.date = date;
+    }
+
+    public UUID getUuid() {
+        return uuid;
     }
 
     public String getDate() {
         return date;
     }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
-
     public boolean isPinned() {
         return pinned;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public void setPinned(boolean pinned) {

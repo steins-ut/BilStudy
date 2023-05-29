@@ -11,9 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.merko.bilstudy.notepad.Notes;
 import com.merko.bilstudy.notepad.NotesClickListener;
 import com.merko.bilstudy.R;
+import com.merko.bilstudy.notepad.Notes;
 
 import java.util.List;
 

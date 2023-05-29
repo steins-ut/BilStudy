@@ -17,22 +17,27 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.merko.bilstudy.data.SourceLocator;
+import com.merko.bilstudy.notepad.NotepadSource;
+import com.merko.bilstudy.notepad.NotesEntity;
 import com.merko.bilstudy.notepad.adapters.NotesListAdapter;
 import com.merko.bilstudy.notepad.Notes;
-import com.merko.bilstudy.data.BilStudyDatabase;
 import com.merko.bilstudy.notepad.NotesClickListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 public class PreviousNotesActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
     RecyclerView recyclerView;
     NotesListAdapter notesListAdapter;
     List<Notes> notes = new ArrayList<>();
-    BilStudyDatabase database;
     FloatingActionButton newNoteButton;
     SearchView searchView_previous_notes;
     Notes selectedNote;
+    NotepadSource notepadSource;
     private View card;
     private View back;
     @Override
@@ -44,8 +49,8 @@ public class PreviousNotesActivity extends AppCompatActivity implements PopupMen
         newNoteButton = findViewById(R.id.newNoteButton);
         searchView_previous_notes = findViewById(R.id.searchView_previous_notes);
 
-        database = BilStudyDatabase.getInstance();
-        notes = database.notepadDAO().getAll();
+        notepadSource = SourceLocator.getInstance().getSource(NotepadSource.class);
+        notes = notepadSource.getAllNotes().join();
 
         updateRecycler(notes);
 
@@ -109,18 +114,18 @@ public class PreviousNotesActivity extends AppCompatActivity implements PopupMen
         if(requestCode == 101){
             if(resultCode == Activity.RESULT_OK){
                 Notes new_notes = (Notes) data.getSerializableExtra("note");
-                database.notepadDAO().insert(new_notes);
+                notepadSource.insertNote(new_notes);
                 notes.clear();
-                notes.addAll(database.notepadDAO().getAll());
+                notes.addAll(notepadSource.getAllNotes().join());
                 notesListAdapter.notifyDataSetChanged();
             }
         }
         else if(requestCode == 102){
             if(resultCode == Activity.RESULT_OK){
                 Notes new_notes = (Notes) data.getSerializableExtra("note");
-                database.notepadDAO().update(new_notes.getID(), new_notes.getTitle(), new_notes.getNotes());
+                notepadSource.updateNote(new_notes.getUuid(), new_notes.getTitle(), new_notes.getNotes());
                 notes.clear();
-                notes.addAll(database.notepadDAO().getAll());
+                notes.addAll(notepadSource.getAllNotes().join());
                 notesListAdapter.notifyDataSetChanged();
             }
         }
@@ -161,21 +166,21 @@ public class PreviousNotesActivity extends AppCompatActivity implements PopupMen
         switch (item.getItemId()){
             case R.id.imageView_pin:
                 if(selectedNote.isPinned()){
-                    database.notepadDAO().pin(selectedNote.getID(), false);
+                    notepadSource.pinNote(selectedNote.getUuid(), false);
                     Toast.makeText(PreviousNotesActivity.this, "Unpinned!", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    database.notepadDAO().pin(selectedNote.getID(), true);
+                   notepadSource.pinNote(selectedNote.getUuid(), true);
                     Toast.makeText(PreviousNotesActivity.this, "Pinned!", Toast.LENGTH_SHORT).show();
                 }
 
                 notes.clear();
-                notes.addAll(database.notepadDAO().getAll());
+                notes.addAll(notepadSource.getAllNotes().join());
                 notesListAdapter.notifyDataSetChanged();
                 return true;
 
             case R.id.delete:
-                database.notepadDAO().delete(selectedNote);
+                notepadSource.deleteNote(selectedNote.getUuid());
                 notes.remove(selectedNote);
                 notesListAdapter.notifyDataSetChanged();
                 Toast.makeText(PreviousNotesActivity.this, "Note Deleted!", Toast.LENGTH_SHORT).show();
