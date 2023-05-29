@@ -1,7 +1,5 @@
 package com.merko.bilstudy;
 
-import android.widget.TextView;
-
 public class LeitnerStatistics {
 
     String folder;

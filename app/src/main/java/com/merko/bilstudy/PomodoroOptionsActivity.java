@@ -1,13 +1,13 @@
 package com.merko.bilstudy;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
 
 import com.merko.bilstudy.data.SourceLocator;
 import com.merko.bilstudy.pomodoro.PomodoroPreset;

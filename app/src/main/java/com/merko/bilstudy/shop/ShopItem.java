@@ -1,11 +1,5 @@
 package com.merko.bilstudy.shop;
 
-import androidx.cardview.widget.CardView;
-
-
-import com.merko.bilstudy.pomodoro.PomodoroPresetEntity;
-
-
 public class ShopItem {
     String type;
     String name;

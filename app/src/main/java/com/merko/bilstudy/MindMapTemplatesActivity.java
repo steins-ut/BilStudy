@@ -1,10 +1,10 @@
 package com.merko.bilstudy;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MindMapTemplatesActivity extends AppCompatActivity {
     private View back;

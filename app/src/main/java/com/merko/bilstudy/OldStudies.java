@@ -1,7 +1,5 @@
 package com.merko.bilstudy;
 
-import java.util.Date;
-
 public class OldStudies {
     String date;
     String study;

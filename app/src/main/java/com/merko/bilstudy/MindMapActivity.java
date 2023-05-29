@@ -1,8 +1,6 @@
 package com.merko.bilstudy;
 
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.graphics.Bitmap;
@@ -17,6 +15,8 @@ import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.merko.bilstudy.notepad.MindMapModels.Item;
 import com.merko.bilstudy.notepad.MindMapModels.MindMapView;

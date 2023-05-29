@@ -8,11 +8,11 @@ import androidx.room.TypeConverters;
 import com.merko.bilstudy.leitner.LeitnerContainerEntity;
 import com.merko.bilstudy.leitner.LeitnerDao;
 import com.merko.bilstudy.leitner.LeitnerQuestionEntity;
-import com.merko.bilstudy.utils.Globals;
-import com.merko.bilstudy.pomodoro.PomodoroDao;
-import com.merko.bilstudy.pomodoro.PomodoroPresetEntity;
 import com.merko.bilstudy.notepad.NotepadDao;
 import com.merko.bilstudy.notepad.NotesEntity;
+import com.merko.bilstudy.pomodoro.PomodoroDao;
+import com.merko.bilstudy.pomodoro.PomodoroPresetEntity;
+import com.merko.bilstudy.utils.Globals;
 
 /**
  * Database class using Room persistent storage for
@@ -38,7 +38,6 @@ public abstract class BilStudyDatabase extends RoomDatabase {
             INSTANCE = Room.databaseBuilder(Globals.getApplicationContext(),
                     BilStudyDatabase.class,
                     DATABASE_NAME)
-                    .fallbackToDestructiveMigration()
                     .createFromAsset("testdb.db")
                     .build();
         }

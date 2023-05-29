@@ -4,10 +4,6 @@ import androidx.room.Entity;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-import com.merko.bilstudy.pomodoro.PomodoroPresetEntity;
-
-import java.io.Serializable;
-
 /**
  * The entity that is used to store standard notes in
  * the Room database

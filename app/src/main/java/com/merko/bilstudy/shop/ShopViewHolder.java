@@ -1,21 +1,14 @@
 package com.merko.bilstudy.shop;
 
-import android.content.Context;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.merko.bilstudy.R;
-import com.merko.bilstudy.ShopActivity;
-import com.merko.bilstudy.data.SourceLocator;
-import com.merko.bilstudy.pomodoro.PomodoroSource;
 
 public class ShopViewHolder extends RecyclerView.ViewHolder {
     ImageView itemImage;
