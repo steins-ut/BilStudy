@@ -7,11 +7,10 @@
     android:background="#FAF7D9"
     tools:context=".BlankPageActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/adder"
+            android:layout_below="@id/notepadTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -30,7 +29,7 @@
                 android:layout_weight="4"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Add" />
+                android:hint="Add something to the list:"/>
 
             <Button
                 android:id="@+id/button4"
@@ -44,6 +43,7 @@
 
         <ListView
             android:id="@+id/list"
+            android:layout_below="@id/adder"
             android:layout_width="406dp"
             android:layout_height="531dp"
             android:layout_marginEnd="5dp"
@@ -52,15 +52,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <TextView
         android:id="@+id/notepadTitle"
         android:layout_width="66dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="11dp"
+        android:layout_marginStart="11dp"
         android:layout_marginTop="18dp"
         android:background="@drawable/rounded_corner"
+        android:backgroundTint="@color/notepad_primary"
         android:clickable="false"
         android:contentDescription="Notepad title, shown in all notepad screens "
         android:gravity="center"
@@ -76,7 +77,7 @@
         android:id="@+id/back_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="18dp"
+        android:layout_marginStart="18dp"
         android:layout_marginTop="660dp"
         android:clickable="true"
         app:backgroundTint="#FFF271"

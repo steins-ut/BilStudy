@@ -75,8 +75,7 @@ public class PreviousNotesActivity extends AppCompatActivity implements PopupMen
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PreviousNotesActivity.this, MainActivity.class);
-                startActivity(intent);
+                onBackPressed();
             }
         });
 
@@ -138,7 +137,6 @@ public class PreviousNotesActivity extends AppCompatActivity implements PopupMen
 
         @Override
         public void onLongClick(Notes notes, CardView cardView) {
-            selectedNote = new Notes();
             selectedNote = notes;
             showPopup(cardView);
         }
@@ -157,10 +155,12 @@ public class PreviousNotesActivity extends AppCompatActivity implements PopupMen
             case R.id.imageView_pin:
                 if(selectedNote.isPinned()){
                     notepadSource.pinNote(selectedNote.getUuid(), false);
+                    selectedNote.setPinned(false);
                     Toast.makeText(PreviousNotesActivity.this, "Unpinned!", Toast.LENGTH_SHORT).show();
                 }
                 else{
                    notepadSource.pinNote(selectedNote.getUuid(), true);
+                   selectedNote.setPinned(true);
                     Toast.makeText(PreviousNotesActivity.this, "Pinned!", Toast.LENGTH_SHORT).show();
                 }
 

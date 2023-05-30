@@ -16,14 +16,14 @@ public abstract class NotepadSource extends AbstractSource {
 
     /**
      * Gives the note a new id and stores it
-     * @param notesEntity NotesEntity to store
+     * @param notes Notes to store
      * @return New unique identifier for the note
      */
     public abstract CompletableFuture<UUID> insertNote(Notes notes);
 
     /**
      * Deletes the notes with the provided ids
-     * @param notesEntity NotesEntity the note to delete
+     * @param uuid UUID of the note to delete
      */
     public abstract CompletableFuture<Void> deleteNote(UUID uuid);
 
