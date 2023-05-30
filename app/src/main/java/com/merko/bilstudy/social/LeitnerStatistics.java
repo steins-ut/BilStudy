@@ -1,13 +1,12 @@
 package com.merko.bilstudy.social;
 
 public class LeitnerStatistics {
-
     String folder;
-    String allCards;
-    String cardsStudied;
-    String accuracy;
+    int allCards;
+    int cardsStudied;
+    int accuracy;
 
-    public LeitnerStatistics(String folder, String allCards, String cardsStudied, String accuracy) {
+    public LeitnerStatistics(String folder, int allCards, int cardsStudied, int accuracy) {
         this.folder = folder;
         this.allCards = allCards;
         this.cardsStudied = cardsStudied;
@@ -18,12 +17,12 @@ public class LeitnerStatistics {
         return folder;
     }
 
-    public String getAllCards() {
+    public int getAllCards() {
         return allCards;
     }
 
-    public String getCardsStudied() { return cardsStudied; }
+    public int getCardsStudied() { return cardsStudied; }
 
-    public String getAccuracy() { return accuracy; }
+    public int getAccuracy() { return accuracy; }
 
 }

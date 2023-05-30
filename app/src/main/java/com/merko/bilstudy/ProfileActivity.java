@@ -4,10 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.merko.bilstudy.shop.ShopItem;
 
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -18,6 +21,8 @@ public class ProfileActivity extends AppCompatActivity {
     Button buttonStat;
     Button buttonShop;
     CardView backButton;
+    CardView home;
+    CardView settings;
     TextView date;
     int coins;
 
@@ -33,6 +38,23 @@ public class ProfileActivity extends AppCompatActivity {
         date.setText(currentDate);
         buttonHist = findViewById(R.id.buttonAdd);
         backButton = findViewById(R.id.backButtonPomodoro);
+        settings = findViewById(R.id.settingBut);
+        home = findViewById(R.id.homeBut);
+
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ProfileActivity.this, SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         buttonHist.setOnClickListener(new View.OnClickListener() {
             @Override

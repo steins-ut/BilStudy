@@ -15,7 +15,6 @@ public class SettingsActivity extends AppCompatActivity {
     MediaPlayer play2;
     Button playSound;
     Button stopSound;
-    Button selectTime;
     CardView backButton;
 
 
@@ -26,7 +25,6 @@ public class SettingsActivity extends AppCompatActivity {
         playSound = findViewById(R.id.buttonPlay);
         stopSound = findViewById(R.id.buttonStop);
         backButton = findViewById(R.id.backButtonPomodoro);
-        selectTime = findViewById(R.id.buttonSelectTime);
 
         backButton.setOnClickListener(v -> {
             Intent homepage = new Intent(getBaseContext(), MainActivity.class);
@@ -101,10 +99,6 @@ public class SettingsActivity extends AppCompatActivity {
             finish(play);
             finish(play2);
         });
-        selectTime.setOnClickListener(v -> {
-            Intent homepage = new Intent(getBaseContext(), MainActivity.class);
-            startActivity(homepage);
-        });
     }
     public void finish(MediaPlayer player) {
         try {
@@ -114,8 +108,5 @@ public class SettingsActivity extends AppCompatActivity {
             Log.d(toString(), e.getMessage());
         }
     }
-    //public void changeNotification(Boolean booleanVal) {
-        //MainActivity.notifications = booleanVal;
-    //}
 
 }

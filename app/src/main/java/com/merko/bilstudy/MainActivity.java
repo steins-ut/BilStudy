@@ -41,7 +41,6 @@ import com.merko.bilstudy.utils.Globals;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
-    protected static Boolean notifications = true;
 
     static {
         SourceLocator locator = SourceLocator.getInstance();
@@ -130,23 +129,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(notifications) {
-            channelNotification();
 
-            Calendar calendar = Calendar.getInstance();
-            calendar.set(Calendar.HOUR_OF_DAY,16);
-            calendar.set(Calendar.MINUTE,57);
-            calendar.set(Calendar.SECOND,0);
-            if(Calendar.getInstance().after(calendar)) {
-                calendar.add(Calendar.DAY_OF_MONTH,1);
-            }
-            Intent i = new Intent(MainActivity.this, BilStudyBroadCast.class);
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(),0,i,PendingIntent.FLAG_IMMUTABLE);
+                channelNotification();
 
-            AlarmManager alarm = (AlarmManager)getSystemService(ALARM_SERVICE);
-            alarm.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent);
-            alarm.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),pendingIntent);
-        }
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(Calendar.HOUR_OF_DAY,10);
+                calendar.set(Calendar.MINUTE,30);
+                calendar.set(Calendar.SECOND,0);
+                if(Calendar.getInstance().after(calendar)) {
+                    calendar.add(Calendar.DAY_OF_MONTH,1);
+                }
+                Intent i = new Intent(MainActivity.this, BilStudyBroadCast.class);
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(),0,i,PendingIntent.FLAG_IMMUTABLE);
+
+                AlarmManager alarm = (AlarmManager)getSystemService(ALARM_SERVICE);
+                alarm.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent);
+                alarm.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),pendingIntent);
+
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         Globals.setApplicationContext(getApplicationContext());

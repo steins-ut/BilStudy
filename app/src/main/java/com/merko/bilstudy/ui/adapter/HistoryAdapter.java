@@ -34,7 +34,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
     @Override
     public void onBindViewHolder(@NonNull HistoryAdapter.MyViewHolder1 holder, int position) {
     holder.date.setText(oldStudies.get(position).getDate());
-    holder.study.setText(oldStudies.get(position).getStudy());
+    holder.study.setText(oldStudies.get(position).getDuration() + " minutes study session with " + oldStudies.get(position).getType());
     holder.imageView.setImageResource(oldStudies.get(position).getImage());
     }
 

@@ -33,14 +33,12 @@ public class StatisticsAdapter extends RecyclerView.Adapter<StatisticsAdapter.My
         return new StatisticsAdapter.MyViewHolderStat(view);
     }
 
-
     @Override
     public void onBindViewHolder(@NonNull MyViewHolderStat holder, int position) {
         holder.folder.setText(leitnerStatistics.get(position).getFolder());
-        holder.allCards.setText(leitnerStatistics.get(position).getAllCards());
-        holder.cardsStudied.setText(leitnerStatistics.get(position).getCardsStudied());
-        holder.accuracy.setText(leitnerStatistics.get(position).getAccuracy());
-
+        holder.allCards.setText("Total Cards: " + leitnerStatistics.get(position).getAllCards());
+        holder.cardsStudied.setText("Cards Studied: " + leitnerStatistics.get(position).getCardsStudied());
+        holder.accuracy.setText("Accuracy: " + leitnerStatistics.get(position).getAccuracy());
     }
 
     @Override

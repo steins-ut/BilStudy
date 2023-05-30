@@ -39,9 +39,6 @@ public class NotesTakerActivity extends AppCompatActivity {
         catch (Exception e){
             e.printStackTrace();
         }
-
-
-
         imageView_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
