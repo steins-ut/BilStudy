@@ -75,7 +75,7 @@ public class ChooseTemplateActivity extends AppCompatActivity {
         mindMaps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ChooseTemplateActivity.this, MindMapTemplatesActivity.class);
+                Intent intent = new Intent(ChooseTemplateActivity.this, MindMapActivity.class);
                 startActivity(intent);
             }
         });

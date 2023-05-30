@@ -9,7 +9,7 @@ public class Notes implements Serializable {
     public String title = "";
     public String notes = "";
     public String date = "";
-    public boolean pinned = false; //to pin create a pin icon on the right hand corner
+    private boolean pinned = false; //to pin create a pin icon on the right hand corner
     public Notes(){}
     public Notes(UUID uuid, String title, String notes, String date){
         this.uuid = uuid;

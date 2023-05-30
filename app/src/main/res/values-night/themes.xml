@@ -7,7 +7,7 @@
     </style>
 
     <!-- Base application theme. -->
-    <style name="Theme.BilStudy.Main" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.BilStudy.Main" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/bilstudy_gray</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/black</item>

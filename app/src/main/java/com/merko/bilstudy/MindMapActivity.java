@@ -85,7 +85,7 @@ public class MindMapActivity extends AppCompatActivity {
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
                 Objects.requireNonNull(fos);
 
-                Toast.makeText(this, "Image Saved", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Image Saved in Pictures/Mind Maps", Toast.LENGTH_SHORT).show();
             }
         }
         catch (Exception e){

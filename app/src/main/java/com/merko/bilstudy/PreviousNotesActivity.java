@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.SearchView;
 import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -75,7 +75,9 @@ public class PreviousNotesActivity extends AppCompatActivity implements PopupMen
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+
+                Intent intent = new Intent(PreviousNotesActivity.this, ChooseTemplateActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -122,7 +124,7 @@ public class PreviousNotesActivity extends AppCompatActivity implements PopupMen
 
     private void updateRecycler(List<Notes> notes) {
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2, LinearLayoutManager.VERTICAL, false));
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager( 2, LinearLayoutManager.VERTICAL));
         notesListAdapter = new NotesListAdapter(PreviousNotesActivity.this, notes, notesClickListener);
         recyclerView.setAdapter(notesListAdapter);
     }
@@ -152,7 +154,7 @@ public class PreviousNotesActivity extends AppCompatActivity implements PopupMen
     @Override
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.imageView_pin:
+            case R.id.pin:
                 if(selectedNote.isPinned()){
                     notepadSource.pinNote(selectedNote.getUuid(), false);
                     selectedNote.setPinned(false);

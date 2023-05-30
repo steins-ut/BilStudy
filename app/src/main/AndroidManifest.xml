@@ -99,10 +99,6 @@
             android:exported="true"
             android:theme="@style/Theme.BilStudy.Main" />
         <activity
-            android:name=".MindMapTemplatesActivity"
-            android:exported="true"
-            android:theme="@style/Theme.BilStudy.Main" />
-        <activity
             android:name=".BlankPageActivity"
             android:exported="true"
             android:theme="@style/Theme.BilStudy.Main" />

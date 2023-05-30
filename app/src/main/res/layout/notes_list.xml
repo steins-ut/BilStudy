@@ -15,21 +15,24 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <TextView
                 android:id="@+id/textView_title"
-                android:text="Title"
-                android:textSize="18dp"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:padding="8dp"
-                android:singleLine="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:ellipsize="marquee"
                 android:marqueeRepeatLimit="marquee_forever"
+                android:padding="8dp"
                 android:scrollHorizontally="true"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:singleLine="true"
+                android:text="Title"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
             <ImageView
                 android:id="@+id/imageView_pin"
+                android:scaleType="centerCrop"
                 android:layout_alignParentEnd="true"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
@@ -48,7 +51,7 @@
             android:layout_height="wrap_content"/>
         <TextView
             android:id="@+id/textView_date"
-            android:text="Notes."
+            android:text="Date"
             android:textColor="@color/note_edit_date_gray"
             android:singleLine="true"
             android:ellipsize="marquee"
@@ -59,7 +62,8 @@
             android:maxLines="10"
             android:padding="8dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            />
     </LinearLayout>
 
 
