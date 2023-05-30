@@ -1,4 +1,4 @@
-package com.merko.bilstudy.social;
+package com.merko.bilstudy.ui.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.merko.bilstudy.R;
+import com.merko.bilstudy.social.OldStudies;
 
 import java.util.ArrayList;
 
@@ -26,7 +27,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
     @Override
     public HistoryAdapter.MyViewHolder1 onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.history_view_row,parent,false);
+        View view = inflater.inflate(R.layout.entry_history_row,parent,false);
         return new HistoryAdapter.MyViewHolder1(view);
     }
 

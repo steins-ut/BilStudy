@@ -1,4 +1,4 @@
-package com.merko.bilstudy.notepad.adapters;
+package com.merko.bilstudy.ui.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -50,19 +50,10 @@ public class NotesListAdapter extends RecyclerView.Adapter<NotesViewHolder>{
         else{
             holder.imageView_pin.setImageResource(0);
         }
-        holder.notes_container.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View v) {
-                listener.onClick(list.get(holder.getAdapterPosition()));
-            }
-        });
-        holder.notes_container.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                listener.onLongClick(list.get(holder.getAdapterPosition()), holder.notes_container);
-                return true;
-            }
+        holder.notes_container.setOnClickListener(v -> listener.onClick(list.get(holder.getAdapterPosition())));
+        holder.notes_container.setOnLongClickListener(v -> {
+            listener.onLongClick(list.get(holder.getAdapterPosition()), holder.notes_container);
+            return true;
         });
     }
 

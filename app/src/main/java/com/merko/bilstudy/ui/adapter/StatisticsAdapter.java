@@ -1,4 +1,4 @@
-package com.merko.bilstudy.social;
+package com.merko.bilstudy.ui.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.merko.bilstudy.R;
+import com.merko.bilstudy.social.LeitnerStatistics;
 
 import java.util.ArrayList;
 
@@ -28,7 +29,7 @@ public class StatisticsAdapter extends RecyclerView.Adapter<StatisticsAdapter.My
     @Override
     public MyViewHolderStat onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.statistics_view_row,parent,false);
+        View view = inflater.inflate(R.layout.entry_statistics_row,parent,false);
         return new StatisticsAdapter.MyViewHolderStat(view);
     }
 

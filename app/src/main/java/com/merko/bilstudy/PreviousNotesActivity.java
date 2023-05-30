@@ -22,7 +22,7 @@ import com.merko.bilstudy.dialog.LoadingDialog;
 import com.merko.bilstudy.notepad.NotepadSource;
 import com.merko.bilstudy.notepad.Notes;
 import com.merko.bilstudy.notepad.NotesClickListener;
-import com.merko.bilstudy.notepad.adapters.NotesListAdapter;
+import com.merko.bilstudy.ui.adapter.NotesListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

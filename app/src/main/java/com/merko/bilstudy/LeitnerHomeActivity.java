@@ -13,9 +13,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.merko.bilstudy.data.SourceLocator;
 import com.merko.bilstudy.dialog.LoadingDialog;
 import com.merko.bilstudy.leitner.LeitnerContainer;
-import com.merko.bilstudy.leitner.LeitnerContainerAdapter;
 import com.merko.bilstudy.leitner.LeitnerContainerType;
 import com.merko.bilstudy.leitner.LeitnerSource;
+import com.merko.bilstudy.ui.adapter.LeitnerContainerAdapter;
 
 import java.util.Arrays;
 import java.util.List;
@@ -35,19 +35,16 @@ public class LeitnerHomeActivity extends AppCompatActivity {
         RecyclerView containerRecycler = findViewById(R.id.lnHomeContainers);
         FloatingActionButton backButton = findViewById(R.id.lnHomeBackButton);
         FloatingActionButton addButton = findViewById(R.id.lnHomeAddButton);
-        FloatingActionButton deleteButton = findViewById(R.id.lnHomeDeleteButton);
+        FloatingActionButton deleteButton = findViewById(R.id.lnHomeEditButton);
 
         LoadingDialog dialog = new LoadingDialog(this);
         CompletableFuture<LeitnerContainer[]> future = locator.getSource(LeitnerSource.class).getAllContainers();
         dialog.addFutures(future);
         dialog.show();
 
-        try {
-            items = Arrays.asList(future.get());
-            adapter = new LeitnerContainerAdapter(items);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        items = Arrays.asList(future.join());
+        adapter = new LeitnerContainerAdapter(items);
+
         adapter.setOnClickListener((int position) -> {
             Intent intent;
             LeitnerContainer container = items.get(position);
@@ -57,7 +54,7 @@ public class LeitnerHomeActivity extends AppCompatActivity {
             else {
                 intent = new Intent(this, LeitnerFolderActivity.class);
             }
-            intent.putExtra("CONTAINER_ID", items.get(position).uuid);
+            intent.putExtra("CONTAINER_ID", items.get(position).uuid.toString());
             startActivity(intent);
         });
 

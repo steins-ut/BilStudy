@@ -21,4 +21,10 @@
     <string name="add_tag">Tag Ekle</string>
     <string name="ok">Tamam</string>
     <string name="icon">İkon</string>
+    <string name="n_solved">Çözülmüş</string>
+    <string name="n_questions">%d Soru</string>
+    <string name="weekly">Haftalık</string>
+    <string name="thridaily">Üç Günde Bir</string>
+    <string name="daily">Günlük</string>
+    <string name="status">Durum</string>
 </resources>

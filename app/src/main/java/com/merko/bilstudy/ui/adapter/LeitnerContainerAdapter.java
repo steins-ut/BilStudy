@@ -1,4 +1,4 @@
-package com.merko.bilstudy.leitner;
+package com.merko.bilstudy.ui.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.merko.bilstudy.R;
+import com.merko.bilstudy.leitner.LeitnerContainer;
+import com.merko.bilstudy.ui.holder.LeitnerContainerHolder;
 
 import java.util.ArrayList;
 import java.util.List;
