@@ -10,18 +10,12 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.merko.bilstudy.data.SourceLocator;
-import com.merko.bilstudy.pomodoro.PomodoroSource;
 import com.merko.bilstudy.shop.ShopAdapter;
 import com.merko.bilstudy.shop.ShopItem;
-import com.merko.bilstudy.social.Profile;
-import com.merko.bilstudy.social.ProfileSource;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 public class ShopActivity extends AppCompatActivity {
     RecyclerView recyclerView;
@@ -43,7 +37,7 @@ public class ShopActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop);
-        shopItems = new ArrayList<ShopItem>();
+        shopItems = new ArrayList<>();
         recyclerView = findViewById(R.id.itemsRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new ShopAdapter(getApplicationContext(), shopItems));
@@ -57,12 +51,9 @@ public class ShopActivity extends AppCompatActivity {
         lowToHigh = findViewById(R.id.lowToHigh);
         highToLow = findViewById(R.id.highToLow);
 
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent homepage = new Intent(getBaseContext(), MainActivity.class);
-                startActivity(homepage);
-            }
+        backButton.setOnClickListener(v -> {
+            Intent homepage = new Intent(getBaseContext(), MainActivity.class);
+            startActivity(homepage);
         });
 
         shopItems.add(new ShopItem("l", "BilStudy Red Table Lamp", "450", R.drawable.shop_lamp_red));
@@ -94,59 +85,30 @@ public class ShopActivity extends AppCompatActivity {
             }
         }
 
-        Collections.sort(cheapToExpensive, Comparator.comparingInt(ShopItem::getPrice));
-        Collections.sort(expensiveToCheap, Comparator.comparingInt(ShopItem::getPrice).reversed());
+        cheapToExpensive.sort(Comparator.comparingInt(ShopItem::getPrice));
+        expensiveToCheap.sort(Comparator.comparingInt(ShopItem::getPrice).reversed());
 
-        categoryLamps.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                recyclerView.setAdapter(new ShopAdapter(getApplicationContext(), lamps));
-            }
-        });
+        categoryLamps.setOnClickListener(v -> recyclerView.setAdapter(new ShopAdapter(getApplicationContext(), lamps)));
 
-        categoryPens.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                recyclerView.setAdapter(new ShopAdapter(getApplicationContext(), pens));
-            }
-        });
+        categoryPens.setOnClickListener(v -> recyclerView.setAdapter(new ShopAdapter(getApplicationContext(), pens)));
 
-        categoryMugs.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                recyclerView.setAdapter(new ShopAdapter(getApplicationContext(), mugs));
-            }
-        });
+        categoryMugs.setOnClickListener(v -> recyclerView.setAdapter(new ShopAdapter(getApplicationContext(), mugs)));
 
-        categoryAll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                recyclerView.setAdapter(new ShopAdapter(getApplicationContext(), shopItems));
-            }
-        });
+        categoryAll.setOnClickListener(v -> recyclerView.setAdapter(new ShopAdapter(getApplicationContext(), shopItems)));
 
-        sortButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sortPanel.setVisibility(View.VISIBLE);
-                lowToHigh.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        recyclerView.setAdapter(new ShopAdapter(getApplicationContext(), cheapToExpensive));
-                        sortPanel.setVisibility(View.INVISIBLE);
-                    }
-                });
+        sortButton.setOnClickListener(v -> {
+            sortPanel.setVisibility(View.VISIBLE);
+            lowToHigh.setOnClickListener(v1 -> {
+                recyclerView.setAdapter(new ShopAdapter(getApplicationContext(), cheapToExpensive));
+                sortPanel.setVisibility(View.INVISIBLE);
+            });
 
-                highToLow.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        recyclerView.setAdapter(new ShopAdapter(getApplicationContext(), expensiveToCheap));
-                        sortPanel.setVisibility(View.INVISIBLE);
-                    }
-                });
+            highToLow.setOnClickListener(v12 -> {
+                recyclerView.setAdapter(new ShopAdapter(getApplicationContext(), expensiveToCheap));
+                sortPanel.setVisibility(View.INVISIBLE);
+            });
 
 
-            }
         });
 
     }

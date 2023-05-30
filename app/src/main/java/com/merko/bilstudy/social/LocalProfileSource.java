@@ -33,6 +33,7 @@ public class LocalProfileSource extends ProfileSource {
         } catch(Exception e) {
             Log.e(toString(), e.getLocalizedMessage());
         }
+        profileFile = new File(profileFile.getAbsolutePath());
         return true;
     }
 
@@ -44,9 +45,9 @@ public class LocalProfileSource extends ProfileSource {
         File profileFolder = new File(rootFolder, PROFILE_PATH);
         profileFolder.mkdirs();
         profileFile = new File(profileFolder, PROFILE_FILE_NAME);
-        if(profileFile.isFile() && profileFile.length() > 0) {
+        if(profileFile.isFile()) {
             try {
-                profile = mapper.readValue(profileFile, Profile.class);
+                this.profile = mapper.readValue(profileFile, Profile.class);
             } catch (Exception e) {
                 Log.e(toString(), e.getLocalizedMessage());
             }

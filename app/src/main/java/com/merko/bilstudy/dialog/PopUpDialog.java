@@ -4,21 +4,13 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 
 import com.merko.bilstudy.MainActivity;
 import com.merko.bilstudy.R;
-import com.merko.bilstudy.ShopActivity;
-import com.merko.bilstudy.data.SourceLocator;
-import com.merko.bilstudy.social.Profile;
-import com.merko.bilstudy.social.ProfileSource;
-
-import java.util.concurrent.ExecutionException;
 
 
 public class PopUpDialog extends Dialog {
@@ -51,13 +43,10 @@ public class PopUpDialog extends Dialog {
 
         coinText.setText(coins + " coins have been added to your balance \nfor studying with the " + type);
 
-        closeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
-            }
+        closeButton.setOnClickListener(v -> {
+            Intent intent = new Intent(context, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
         });
     }
 }

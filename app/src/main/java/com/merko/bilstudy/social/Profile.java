@@ -26,9 +26,9 @@ public class Profile {
      * @param original the object to copy
      */
     public Profile(Profile original) {
-        this.uuid = original.uuid;
+        this.uuid = UUID.fromString(original.uuid.toString());
         this.name = original.name;
-        this.imageUuid = original.imageUuid;
+        this.imageUuid = original.imageUuid != null ? UUID.fromString(original.imageUuid.toString()) : null;
         this.coin = original.coin;
         this.purchasedItems = original.purchasedItems;
     }

@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.cardview.widget.CardView;
 import androidx.core.splashscreen.SplashScreen;
 
@@ -120,14 +121,6 @@ public class MainActivity extends AppCompatActivity {
             Intent shopPage = new Intent(MainActivity.this, ShopActivity.class);
             startActivity(shopPage);
         });
-
-
-        locator.getSource(PomodoroSource.class).getAllPresets().thenAccept((PomodoroPreset[] presets) -> {
-            for(PomodoroPreset p: presets) {
-                Log.d(toString(), p.name);
-            }
-        });
-
     }
 
     @Override
@@ -137,24 +130,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-            if(notifications) {
-                channelNotification();
+        if(notifications) {
+            channelNotification();
 
-                Calendar calendar = Calendar.getInstance();
-                calendar.set(Calendar.HOUR_OF_DAY,16);
-                calendar.set(Calendar.MINUTE,57);
-                calendar.set(Calendar.SECOND,0);
-                if(Calendar.getInstance().after(calendar)) {
-                    calendar.add(Calendar.DAY_OF_MONTH,1);
-                }
-                Intent i = new Intent(MainActivity.this, BilStudyBroadCast.class);
-                PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(),0,i,PendingIntent.FLAG_IMMUTABLE);
-
-                AlarmManager alarm = (AlarmManager)getSystemService(ALARM_SERVICE);
-                alarm.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent);
-                alarm.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),pendingIntent);
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.HOUR_OF_DAY,16);
+            calendar.set(Calendar.MINUTE,57);
+            calendar.set(Calendar.SECOND,0);
+            if(Calendar.getInstance().after(calendar)) {
+                calendar.add(Calendar.DAY_OF_MONTH,1);
             }
+            Intent i = new Intent(MainActivity.this, BilStudyBroadCast.class);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(),0,i,PendingIntent.FLAG_IMMUTABLE);
 
+            AlarmManager alarm = (AlarmManager)getSystemService(ALARM_SERVICE);
+            alarm.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent);
+            alarm.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),pendingIntent);
+        }
+
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         Globals.setApplicationContext(getApplicationContext());
 
         handleFirstRun();

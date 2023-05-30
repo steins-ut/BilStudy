@@ -1,10 +1,9 @@
 package com.merko.bilstudy;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.view.View;
+import android.util.Log;
 import android.widget.Button;
 
 import androidx.appcompat.app.AlertDialog;
@@ -16,8 +15,6 @@ public class SettingsActivity extends AppCompatActivity {
     MediaPlayer play2;
     Button playSound;
     Button stopSound;
-    Button notificationsOn;
-    Button notificationsOff;
     Button selectTime;
     CardView backButton;
 
@@ -29,114 +26,84 @@ public class SettingsActivity extends AppCompatActivity {
         playSound = findViewById(R.id.buttonPlay);
         stopSound = findViewById(R.id.buttonStop);
         backButton = findViewById(R.id.backButtonPomodoro);
-        notificationsOff = findViewById(R.id.buttonStop);
-        notificationsOn = findViewById(R.id.buttonPlay);
         selectTime = findViewById(R.id.buttonSelectTime);
 
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent homepage = new Intent(getBaseContext(), MainActivity.class);
-                startActivity(homepage);
-            }
+        backButton.setOnClickListener(v -> {
+            Intent homepage = new Intent(getBaseContext(), MainActivity.class);
+            startActivity(homepage);
         });
-        playSound.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlertDialog.Builder alert = new AlertDialog.Builder(SettingsActivity.this);
-                alert.setTitle("Background Sound");
-                alert.setMessage("Which sound do you want to study with?");
-                alert.setCancelable(false);
-                alert.setNegativeButton("Rain", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        try {
-                            play.stop();
-                            play.release();
-                        }
-                        catch(Exception e) {
-                            //null
-                        }
-                        try {
-                            play.reset();
-                        }
-                        catch(Exception e) {
-                            //null
-                        }
-                        play = MediaPlayer.create(SettingsActivity.this,R.raw.rain);
-                        try {
-                            play.prepare();
-                        }
-                        catch(Exception e){
-                        }
-                        try {
-                            play.start();
-                        }
-                        catch (IllegalStateException e) {
+        playSound.setOnClickListener(view -> {
+            AlertDialog.Builder alert = new AlertDialog.Builder(SettingsActivity.this);
+            alert.setTitle("Background Sound");
+            alert.setMessage("Which sound do you want to study with?");
+            alert.setCancelable(false);
+            alert.setNegativeButton("Rain", (dialogInterface, i) -> {
+                try {
+                    play.stop();
+                    play.release();
+                }
+                catch(Exception e) {
+                    //null
+                }
+                try {
+                    play.reset();
+                }
+                catch(Exception e) {
+                    //null
+                }
+                play = MediaPlayer.create(SettingsActivity.this,R.raw.rain);
+                try {
+                    play.prepare();
+                }
+                catch(Exception e){
+                    Log.d(toString(), e.getMessage());
+                }
+                try {
+                    play.start();
+                }
+                catch (IllegalStateException e) {
+                    Log.d(toString(), e.getMessage());
+                }
+            });
+            alert.setPositiveButton("LoFi", (dialogInterface, i) -> {
+                try {
+                    play2.stop();
+                    play2.release();
+                }
+                catch(Exception e) {
+                    Log.d(toString(), e.getMessage());
+                }
+                try {
+                    play2.reset();
+                }
+                catch(Exception e) {
+                    Log.d(toString(), e.getMessage());
+                }
+                play2 = MediaPlayer.create(SettingsActivity.this,R.raw.lofi);
+                try {
+                    play2.prepare();
+                }
+                catch(Exception e){
+                    Log.d(toString(), e.getMessage());
+                }
+                try {
+                    play2.start();
+                }
+                catch (IllegalStateException e) {
+                    Log.d(toString(), e.getMessage());
+                }
 
-                        }
-                    }
-                });
-                alert.setPositiveButton("LoFi", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        try {
-                            play2.stop();
-                            play2.release();
-                        }
-                        catch(Exception e) {
-                            //null
-                        }
-                        try {
-                            play2.reset();
-                        }
-                        catch(Exception e) {
-                            //null
-                        }
-                        play2 = MediaPlayer.create(SettingsActivity.this,R.raw.lofi);
-                        try {
-                            play2.prepare();
-                        }
-                        catch(Exception e){
-                        }
-                        try {
-                            play2.start();
-                        }
-                        catch (IllegalStateException e) {
-
-                        }
-
-                    }
-                });
-                AlertDialog alertDialog = alert.create();
-                alertDialog.show();
-            }
+            });
+            AlertDialog alertDialog = alert.create();
+            alertDialog.show();
         });
-        stopSound.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish(play);
-                finish(play2);
-            }
+        stopSound.setOnClickListener(view -> {
+            finish(play);
+            finish(play2);
         });
-        notificationsOff.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //changeNotification(false);
-            }
-        });
-        notificationsOn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //changeNotification(true);
-            }
-        });
-        selectTime.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent homepage = new Intent(getBaseContext(), MainActivity.class);
-                startActivity(homepage);
-            }
+        selectTime.setOnClickListener(v -> {
+            Intent homepage = new Intent(getBaseContext(), MainActivity.class);
+            startActivity(homepage);
         });
     }
     public void finish(MediaPlayer player) {
@@ -144,7 +111,7 @@ public class SettingsActivity extends AppCompatActivity {
             player.release();
         }
         catch(Exception e) {
-
+            Log.d(toString(), e.getMessage());
         }
     }
     //public void changeNotification(Boolean booleanVal) {
