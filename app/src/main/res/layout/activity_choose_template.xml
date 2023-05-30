@@ -13,12 +13,13 @@
         android:layout_width="66dp"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_corner"
+        android:backgroundTint="@color/notepad_primary"
         android:clickable="false"
         android:contentDescription="Notepad title, shown in all notepad screens "
         android:gravity="center"
         android:text="Notepad"
         android:layout_marginTop="18dp"
-        android:layout_marginLeft="11dp"
+        android:layout_marginStart="11dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,15 +32,16 @@
         android:layout_below="@id/notepadTitle"
         android:text="Choose a Template:"
         android:layout_marginTop="5dp"
-        android:layout_marginLeft="11dp"/>
+        android:layout_marginStart="11dp"/>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/blank_note"
         android:layout_width="130dp"
         android:layout_height="180dp"
         android:layout_below="@+id/choose_template_title"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
         android:clickable="true"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="20dp"
@@ -48,22 +50,23 @@
     </androidx.cardview.widget.CardView>
 
     <TextView
+        android:id="@+id/textblank"
         android:layout_width="wrap_content"
         android:layout_height="17dp"
+        android:layout_marginTop="6dp"
         android:layout_below="@+id/blank_note"
-        android:layout_alignStart="@+id/blank_note"
-        android:layout_marginLeft="25dp"
-        android:layout_alignEnd="@+id/blank_note"
+        android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="Standard Note" />
+        android:text="Standard Notes" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/mind_maps"
-        android:layout_below="@+id/choose_template_title"
+        android:layout_below="@+id/textblank"
         android:layout_width="130dp"
         android:layout_height="180dp"
         android:layout_marginLeft="230dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_centerHorizontal="true"
         android:clickable="true"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="20dp"
@@ -78,7 +81,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
 
-                android:src="@drawable/mind_maps" />
+                android:src="@drawable/mindmap_example" />
 
 
         </LinearLayout>
@@ -86,22 +89,10 @@
     </androidx.cardview.widget.CardView>
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/mind_maps"
-        android:layout_alignStart="@+id/mind_maps"
-        android:layout_alignEnd="@+id/mind_maps"
-        android:layout_marginStart="47dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="47dp"
-        android:text="Mind Maps" />
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/back_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="true"
         android:layout_marginLeft="18dp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="20dp"
@@ -110,31 +101,25 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/todo"
-        android:layout_below="@+id/blank_note"
+        android:layout_below="@+id/textmindmap"
+        android:layout_centerHorizontal="true"
         android:layout_width="130dp"
         android:layout_height="180dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="45dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
         android:clickable="true"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="20dp"
         app:cardElevation="50dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"></LinearLayout>
-
     </androidx.cardview.widget.CardView>
 
-
     <TextView
+        android:id="@id/textmindmap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/mind_maps"
-        android:layout_alignStart="@+id/mind_maps"
-        android:layout_alignEnd="@+id/mind_maps"
-        android:layout_marginStart="47dp"
+        android:layout_below="@id/mind_maps"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="6dp"
         android:layout_marginEnd="47dp"
         android:text="Mind Maps" />
@@ -143,11 +128,8 @@
         android:layout_width="78dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/todo"
-        android:layout_alignStart="@+id/todo"
-        android:layout_alignEnd="@+id/todo"
-        android:layout_marginStart="31dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="21dp"
+        android:layout_marginTop="6dp"
+        android:layout_centerHorizontal="true"
         android:text="To Do List" />
 
 </RelativeLayout>
