@@ -98,5 +98,19 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(homepage);
             }
         });
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent homepage = new Intent(getBaseContext(), MainActivity.class);
+                startActivity(homepage);
+            }
+        });
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent homepage = new Intent(getBaseContext(), SettingsActivity.class);
+                startActivity(homepage);
+            }
+        });
     }
 }

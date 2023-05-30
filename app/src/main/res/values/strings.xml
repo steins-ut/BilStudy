@@ -24,12 +24,6 @@
     <string name="ok">OK</string>
     <string name="icon">Icon</string>
 
-    <string-array name="test_recycler">
-        <item>ayca</item>
-        <item>ece</item>
-        <item>ege</item>
-        <item>goktug</item>
-    </string-array>
     <string name="n_solved">%d Solved</string>
     <string name="n_questions">%d Questions</string>
     <string name="weekly">Weekly</string>

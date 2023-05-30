@@ -94,29 +94,9 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="20dp"
-                        android:text="Language:"
-                        android:textSize = "20dp"
-                        android:textColor="@color/white" />
-
-                    <Button
-                        android:id="@+id/buttonSelectLang"
-                        android:layout_width="94dp"
-                        android:layout_height="55dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="18dp"
-                        android:layout_marginBottom="49dp"
-                        android:backgroundTint="@color/purple_500"
-                        android:text="SELECT"
+                        android:text="Rain - Lofi Sounds"
                         android:textColor="@color/white"
-                        android:textSize="18dp" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="141dp">
+                        android:textSize="20dp" />
 
                     <Button
                         android:id="@+id/buttonPlay"
@@ -124,13 +104,18 @@
                         android:layout_height="55dp"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentBottom="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="116dp"
-                        android:layout_marginBottom="46dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="45dp"
                         android:backgroundTint="@color/purple_500"
                         android:text="PLAY"
                         android:textColor="@color/white"
                         android:textSize="20dp" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="141dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -138,7 +123,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginStart="20dp"
                         android:textSize = "20dp"
-                        android:text="Sounds: "
+                        android:text="Stop Sounds "
                         android:textColor="@color/white" />
 
                     <Button

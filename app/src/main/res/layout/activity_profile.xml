@@ -227,16 +227,17 @@
                     android:layout_width="62dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="8dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginBottom="-2dp"
                     android:backgroundTint="#673AB7"
                     android:text="GO" />
 
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="175dp"
+                android:layout_width="363dp"
+                android:layout_height="155dp"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="12dp"
@@ -251,16 +252,6 @@
                     android:text="Study Statistics"
                     android:textSize="20dp" />
 
-                <Button
-                    android:id="@+id/button1"
-                    android:layout_width="62dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="8dp"
-                    android:backgroundTint="#673AB7"
-                    android:text="GO" />
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -274,8 +265,8 @@
                         style="?android:attr/progressBarStyle"
                         android:layout_width="74dp"
                         android:layout_height="67dp"
-                        android:layout_marginStart="24dp"
-                        android:layout_marginBottom="52dp"
+                        android:layout_marginStart="28dp"
+                        android:layout_marginBottom="32dp"
                         android:indeterminateTint="#673AB7"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
@@ -286,7 +277,7 @@
                         android:layout_width="74dp"
                         android:layout_height="67dp"
                         android:layout_marginStart="112dp"
-                        android:layout_marginBottom="52dp"
+                        android:layout_marginBottom="32dp"
                         android:indeterminateTint="#673AB7"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
@@ -297,37 +288,21 @@
                         android:layout_width="74dp"
                         android:layout_height="67dp"
                         android:layout_marginStart="200dp"
-                        android:layout_marginBottom="52dp"
+                        android:layout_marginBottom="32dp"
                         android:indeterminateTint="#673AB7"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
 
-                    <TextView
-                        android:id="@+id/textView11"
-                        android:layout_width="60dp"
-                        android:layout_height="43dp"
-                        android:text="Biology Folder"
-                        app:layout_constraintEnd_toEndOf="@+id/progressBar4"
-                        app:layout_constraintStart_toStartOf="@+id/progressBar4"
-                        app:layout_constraintTop_toBottomOf="@+id/progressBar4" />
+                    <Button
+                        android:id="@+id/button1"
+                        android:layout_width="62dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:backgroundTint="#673AB7"
+                        android:text="GO"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:layout_editor_absoluteY="65dp" />
 
-                    <TextView
-                        android:id="@+id/textView12"
-                        android:layout_width="60dp"
-                        android:layout_height="43dp"
-                        android:text="Biology Folder"
-                        app:layout_constraintEnd_toEndOf="@+id/progressBar5"
-                        app:layout_constraintStart_toStartOf="@+id/progressBar5"
-                        app:layout_constraintTop_toBottomOf="@+id/progressBar5" />
-
-                    <TextView
-                        android:id="@+id/textView13"
-                        android:layout_width="60dp"
-                        android:layout_height="43dp"
-                        android:text="Biology Folder"
-                        app:layout_constraintEnd_toEndOf="@+id/progressBar6"
-                        app:layout_constraintStart_toStartOf="@+id/progressBar6"
-                        app:layout_constraintTop_toBottomOf="@+id/progressBar6" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </RelativeLayout>
@@ -461,10 +436,13 @@
                                         android:id="@+id/mug"
                                         android:layout_width="31dp"
                                         android:layout_height="27dp"
+                                        android:layout_marginStart="70dp"
                                         android:layout_marginTop="16dp"
+                                        android:layout_marginEnd="33dp"
+                                        app:layout_constraintEnd_toStartOf="@+id/lamp"
+                                        app:layout_constraintStart_toStartOf="parent"
                                         app:layout_constraintTop_toTopOf="parent"
-                                        app:srcCompat="@drawable/logo1"
-                                        tools:layout_editor_absoluteX="70dp" />
+                                        app:srcCompat="@drawable/logo1" />
 
                                     <ImageView
                                         android:id="@+id/pens"
@@ -482,12 +460,13 @@
                                         android:id="@+id/lamp"
                                         android:layout_width="34dp"
                                         android:layout_height="28dp"
-                                        android:layout_marginTop="6dp"
+                                        android:layout_marginTop="16dp"
+                                        android:layout_marginEnd="17dp"
                                         android:layout_marginBottom="2dp"
                                         app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toStartOf="@+id/pens"
                                         app:layout_constraintTop_toTopOf="parent"
-                                        app:srcCompat="@drawable/baseline_attribution_24"
-                                        tools:layout_editor_absoluteX="134dp" />
+                                        app:srcCompat="@drawable/baseline_attribution_24" />
                                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
