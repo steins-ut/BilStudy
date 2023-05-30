@@ -40,7 +40,6 @@ public class LeitnerFolderActivity extends AppCompatActivity {
 
         RecyclerView questionRecycler = findViewById(R.id.lnFolderBoxRecycler);
         FloatingActionButton backButton = findViewById(R.id.lnFolderBackButton);
-        FloatingActionButton playButton = findViewById(R.id.lnFolderPlayButton);
         FloatingActionButton editButton = findViewById(R.id.lnFolderEditButton);
         TextView folderName = findViewById(R.id.lnFolderName);
         TextView folderTags = findViewById(R.id.lnFolderTags);
@@ -87,7 +86,6 @@ public class LeitnerFolderActivity extends AppCompatActivity {
         backButton.setOnClickListener((View view) -> finish());
 
         backButton.show();
-        playButton.show();
         editButton.show();
     }
 }

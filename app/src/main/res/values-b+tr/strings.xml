@@ -30,4 +30,6 @@
     <string name="n_boxes">%d Kutu</string>
     <string name="n_folders">%d Klasör</string>
     <string name="folder">Klasör</string>
+    <string name="question_n">%d. Soru</string>
+    <string name="check_answer">Kontrol Et</string>
 </resources>

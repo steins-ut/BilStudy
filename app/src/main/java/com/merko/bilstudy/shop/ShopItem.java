@@ -1,5 +1,4 @@
 package com.merko.bilstudy.shop;
-import java.util.UUID;
 
 public class ShopItem {
     String type;

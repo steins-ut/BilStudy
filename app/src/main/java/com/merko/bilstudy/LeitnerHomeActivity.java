@@ -34,7 +34,7 @@ public class LeitnerHomeActivity extends AppCompatActivity {
         SourceLocator locator = SourceLocator.getInstance();
 
         RecyclerView containerRecycler = findViewById(R.id.lnHomeContainers);
-        FloatingActionButton backButton = findViewById(R.id.lnHomeBackButton);
+        FloatingActionButton backButton = findViewById(R.id.lnQuestoinMCSBackButton);
         FloatingActionButton addButton = findViewById(R.id.lnHomeAddButton);
         FloatingActionButton deleteButton = findViewById(R.id.lnHomeEditButton);
 

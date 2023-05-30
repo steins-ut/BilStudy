@@ -2,8 +2,6 @@ package com.merko.bilstudy;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -16,9 +14,6 @@ import com.merko.bilstudy.social.Profile;
 import com.merko.bilstudy.social.ProfileSource;
 import com.merko.bilstudy.ui.adapter.HistoryAdapter;
 
-import java.lang.reflect.Array;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -62,9 +57,7 @@ public class StudyHistoryActivity extends AppCompatActivity {
             ProfileSource s = SourceLocator.getInstance().getSource(ProfileSource.class);
             s.updateProfile(p).join();
 
-        } catch (ExecutionException e) {
-            throw new RuntimeException(e);
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }

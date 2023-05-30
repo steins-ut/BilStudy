@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.merko.bilstudy.R;
 import com.merko.bilstudy.leitner.LeitnerContainer;
 import com.merko.bilstudy.leitner.LeitnerContainerType;
-import com.merko.bilstudy.utils.Globals;
 
 public class LeitnerContainerHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     public interface ClickListener {
@@ -39,7 +38,7 @@ public class LeitnerContainerHolder extends RecyclerView.ViewHolder implements V
     }
 
     public void setContainer(LeitnerContainer container) {
-        Context context = Globals.getApplicationContext();
+        Context context = itemView.getContext();
         nameText.setText(container.name);
         StringBuilder tags = new StringBuilder();
         for(String t: container.tags) {

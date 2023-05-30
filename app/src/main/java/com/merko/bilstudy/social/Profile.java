@@ -1,8 +1,6 @@
 package com.merko.bilstudy.social;
-import com.merko.bilstudy.shop.ShopItem;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 /**

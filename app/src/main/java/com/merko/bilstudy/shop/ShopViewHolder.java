@@ -1,8 +1,6 @@
 package com.merko.bilstudy.shop;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -10,19 +8,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.merko.bilstudy.R;
 import com.merko.bilstudy.ShopActivity;
 import com.merko.bilstudy.data.SourceLocator;
-import com.merko.bilstudy.pomodoro.PomodoroSource;
-import com.merko.bilstudy.social.LocalProfileSource;
 import com.merko.bilstudy.social.Profile;
 import com.merko.bilstudy.social.ProfileSource;
 
-import java.util.UUID;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
 public class ShopViewHolder extends RecyclerView.ViewHolder {
@@ -81,9 +74,7 @@ public class ShopViewHolder extends RecyclerView.ViewHolder {
                     else {
                         Toast.makeText(context, "You do not have enough coins to purchase this item", Toast.LENGTH_LONG).show();
                     }
-                } catch (ExecutionException e) {
-                    throw new RuntimeException(e);
-                } catch (InterruptedException e) {
+                } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
             }

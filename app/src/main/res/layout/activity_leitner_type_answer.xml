@@ -10,7 +10,7 @@
     tools:context=".LeitnerHomeActivity">
 
     <TextView
-        android:id="@+id/lnHome"
+        android:id="@+id/lnQuestionMCS"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="11dp"
@@ -30,7 +30,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/lnHomeBackButton"
+        android:id="@+id/lnQuestoinMCSBackButton"
         android:layout_width="80dp"
         android:layout_height="60dp"
         android:layout_marginStart="19dp"
@@ -44,11 +44,11 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/lnQuestionNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="QUESTION 1"
-        android:textSize="30dp"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,7 +56,7 @@
         app:layout_constraintVertical_bias="0.095" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView3"
+        android:id="@+id/lnQuestionCard"
         android:layout_width="379dp"
         android:layout_height="219dp"
         android:background="#A4C7FB"
@@ -67,7 +67,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.625"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        app:layout_constraintTop_toBottomOf="@+id/lnQuestionNumber"
         app:layout_constraintVertical_bias="0.054">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -83,11 +83,11 @@
         android:layout_height="249dp"
         app:cardBackgroundColor="#FFFFFF"
         app:cardCornerRadius="9dp"
-        app:layout_constraintBottom_toTopOf="@+id/lnHomeBackButton"
+        app:layout_constraintBottom_toTopOf="@+id/lnQuestoinMCSBackButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.578"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView3">
+        app:layout_constraintTop_toBottomOf="@+id/lnQuestionCard">
 
         <EditText
             android:id="@+id/editTextTextMultiLine"
@@ -100,7 +100,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/checkAnswerText"
+        android:id="@+id/lnQuestionMCSCheckAnswerr"
         android:layout_width="154dp"
         android:layout_height="58dp"
         android:layout_marginBottom="20dp"

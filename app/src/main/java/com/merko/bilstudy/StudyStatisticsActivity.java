@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.merko.bilstudy.data.SourceLocator;
 import com.merko.bilstudy.social.LeitnerStatistics;
-import com.merko.bilstudy.social.OldStudies;
 import com.merko.bilstudy.social.Profile;
 import com.merko.bilstudy.social.ProfileSource;
 import com.merko.bilstudy.ui.adapter.StatisticsAdapter;
@@ -54,9 +53,7 @@ public class StudyStatisticsActivity extends AppCompatActivity {
 
             ProfileSource s = SourceLocator.getInstance().getSource(ProfileSource.class);
             s.updateProfile(p).join();
-        } catch (ExecutionException e) {
-            throw new RuntimeException(e);
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }

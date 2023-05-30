@@ -33,6 +33,8 @@
     <string name="n_boxes">%d Boxes</string>
     <string name="n_folders">%d Folders</string>
     <string name="folder">Folder</string>
+    <string name="question_n">Question %d</string>
+    <string name="check_answer">Check Answer</string>
 
 
 </resources>

@@ -4,11 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LeitnerBoxActivity"
-    >
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:theme="@style/Theme.BilStudy.Leitner"
+    tools:context=".LeitnerHomeActivity">
 
     <TextView
-        android:id="@+id/lnFolder"
+        android:id="@+id/lnQuestionMCS"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="11dp"
@@ -28,63 +30,62 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/lnFolderDisplay"
+        android:id="@+id/lnQuestionMCSDisplay"
         android:layout_width="0dp"
         android:layout_height="233dp"
         android:layout_marginTop="11dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lnFolder">
+        app:layout_constraintTop_toBottomOf="@+id/lnQuestionMCS">
 
         <TextView
-            android:id="@+id/lnFolderName"
-            android:layout_width="0dp"
+            android:id="@+id/lnQuestionMCSNumber"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-black"
-            android:gravity="center"
-            android:text="Name goes here"
+            android:text="@string/question_n"
             android:textAppearance="?android:attr/textAppearance"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/lnFolderTags"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/lnQuestionMCSCard"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-black"
-            android:gravity="center"
-            android:text="#tags #go #here"
-            android:textAppearance="?android:attr/textAppearance"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lnFolderName" />
-
-        <ImageView
-            android:id="@+id/lnFolderImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/folder"
-            app:layout_constraintBottom_toTopOf="@+id/lnFolderBoxes"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lnFolderTags"
-            app:srcCompat="@drawable/bslogo_background" />
-
-        <TextView
-            android:id="@+id/lnFolderBoxes"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="7dp"
-            android:gravity="center"
-            android:text="TextView"
-            android:textAppearance="?android:attr/textAppearance"
-            android:textSize="18sp"
+            android:layout_height="0dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="8dp"
+            android:background="#A4C7FB"
+            android:backgroundTint="#A4C7FB"
+            app:cardBackgroundColor="#A4C7FB"
+            app:cardCornerRadius="12dp"
             app:layout_constraintBottom_toTopOf="@+id/view"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lnQuestionMCSNumber">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#A4C7FB">
+
+                <TextView
+                    android:id="@+id/lnQuestionMCSText"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@null"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
+                    android:text="TextView"
+                    android:textAppearance="?android:attr/textAppearance"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
 
         <View
             android:id="@+id/view"
@@ -113,39 +114,32 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lnFolderDisplay">
+        app:layout_constraintTop_toBottomOf="@+id/lnQuestionMCSDisplay">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/lnFolderBoxRecycler"
+            android:id="@+id/lnQuestionMCSChoices"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </androidx.cardview.widget.CardView>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/lnFolderEditButton"
-        android:layout_width="80dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="19dp"
-        android:layout_marginBottom="23dp"
-        android:contentDescription="@string/delete"
-        android:foreground="@drawable/ic_edit"
-        android:foregroundGravity="center"
+    <Button
+        android:id="@+id/lnQuestionMCSCheckAnswer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/rounded_corner"
+        android:fontFamily="sans-serif-medium"
+        android:paddingStart="30dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="30dp"
+        android:paddingBottom="8dp"
+        android:text="@string/check_answer"
+        android:textAlignment="textEnd"
+        android:textAppearance="?android:attr/textAppearance"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
         app:backgroundTint="?attr/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/lnFolderBackButton"
-        android:layout_width="80dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="19dp"
-        android:layout_marginBottom="23dp"
-        android:contentDescription="@string/back"
-
-        android:foreground="@drawable/back_arrow"
-        android:foregroundGravity="center|center_horizontal"
-        app:backgroundTint="?attr/colorAccent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

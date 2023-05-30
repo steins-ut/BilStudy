@@ -1,5 +1,6 @@
 package com.merko.bilstudy;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -77,6 +78,22 @@ public class LeitnerBoxActivity extends AppCompatActivity {
         questionRecycler.setLayoutManager(new LinearLayoutManager(this));
 
         backButton.setOnClickListener((View view) -> finish());
+        playButton.setOnClickListener((View view) -> {
+            if(questions.size() < 1) {
+                return;
+            }
+            Intent intent;
+            switch(questions.get(0).type) {
+                case MULTIPLE_CHOICE_SINGLE:
+                    intent = new Intent(LeitnerBoxActivity.this, LeitnerQuestionMCSActivity.class);
+                    break;
+                default:
+                    intent = new Intent(LeitnerBoxActivity.this, LeitnerQuestionMCSActivity.class);
+                    break;
+            }
+            intent.putExtra("BOX_ID", boxId.toString());
+            startActivity(intent);
+        });
 
         backButton.show();
         playButton.show();
