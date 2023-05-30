@@ -56,7 +56,8 @@ public class QuestionnaireResultsActivity extends AppCompatActivity {
             adviseButtons[currentAdviseNo].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //goes to mind maps
+                    Intent mindMap = new Intent(QuestionnaireResultsActivity.this, MindMapActivity.class);
+                    startActivity(mindMap);
                 }
             });
             currentAdviseNo++;
@@ -116,7 +117,8 @@ public class QuestionnaireResultsActivity extends AppCompatActivity {
             adviseButtons[currentAdviseNo].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //goes to to-do list
+                    Intent todo = new Intent(QuestionnaireResultsActivity.this, ToDoListActivity.class);
+                    startActivity(todo);
                 }
             });
             currentAdviseNo++;
@@ -131,7 +133,8 @@ public class QuestionnaireResultsActivity extends AppCompatActivity {
                 adviseButtons[currentAdviseNo].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //goes to leitner system
+                        Intent leitner = new Intent(QuestionnaireResultsActivity.this, LeitnerHomeActivity.class);
+                        startActivity(leitner);
                     }
                 });
                 currentAdviseNo++;
@@ -149,7 +152,8 @@ public class QuestionnaireResultsActivity extends AppCompatActivity {
                 adviseButtons[currentAdviseNo].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //goes to leitner system
+                        Intent leitner = new Intent(QuestionnaireResultsActivity.this, LeitnerHomeActivity.class);
+                        startActivity(leitner);
                     }
                 });
                 currentAdviseNo++;

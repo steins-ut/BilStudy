@@ -17,7 +17,7 @@ public class Profile {
     /** Coins of the user */
     public int coin;
 
-    public List<UUID> purchasedItems;
+    public List<Integer> purchasedItems;
 
     public Profile() {}
 

@@ -7,23 +7,19 @@ public class ShopItem {
     String price;
 
     int image;
-    UUID uuid;
+    int id;
 
-    public UUID getUuid() {
-        return uuid;
-    }
+    public int getId(){return id;}
 
     public static final String TABLE_NAME = "shop";
 
 
-
-
-    public ShopItem(String type, String name, String price, int image) {
+    public ShopItem(String type, String name, String price, int image, int id) {
         this.type = type;
         this.name = name;
         this.price = price;
         this.image = image;
-        this.uuid = UUID.randomUUID();
+        this.id = id;
     }
 
     public String getType() {

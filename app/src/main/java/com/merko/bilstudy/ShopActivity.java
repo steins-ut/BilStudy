@@ -4,18 +4,24 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.merko.bilstudy.data.SourceLocator;
 import com.merko.bilstudy.shop.ShopAdapter;
 import com.merko.bilstudy.shop.ShopItem;
+import com.merko.bilstudy.social.Profile;
+import com.merko.bilstudy.social.ProfileSource;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class ShopActivity extends AppCompatActivity {
     RecyclerView recyclerView;
@@ -31,6 +37,7 @@ public class ShopActivity extends AppCompatActivity {
 
     Button lowToHigh;
     Button highToLow;
+    static TextView balanceText;
 
 
     @Override
@@ -50,22 +57,24 @@ public class ShopActivity extends AppCompatActivity {
         sortPanel = findViewById(R.id.sortPanel);
         lowToHigh = findViewById(R.id.lowToHigh);
         highToLow = findViewById(R.id.highToLow);
+        balanceText = findViewById(R.id.balanceText);
+        updateBalance();
 
         backButton.setOnClickListener(v -> {
             Intent homepage = new Intent(getBaseContext(), MainActivity.class);
             startActivity(homepage);
         });
 
-        shopItems.add(new ShopItem("l", "BilStudy Red Table Lamp", "450", R.drawable.shop_lamp_red));
-        shopItems.add(new ShopItem("l", "BilStudy Blue Table Lamp", "450", R.drawable.shop_lamp_blue));
-        shopItems.add(new ShopItem("l", "BilStudy Green Table Lamp", "450", R.drawable.shop_lamp_green));
-        shopItems.add(new ShopItem("m", "BilStudy Red Mug", "450", R.drawable.shop_mug_red));
-        shopItems.add(new ShopItem("m", "BilStudy Orange Mug", "150", R.drawable.shop_mug_orange));
-        shopItems.add(new ShopItem("m", "BilStudy Blue Mug", "450", R.drawable.shop_mug_blue));
-        shopItems.add(new ShopItem("m", "BilStudy Green Mug", "450", R.drawable.shop_mug_green));
-        shopItems.add(new ShopItem("p", "BilStudy Pen Set", "150", R.drawable.shop_pen_set2));
-        shopItems.add(new ShopItem("p", "BilStudy Pen Set", "150", R.drawable.shop_pen_set));
-        shopItems.add(new ShopItem("p", "BilStudy Pen Set", "150", R.drawable.shop_pen_set3));
+        shopItems.add(new ShopItem("l", "BilStudy Red Table Lamp", "450", R.drawable.shop_lamp_red, 1));
+        shopItems.add(new ShopItem("l", "BilStudy Blue Table Lamp", "450", R.drawable.shop_lamp_blue, 2));
+        shopItems.add(new ShopItem("l", "BilStudy Green Table Lamp", "450", R.drawable.shop_lamp_green, 3));
+        shopItems.add(new ShopItem("m", "BilStudy Red Mug", "450", R.drawable.shop_mug_red, 4));
+        shopItems.add(new ShopItem("m", "BilStudy Orange Mug", "150", R.drawable.shop_mug_orange, 5));
+        shopItems.add(new ShopItem("m", "BilStudy Blue Mug", "450", R.drawable.shop_mug_blue, 6));
+        shopItems.add(new ShopItem("m", "BilStudy Green Mug", "450", R.drawable.shop_mug_green, 7));
+        shopItems.add(new ShopItem("p", "BilStudy Pen Set", "150", R.drawable.shop_pen_set2, 8));
+        shopItems.add(new ShopItem("p", "BilStudy Colorful Pen Set", "150", R.drawable.shop_pen_set, 9));
+        shopItems.add(new ShopItem("p", "BilStudy Classic Pen Set", "150", R.drawable.shop_pen_set3, 10));
 
         List<ShopItem> lamps = new ArrayList<>();
         List<ShopItem> mugs = new ArrayList<>();
@@ -108,8 +117,19 @@ public class ShopActivity extends AppCompatActivity {
                 sortPanel.setVisibility(View.INVISIBLE);
             });
 
+            });
 
-        });
+    }
 
+    public static void updateBalance(){
+        Profile p = null;
+        try{
+            p = SourceLocator.getInstance().getSource(ProfileSource.class).getLoggedInProfile().get();
+            balanceText.setText("Balance: " + p.coin);
+        } catch (ExecutionException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

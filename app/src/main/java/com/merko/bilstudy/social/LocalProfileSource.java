@@ -57,10 +57,11 @@ public class LocalProfileSource extends ProfileSource {
             profile.uuid = UUID.randomUUID();
             profile.name = "User";
             profile.imageUuid = null;
-            profile.coin = 0;
+            profile.coin = 500;
             profile.purchasedItems = new ArrayList<>();
             save();
         }
+
         return true;
     }
 
