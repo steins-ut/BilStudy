@@ -52,12 +52,14 @@ public class ShopViewHolder extends RecyclerView.ViewHolder {
                     ProfileSource source = SourceLocator.getInstance().getSource(ProfileSource.class);
                     source.updateProfile(p).join();
 
-                    for(int k = 0; k < p.purchasedItems.size(); k++){
-                        for(int l = 0; l < ShopActivity.shopItems.size(); l++){
-                            if(p.purchasedItems.get(k) == (ShopActivity.shopItems.get(l).getId())){
-                                if(ShopActivity.shopItems.get(l).getName().equals(itemName.getText().toString())){
-                                    alreadyPurchased = true;
-                                    Toast.makeText(context, "Every item can only be purchased once", Toast.LENGTH_LONG).show();
+                    if(p.purchasedItems != null){
+                        for(int k = 0; k < p.purchasedItems.size(); k++){
+                            for(int l = 0; l < ShopActivity.shopItems.size(); l++){
+                                if(p.purchasedItems.get(k) == (ShopActivity.shopItems.get(l).getId())){
+                                    if(ShopActivity.shopItems.get(l).getName().equals(itemName.getText().toString())){
+                                        alreadyPurchased = true;
+                                        Toast.makeText(context, "Every item can only be purchased once", Toast.LENGTH_LONG).show();
+                                    }
                                 }
                             }
                         }

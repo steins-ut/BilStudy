@@ -115,13 +115,15 @@ public class ShopActivity extends AppCompatActivity {
             List<ShopItem> purchased = new ArrayList<ShopItem>();
             try{
                 p = SourceLocator.getInstance().getSource(ProfileSource.class).getLoggedInProfile().get();
-                for(int i = 0; i < p.purchasedItems.size(); i++) {
-                    for(int r = 0; r < ShopActivity.shopItems.size(); r++){
-                        if(p.purchasedItems.get(i) == ShopActivity.shopItems.get(r).getId()){
-                            purchased.add(ShopActivity.shopItems.get(r));
+                    if(p.purchasedItems != null){
+                        for(int i = 0; i < p.purchasedItems.size(); i++) {
+                            for(int r = 0; r < ShopActivity.shopItems.size(); r++){
+                                if(p.purchasedItems.get(i) == ShopActivity.shopItems.get(r).getId()){
+                                    purchased.add(ShopActivity.shopItems.get(r));
+                                }
+                            }
                         }
                     }
-                }
                 recyclerView.setAdapter(new ShopAdapter(getApplicationContext(), purchased));
             }catch (ExecutionException e) {
                 throw new RuntimeException(e);
