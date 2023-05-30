@@ -40,6 +40,9 @@
     <string name="thridaily">Thridaily</string>
     <string name="daily">Daily</string>
     <string name="status">Status</string>
+    <string name="n_boxes">%d Boxes</string>
+    <string name="n_folders">%d Folders</string>
+    <string name="folder">Folder</string>
 
 
 </resources>

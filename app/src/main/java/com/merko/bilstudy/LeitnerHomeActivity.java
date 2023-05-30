@@ -17,13 +17,14 @@ import com.merko.bilstudy.leitner.LeitnerContainerType;
 import com.merko.bilstudy.leitner.LeitnerSource;
 import com.merko.bilstudy.ui.adapter.LeitnerContainerAdapter;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class LeitnerHomeActivity extends AppCompatActivity {
     private LeitnerContainerAdapter adapter;
-    private List<LeitnerContainer> items;
+    private List<LeitnerContainer> containers;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,19 +43,20 @@ public class LeitnerHomeActivity extends AppCompatActivity {
         dialog.addFutures(future);
         dialog.show();
 
-        items = Arrays.asList(future.join());
-        adapter = new LeitnerContainerAdapter(items);
+        containers = Arrays.asList(future.join());
+        List<LeitnerContainer> filteredContainers = filterContainers(containers);
+        adapter = new LeitnerContainerAdapter(filteredContainers);
 
         adapter.setOnClickListener((int position) -> {
             Intent intent;
-            LeitnerContainer container = items.get(position);
+            LeitnerContainer container = filteredContainers.get(position);
             if(container.type == LeitnerContainerType.BOX) {
                 intent = new Intent(this, LeitnerBoxActivity.class);
             }
             else {
                 intent = new Intent(this, LeitnerFolderActivity.class);
             }
-            intent.putExtra("CONTAINER_ID", items.get(position).uuid.toString());
+            intent.putExtra("CONTAINER_ID", container.uuid.toString());
             startActivity(intent);
         });
 
@@ -68,5 +70,13 @@ public class LeitnerHomeActivity extends AppCompatActivity {
         deleteButton.show();
     }
 
-
+    private List<LeitnerContainer> filterContainers(List<LeitnerContainer> items) {
+        ArrayList<LeitnerContainer> filteredItems = new ArrayList<>(items.size());
+        for(LeitnerContainer c: items) {
+            if(c.parentUuid == null) {
+                filteredItems.add(c);
+            }
+        }
+        return filteredItems;
+    }
 }

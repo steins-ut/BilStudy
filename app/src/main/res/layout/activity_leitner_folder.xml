@@ -8,7 +8,7 @@
     >
 
     <TextView
-        android:id="@+id/lnBox"
+        android:id="@+id/lnFolder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="11dp"
@@ -28,16 +28,16 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/lnBoxDisplay"
+        android:id="@+id/lnFolderDisplay"
         android:layout_width="0dp"
         android:layout_height="233dp"
         android:layout_marginTop="11dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lnBox">
+        app:layout_constraintTop_toBottomOf="@+id/lnFolder">
 
         <TextView
-            android:id="@+id/lnBoxName"
+            android:id="@+id/lnFolderName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-black"
@@ -50,7 +50,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/lnBoxTags"
+            android:id="@+id/lnFolderTags"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-black"
@@ -60,20 +60,21 @@
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lnBoxName" />
+            app:layout_constraintTop_toBottomOf="@+id/lnFolderName" />
 
         <ImageView
-            android:id="@+id/lnBoxImage"
+            android:id="@+id/lnFolderImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/lnBoxQuestions"
+            android:contentDescription="@string/folder"
+            app:layout_constraintBottom_toTopOf="@+id/lnFolderBoxes"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lnBoxTags"
+            app:layout_constraintTop_toBottomOf="@+id/lnFolderTags"
             app:srcCompat="@drawable/bslogo_background" />
 
         <TextView
-            android:id="@+id/lnBoxQuestions"
+            android:id="@+id/lnFolderBoxes"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="7dp"
@@ -97,65 +98,11 @@
             app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.google.android.material.button.MaterialButtonToggleGroup
-        android:id="@+id/materialButtonToggleGroup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lnBoxDisplay">
-
-        <Button
-            android:id="@+id/lnBoxAll"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:backgroundTint="?attr/colorAccent"
-            android:text="@string/all"
-            android:textAppearance="?android:attr/textAppearance"
-            android:textColor="@android:color/black"
-            android:textSize="18sp" />
-
-        <Button
-            android:id="@+id/lnBoxWeekly"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:backgroundTint="?attr/colorAccent"
-            android:text="@string/weekly"
-            android:textAppearance="?android:attr/textAppearance"
-            android:textColor="@android:color/black"
-            android:textSize="18sp" />
-
-        <Button
-            android:id="@+id/lnBoxThridaily"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:backgroundTint="?attr/colorAccent"
-            android:text="@string/thridaily"
-            android:textAppearance="?android:attr/textAppearance"
-            android:textColor="@android:color/black"
-            android:textSize="18sp" />
-
-        <Button
-            android:id="@+id/lnBoxDaily"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:backgroundTint="?attr/colorAccent"
-            android:text="@string/daily"
-            android:textAppearance="?android:attr/textAppearance"
-            android:textColor="@android:color/black"
-            android:textSize="18sp" />
-    </com.google.android.material.button.MaterialButtonToggleGroup>
-
     <androidx.cardview.widget.CardView
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="11dp"
-        android:layout_marginTop="7dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="11dp"
         android:layout_marginBottom="143dp"
         android:background="@null"
@@ -166,16 +113,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialButtonToggleGroup">
+        app:layout_constraintTop_toBottomOf="@+id/lnFolderDisplay">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/lnBoxQuestionsRecycler"
+            android:id="@+id/lnFolderBoxRecycler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </androidx.cardview.widget.CardView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/lnBoxEditButton"
+        android:id="@+id/lnFolderEditButton"
         android:layout_width="80dp"
         android:layout_height="60dp"
         android:layout_marginEnd="19dp"
@@ -188,7 +135,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/lnBoxBackButton"
+        android:id="@+id/lnFolderBackButton"
         android:layout_width="80dp"
         android:layout_height="60dp"
         android:layout_marginStart="19dp"
@@ -202,7 +149,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/lnBoxPlayButton"
+        android:id="@+id/lnFolderPlayButton"
         android:layout_width="80dp"
         android:layout_height="60dp"
         android:layout_marginBottom="23dp"

@@ -20,12 +20,7 @@ public class LeitnerContainerAdapter extends RecyclerView.Adapter<LeitnerContain
     private LeitnerContainerHolder.ClickListener listener;
 
     public LeitnerContainerAdapter(List<LeitnerContainer> containers) {
-        this.containers = new ArrayList<>(containers.size());
-        for(LeitnerContainer c: containers) {
-            if(c.parentUuid == null) {
-                this.containers.add(c);
-            }
-        }
+        this.containers = new ArrayList<>(containers);
     }
 
     @NonNull

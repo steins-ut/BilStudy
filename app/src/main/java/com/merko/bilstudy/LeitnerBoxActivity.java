@@ -42,7 +42,7 @@ public class LeitnerBoxActivity extends AppCompatActivity {
         RecyclerView questionRecycler = findViewById(R.id.lnBoxQuestionsRecycler);
         FloatingActionButton backButton = findViewById(R.id.lnBoxBackButton);
         FloatingActionButton playButton = findViewById(R.id.lnBoxPlayButton);
-        FloatingActionButton editButton = findViewById(R.id.lnBoxEdit);
+        FloatingActionButton editButton = findViewById(R.id.lnBoxEditButton);
         TextView boxName = findViewById(R.id.lnBoxName);
         TextView boxTags = findViewById(R.id.lnBoxTags);
         TextView boxQuestionCount = findViewById(R.id.lnBoxQuestions);
@@ -67,7 +67,7 @@ public class LeitnerBoxActivity extends AppCompatActivity {
 
         LoadingDialog dialog2 = new LoadingDialog(this);
         CompletableFuture<LeitnerQuestion[]> future2 = source.getQuestions(box);
-        dialog.addFutures(future2);
+        dialog2.addFutures(future2);
         dialog2.show();
 
         questions = Arrays.asList(future2.join());
