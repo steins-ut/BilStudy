@@ -8,8 +8,8 @@ import android.util.Log;
 
 import androidx.core.content.ContextCompat;
 
-import com.merko.bilstudy.utils.Globals;
 import com.merko.bilstudy.R;
+import com.merko.bilstudy.utils.Globals;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;

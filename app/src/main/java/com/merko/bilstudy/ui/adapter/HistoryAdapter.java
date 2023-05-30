@@ -1,4 +1,4 @@
-package com.merko.bilstudy;
+package com.merko.bilstudy.ui.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,26 +10,29 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.merko.bilstudy.R;
+import com.merko.bilstudy.social.OldStudies;
+
 import java.util.ArrayList;
 
-public class historyAdapter extends RecyclerView.Adapter<historyAdapter.MyViewHolder1> {
+public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHolder1> {
     Context context;
     ArrayList<OldStudies>oldStudies;
-    public historyAdapter(Context context, ArrayList<OldStudies> oldStudies){
+    public HistoryAdapter(Context context, ArrayList<OldStudies> oldStudies){
         this.context = context;
         this.oldStudies = oldStudies;
     }
 
     @NonNull
     @Override
-    public historyAdapter.MyViewHolder1 onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public HistoryAdapter.MyViewHolder1 onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.history_view_row,parent,false);
-        return new historyAdapter.MyViewHolder1(view);
+        View view = inflater.inflate(R.layout.entry_history_row,parent,false);
+        return new HistoryAdapter.MyViewHolder1(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull historyAdapter.MyViewHolder1 holder, int position) {
+    public void onBindViewHolder(@NonNull HistoryAdapter.MyViewHolder1 holder, int position) {
     holder.date.setText(oldStudies.get(position).getDate());
     holder.study.setText(oldStudies.get(position).getStudy());
     holder.imageView.setImageResource(oldStudies.get(position).getImage());

@@ -2,6 +2,8 @@ package com.merko.bilstudy.leitner;
 
 import com.merko.bilstudy.data.BilStudyDatabase;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
@@ -89,7 +91,17 @@ public class RoomLeitnerSource extends LeitnerSource {
             if(container.type == LeitnerContainerType.FOLDER) {
                 return new LeitnerQuestion[0];
             }
-            return BilStudyDatabase.getInstance().leitnerDao().getQuestions(container.objectIds.toArray(new UUID[0]));
+            List<UUID> ids = container.objectIds;
+            LeitnerQuestion[] questions = BilStudyDatabase.getInstance().leitnerDao().getQuestions(container.objectIds.toArray(new UUID[0]));
+            HashMap<UUID, LeitnerQuestion> map = new HashMap<>();
+            for(LeitnerQuestion q: questions) {
+                map.put(q.uuid, q);
+            }
+            LeitnerQuestion[] ordered = new LeitnerQuestion[ids.size()];
+            for(int i = 0; i < ids.size(); i++) {
+                ordered[i] = map.get(ids.get(i));
+            }
+            return ordered;
         });
     }
 

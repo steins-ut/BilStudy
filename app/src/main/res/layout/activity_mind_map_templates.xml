@@ -13,6 +13,7 @@
         android:layout_width="66dp"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_corner"
+        android:backgroundTint="@color/notepad_primary"
         android:clickable="false"
         android:contentDescription="Notepad title, shown in all notepad screens "
         android:gravity="center"

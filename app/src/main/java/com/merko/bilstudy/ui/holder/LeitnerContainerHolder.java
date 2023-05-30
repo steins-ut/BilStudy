@@ -1,5 +1,6 @@
-package com.merko.bilstudy.leitner;
+package com.merko.bilstudy.ui.holder;
 
+import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -8,18 +9,21 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.merko.bilstudy.R;
+import com.merko.bilstudy.leitner.LeitnerContainer;
+import com.merko.bilstudy.leitner.LeitnerContainerType;
+import com.merko.bilstudy.utils.Globals;
 
 public class LeitnerContainerHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     public interface ClickListener {
         void onItemClick(int position);
     }
 
-    private ImageView boxImage;
-    private TextView nameText;
-    private TextView tagText;
-    private TextView solvedText;
-    private TextView boxCountText;
-    private ClickListener listener;
+    private final ImageView boxImage;
+    private final TextView nameText;
+    private final TextView tagText;
+    private final TextView solvedText;
+    private final TextView containerText;
+    private final ClickListener listener;
 
     public LeitnerContainerHolder(@NonNull View itemView, ClickListener listener) {
         super(itemView);
@@ -29,27 +33,25 @@ public class LeitnerContainerHolder extends RecyclerView.ViewHolder implements V
         nameText = itemView.findViewById(R.id.lnContainerName);
         tagText = itemView.findViewById(R.id.lnContainerTags);
         solvedText = itemView.findViewById(R.id.lnContainerSolved);
-        boxCountText = itemView.findViewById(R.id.lnContainerBoxCount);
+        containerText = itemView.findViewById(R.id.lnContainerBoxCount);
 
         itemView.setOnClickListener(this);
     }
 
     public void setContainer(LeitnerContainer container) {
+        Context context = Globals.getApplicationContext();
         nameText.setText(container.name);
-        String tags = "";
+        StringBuilder tags = new StringBuilder();
         for(String t: container.tags) {
-            tags += "#" + t + " ";
+            tags.append("#").append(t).append(" ");
         }
-        tagText.setText(tags);
-        String solved = "Solved: %d/%d";
-        String boxCount = "%d Boxes";
+        tagText.setText(tags.toString());
+        solvedText.setText(context.getString(R.string.n_solved, container.objectIds.size()));
         if(container.type == LeitnerContainerType.BOX) {
-            solvedText.setText(String.format(solved, container.objectIds.size(), container.objectIds.size()));
-            boxCountText.setVisibility(View.INVISIBLE);
+            containerText.setText(context.getString(R.string.n_questions, container.objectIds.size()));
         }
         else {
-            solvedText.setText(String.format(solved, container.objectIds.size(), container.objectIds.size()));
-            boxCountText.setText(String.format(boxCount, container.objectIds.size()));
+            containerText.setText(context.getString(R.string.n_boxes, container.objectIds.size()));
         }
     }
 

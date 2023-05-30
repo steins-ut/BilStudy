@@ -251,7 +251,7 @@
     </androidx.cardview.widget.CardView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/lnHomeDeleteButton"
+        android:id="@+id/lnHomeEditButton"
         android:layout_width="80dp"
         android:layout_height="60dp"
         android:layout_marginEnd="19dp"

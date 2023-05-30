@@ -1,9 +1,5 @@
 package com.merko.bilstudy;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.core.splashscreen.SplashScreen;
-
 import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -19,19 +15,26 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.core.splashscreen.SplashScreen;
+
 import com.merko.bilstudy.data.SourceLocator;
 import com.merko.bilstudy.dialog.LoadingDialog;
 import com.merko.bilstudy.leitner.LeitnerSource;
 import com.merko.bilstudy.leitner.RoomLeitnerSource;
 import com.merko.bilstudy.media.ImageCategory;
-import com.merko.bilstudy.media.LocalImageSource;
 import com.merko.bilstudy.media.ImageSource;
+import com.merko.bilstudy.media.LocalImageSource;
+import com.merko.bilstudy.notepad.NotepadSource;
+import com.merko.bilstudy.notepad.RoomNotepadSource;
 import com.merko.bilstudy.pomodoro.PomodoroPreset;
 import com.merko.bilstudy.pomodoro.PomodoroSource;
 import com.merko.bilstudy.pomodoro.RoomPomodoroSource;
-import com.merko.bilstudy.social.Profile;
 import com.merko.bilstudy.social.LocalProfileSource;
+import com.merko.bilstudy.social.Profile;
 import com.merko.bilstudy.social.ProfileSource;
+import com.merko.bilstudy.utils.BilStudyBroadCast;
 import com.merko.bilstudy.utils.Globals;
 
 import java.util.Calendar;
@@ -45,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         locator.setPreferredType(PomodoroSource.class, RoomPomodoroSource.class);
         locator.setPreferredType(ImageSource.class, LocalImageSource.class);
         locator.setPreferredType(LeitnerSource.class, RoomLeitnerSource.class);
+        locator.setPreferredType(NotepadSource.class, RoomNotepadSource.class);
     }
 
     private void handleFirstRun() {
@@ -143,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
                 if(Calendar.getInstance().after(calendar)) {
                     calendar.add(Calendar.DAY_OF_MONTH,1);
                 }
-                Intent i = new Intent(MainActivity.this,BilStudyBroadCast.class);
+                Intent i = new Intent(MainActivity.this, BilStudyBroadCast.class);
                 PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(),0,i,PendingIntent.FLAG_IMMUTABLE);
 
                 AlarmManager alarm = (AlarmManager)getSystemService(ALARM_SERVICE);

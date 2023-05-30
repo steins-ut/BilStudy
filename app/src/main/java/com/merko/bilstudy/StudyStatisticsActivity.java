@@ -7,8 +7,10 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.merko.bilstudy.social.LeitnerStatistics;
+import com.merko.bilstudy.ui.adapter.StatisticsAdapter;
 
 import java.util.ArrayList;
 
@@ -26,17 +28,14 @@ public class StudyStatisticsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_study_statistics);
         RecyclerView recyclerView = findViewById(R.id.recyclerViewStat);
         backButton = findViewById(R.id.backButtonStat);
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent profile = new Intent(getBaseContext(), ProfileActivity.class);
-                startActivity(profile);
-            }
+        backButton.setOnClickListener(v -> {
+            Intent profile = new Intent(getBaseContext(), ProfileActivity.class);
+            startActivity(profile);
         });
 
         setUpOldStudies();
 
-        statisticsAdapter adapter = new statisticsAdapter(this,leitnerStatisticsArrayList);
+        StatisticsAdapter adapter = new StatisticsAdapter(this,leitnerStatisticsArrayList);
         recyclerView.setAdapter(adapter);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2);
         recyclerView.setLayoutManager(gridLayoutManager);

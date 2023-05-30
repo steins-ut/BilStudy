@@ -25,7 +25,7 @@ public class PomodoroAdapter extends RecyclerView.Adapter<PomodoroViewHolder> {
     @Override
     public PomodoroViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new PomodoroViewHolder(
-                LayoutInflater.from(context).inflate(R.layout.pomodoro_preset_view, parent, false));
+                LayoutInflater.from(context).inflate(R.layout.entry_pomodoro_preset, parent, false));
     }
 
     @Override

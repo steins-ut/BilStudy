@@ -1,6 +1,4 @@
-package com.merko.bilstudy;
-
-import java.util.Date;
+package com.merko.bilstudy.social;
 
 public class OldStudies {
     String date;

@@ -1,24 +1,26 @@
-package com.merko.bilstudy;
+package com.merko.bilstudy.ui.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.merko.bilstudy.R;
+import com.merko.bilstudy.social.LeitnerStatistics;
+
 import java.util.ArrayList;
 
 
-public class statisticsAdapter extends RecyclerView.Adapter<statisticsAdapter.MyViewHolderStat> {
+public class StatisticsAdapter extends RecyclerView.Adapter<StatisticsAdapter.MyViewHolderStat> {
 
     Context context;
     ArrayList<LeitnerStatistics> leitnerStatistics;
 
-    public statisticsAdapter(Context context, ArrayList<LeitnerStatistics> leitnerStatistics){
+    public StatisticsAdapter(Context context, ArrayList<LeitnerStatistics> leitnerStatistics){
         this.context = context;
         this.leitnerStatistics = leitnerStatistics;
     }
@@ -27,8 +29,8 @@ public class statisticsAdapter extends RecyclerView.Adapter<statisticsAdapter.My
     @Override
     public MyViewHolderStat onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.statistics_view_row,parent,false);
-        return new statisticsAdapter.MyViewHolderStat(view);
+        View view = inflater.inflate(R.layout.entry_statistics_row,parent,false);
+        return new StatisticsAdapter.MyViewHolderStat(view);
     }
 
 

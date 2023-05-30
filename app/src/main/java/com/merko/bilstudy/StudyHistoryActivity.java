@@ -9,6 +9,9 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.merko.bilstudy.social.OldStudies;
+import com.merko.bilstudy.ui.adapter.HistoryAdapter;
+
 import java.util.ArrayList;
 
 public class StudyHistoryActivity extends AppCompatActivity {
@@ -25,17 +28,14 @@ public class StudyHistoryActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recyclerViewHistory);
         backButton = findViewById(R.id.backButtonCalendar);
 
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent profile = new Intent(getBaseContext(), ProfileActivity.class);
-                startActivity(profile);
-            }
+        backButton.setOnClickListener(v -> {
+            Intent profile = new Intent(getBaseContext(), ProfileActivity.class);
+            startActivity(profile);
         });
 
         setUpOldStudies();
 
-        historyAdapter adapter = new historyAdapter(this,oldStudiesArrayList);
+        HistoryAdapter adapter = new HistoryAdapter(this,oldStudiesArrayList);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }

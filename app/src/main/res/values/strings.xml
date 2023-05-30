@@ -34,6 +34,15 @@
         <item>orhun</item>
         <item>ozan</item>
     </string-array>
+    <string name="n_solved">%d Solved</string>
+    <string name="n_questions">%d Questions</string>
+    <string name="weekly">Weekly</string>
+    <string name="thridaily">Thridaily</string>
+    <string name="daily">Daily</string>
+    <string name="status">Status</string>
+    <string name="n_boxes">%d Boxes</string>
+    <string name="n_folders">%d Folders</string>
+    <string name="folder">Folder</string>
 
 
 </resources>

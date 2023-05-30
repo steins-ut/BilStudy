@@ -6,8 +6,6 @@ import android.graphics.drawable.GradientDrawable;
 import android.util.AttributeSet;
 import android.view.Gravity;
 
-import com.merko.bilstudy.R;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 

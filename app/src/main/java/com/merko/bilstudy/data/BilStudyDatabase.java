@@ -5,14 +5,14 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
-import com.merko.bilstudy.notepad.NotepadDao;
-import com.merko.bilstudy.notepad.Notes;
 import com.merko.bilstudy.leitner.LeitnerContainerEntity;
 import com.merko.bilstudy.leitner.LeitnerDao;
 import com.merko.bilstudy.leitner.LeitnerQuestionEntity;
-import com.merko.bilstudy.utils.Globals;
+import com.merko.bilstudy.notepad.NotepadDao;
+import com.merko.bilstudy.notepad.NotesEntity;
 import com.merko.bilstudy.pomodoro.PomodoroDao;
 import com.merko.bilstudy.pomodoro.PomodoroPresetEntity;
+import com.merko.bilstudy.utils.Globals;
 
 /**
  * Database class using Room persistent storage for
@@ -21,7 +21,8 @@ import com.merko.bilstudy.pomodoro.PomodoroPresetEntity;
 @Database(entities = {PomodoroPresetEntity.class,
                     LeitnerQuestionEntity.class,
                     LeitnerContainerEntity.class,
-                    Notes.class}, exportSchema = false, version = 2)
+                    NotesEntity.class
+                    }, exportSchema = false, version = 2)
 @TypeConverters({RoomTypeConverters.class})
 public abstract class BilStudyDatabase extends RoomDatabase {
 
@@ -37,7 +38,6 @@ public abstract class BilStudyDatabase extends RoomDatabase {
             INSTANCE = Room.databaseBuilder(Globals.getApplicationContext(),
                     BilStudyDatabase.class,
                     DATABASE_NAME)
-                    .fallbackToDestructiveMigration()
                     .createFromAsset("testdb.db")
                     .build();
         }
@@ -47,5 +47,5 @@ public abstract class BilStudyDatabase extends RoomDatabase {
 
     public abstract PomodoroDao pomodoroDao();
     public abstract LeitnerDao leitnerDao();
-    public abstract NotepadDao notepadDAO();
+    public abstract NotepadDao notepadDao();
 }

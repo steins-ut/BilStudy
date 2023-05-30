@@ -1,6 +1,4 @@
-package com.merko.bilstudy;
-
-import android.widget.TextView;
+package com.merko.bilstudy.social;
 
 public class LeitnerStatistics {
 

@@ -1,9 +1,9 @@
 package com.merko.bilstudy;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class BlankPageActivity extends AppCompatActivity {
     private View back;
