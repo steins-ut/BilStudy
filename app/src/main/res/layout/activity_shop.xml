@@ -163,8 +163,32 @@
                 android:layout_height="match_parent">
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/categoryPurchased"
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:backgroundTint="#440F5D"
+                    android:clickable="true"
+                    app:cardCornerRadius="9dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/categoryMugs"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/textView28"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="Purchased"
+                        android:textColor="@color/white"
+                        android:textSize="10sp" />
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
                     android:id="@+id/categoryAll"
-                    android:layout_width="70dp"
+                    android:layout_width="50dp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="5dp"
@@ -188,7 +212,7 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/categoryLamps"
-                    android:layout_width="70dp"
+                    android:layout_width="60dp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="3dp"
                     android:layout_marginTop="5dp"
@@ -212,7 +236,7 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/categoryPens"
-                    android:layout_width="70dp"
+                    android:layout_width="60dp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="3dp"
                     android:layout_marginTop="5dp"
@@ -240,7 +264,7 @@
                     android:layout_width="40dp"
                     android:layout_height="match_parent"
                     android:layout_marginTop="5dp"
-                    android:layout_marginEnd="15dp"
+                    android:layout_marginEnd="10dp"
                     android:layout_marginBottom="5dp"
                     android:backgroundTint="@color/lightpurple"
                     app:cardCornerRadius="60dp"
@@ -258,7 +282,7 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/categoryMugs"
-                    android:layout_width="70dp"
+                    android:layout_width="60dp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="3dp"
                     android:layout_marginTop="5dp"
@@ -296,10 +320,13 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/itemsRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginTop="4dp"
+
             android:backgroundTint="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

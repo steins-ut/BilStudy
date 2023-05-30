@@ -108,5 +108,4 @@ public class SettingsActivity extends AppCompatActivity {
             Log.d(toString(), e.getMessage());
         }
     }
-
 }
