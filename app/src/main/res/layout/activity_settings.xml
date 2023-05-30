@@ -70,7 +70,7 @@
                 android:padding="15dp">
 
                 <androidx.cardview.widget.CardView
-                    android:layout_width="330dp"
+                    android:layout_width="match_parent"
                     android:layout_height="59dp"
                     app:cardBackgroundColor="#E4DBF3"
                     app:cardCornerRadius="9dp">
@@ -95,20 +95,26 @@
                         android:layout_centerVertical="true"
                         android:layout_marginStart="20dp"
 
-                        android:text="Night Mode" />
+                        android:text="Language:" />
 
-                    <Switch
-                        android:layout_width="64dp"
-                        android:layout_height="38dp"
+                    <Button
+                        android:id="@+id/buttonSelectLang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="37dp"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentBottom="true"
-                        android:layout_marginEnd="20dp"
-                        android:layout_marginBottom="12dp" />
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="18dp"
+                        android:layout_marginBottom="16dp"
+                        android:backgroundTint="@color/purple_500"
+                        android:text="SELECT"
+                        android:textColor="@color/white"
+                        android:textSize="10dp" />
 
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:layout_width="343dp"
+                    android:layout_width="match_parent"
                     android:layout_height="64dp">
 
                     <TextView
@@ -117,8 +123,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginStart="20dp"
 
-                        android:text="Background Sounds" />
-
+                        android:text="Sounds: " />
                     <Button
                         android:id="@+id/buttonPlay"
                         android:layout_width="64dp"
@@ -132,7 +137,6 @@
                         android:text="PLAY"
                         android:textColor="@color/white"
                         android:textSize="10dp" />
-
                     <Button
                         android:id="@+id/buttonStop"
                         android:layout_width="64dp"
@@ -147,11 +151,10 @@
                         android:textColor="@color/white"
                         android:textSize="10dp" />
 
-
                 </RelativeLayout>
 
                 <androidx.cardview.widget.CardView
-                    android:layout_width="335dp"
+                    android:layout_width="match_parent"
                     android:layout_height="58dp"
                     app:cardBackgroundColor="#E4DBF3"
                     app:cardCornerRadius="9dp">
@@ -176,33 +179,16 @@
                         android:layout_centerVertical="true"
                         android:layout_marginStart="20dp"
 
-                        android:text="Notifications On/Off" />
-                    <Button
-                        android:id="@+id/buttonOn"
-                        android:layout_width="64dp"
-                        android:layout_height="35dp"
+                        android:text="Notifications: " />
+
+                    <Switch
+                        android:id="@+id/switch2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="94dp"
-                        android:layout_marginBottom="17dp"
-                        android:backgroundTint="@color/purple_500"
-                        android:text="ON"
-                        android:textColor="@color/white"
-                        android:textSize="10dp" />
-                    <Button
-                        android:id="@+id/buttonOFF"
-                        android:layout_width="64dp"
-                        android:layout_height="36dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="18dp"
-                        android:layout_marginBottom="17dp"
-                        android:backgroundTint="@color/purple_500"
-                        android:text="OFF"
-                        android:textColor="@color/white"
-                        android:textSize="10dp" />
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="11dp" />
 
                 </RelativeLayout>
 
@@ -216,16 +202,17 @@
                         android:layout_centerVertical="true"
                         android:layout_marginStart="20dp"
 
-                        android:text="Notification Time" />
+                        android:text="Notification Time: " />
+
                     <Button
                         android:id="@+id/buttonSelectTime"
-                        android:layout_width="64dp"
-                        android:layout_height="36dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="37dp"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentBottom="true"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="18dp"
-                        android:layout_marginBottom="17dp"
+                        android:layout_marginBottom="16dp"
                         android:backgroundTint="@color/purple_500"
                         android:text="SELECT"
                         android:textColor="@color/white"
