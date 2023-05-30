@@ -10,17 +10,22 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.merko.bilstudy.data.SourceLocator;
+import com.merko.bilstudy.pomodoro.PomodoroSource;
 import com.merko.bilstudy.shop.ShopAdapter;
 import com.merko.bilstudy.shop.ShopItem;
+import com.merko.bilstudy.social.Profile;
+import com.merko.bilstudy.social.ProfileSource;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class ShopActivity extends AppCompatActivity {
     RecyclerView recyclerView;
-    List<ShopItem> shopItems;
+    public static List<ShopItem> shopItems;
     CardView backButton;
     CardView categoryLamps;
     CardView categoryMugs;
@@ -76,8 +81,6 @@ public class ShopActivity extends AppCompatActivity {
         List<ShopItem> pens = new ArrayList<>();
         List<ShopItem> cheapToExpensive = new ArrayList<>(shopItems);
         List<ShopItem> expensiveToCheap = new ArrayList<>(shopItems);
-        ShopItem mostExpensive = shopItems.get(0);
-        int index = 0;
 
         for(int i = 0; i < shopItems.size(); i++){
             if(shopItems.get(i).getType().equals("l")){

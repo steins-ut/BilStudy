@@ -1,4 +1,5 @@
 package com.merko.bilstudy.shop;
+import java.util.UUID;
 
 public class ShopItem {
     String type;
@@ -6,8 +7,15 @@ public class ShopItem {
     String price;
 
     int image;
+    UUID uuid;
+
+    public UUID getUuid() {
+        return uuid;
+    }
 
     public static final String TABLE_NAME = "shop";
+
+
 
 
     public ShopItem(String type, String name, String price, int image) {
@@ -15,6 +23,7 @@ public class ShopItem {
         this.name = name;
         this.price = price;
         this.image = image;
+        this.uuid = UUID.randomUUID();
     }
 
     public String getType() {

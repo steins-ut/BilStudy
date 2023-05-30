@@ -10,6 +10,12 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import com.merko.bilstudy.data.SourceLocator;
+import com.merko.bilstudy.social.Profile;
+import com.merko.bilstudy.social.ProfileSource;
+
+import java.util.concurrent.ExecutionException;
+
 public class PomodoroCountdownActivity extends AppCompatActivity {
 
     public long studyDuration;
@@ -31,6 +37,24 @@ public class PomodoroCountdownActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Profile p = null;
+        try {
+            p = SourceLocator.getInstance().getSource(ProfileSource.class).getLoggedInProfile().get();
+            System.out.println("size of items: " + p.purchasedItems.size());
+            for(int l = 0; l < p.purchasedItems.size(); l++){
+                if(ShopActivity.shopItems != null){
+                    for(int a = 0; a < ShopActivity.shopItems.size(); a++){
+                        if(p.purchasedItems.get(l) == ShopActivity.shopItems.get(a).getUuid()){
+                            System.out.println(ShopActivity.shopItems.get(a).getName());
+                        }
+                    }
+                }
+            }
+        } catch (ExecutionException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         breakDuration = PomodoroViewHolder.getBreakMins() * 60000;
         studyDuration = PomodoroViewHolder.getStudyMins() * 60000;
         startTime = studyDuration;

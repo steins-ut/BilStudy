@@ -50,8 +50,6 @@
         android:layout_marginStart="332dp"
         android:layout_marginBottom="28dp"
         android:contentDescription="@string/back"
-
-        android:foreground=""
         android:foregroundGravity="center|center_horizontal"
         app:backgroundTint="?attr/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -65,8 +63,6 @@
         android:layout_marginStart="248dp"
         android:layout_marginBottom="28dp"
         android:contentDescription="@string/back"
-
-        android:foreground=""
         android:foregroundGravity="center|center_horizontal"
         app:backgroundTint="?attr/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"

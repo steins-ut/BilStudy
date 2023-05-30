@@ -7,18 +7,30 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.merko.bilstudy.data.SourceLocator;
+import com.merko.bilstudy.dialog.PopUpDialog;
+import com.merko.bilstudy.social.Profile;
+import com.merko.bilstudy.social.ProfileSource;
+
+import java.util.concurrent.ExecutionException;
+
 
 public class ChooseTemplateActivity extends AppCompatActivity {
     private View back;
     private View mindMaps;
     private View standardNotes;
     private View toDoList;
+    long startTime;
+    long endTime;
+    long difference;
+    long minutesPassed;
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        startTime = System.currentTimeMillis();
         setContentView(R.layout.activity_choose_template);
         back = findViewById(R.id.back_button);
         mindMaps = findViewById(R.id.mind_maps);
@@ -28,8 +40,29 @@ public class ChooseTemplateActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ChooseTemplateActivity.this, MainActivity.class);
-                startActivity(intent);
+                endTime = System.currentTimeMillis();
+                difference = endTime - startTime;
+                minutesPassed = difference / 60000;
+                try {
+                    Profile p = SourceLocator.getInstance().getSource(ProfileSource.class).getLoggedInProfile().get();
+                    System.out.println(p.coin);
+                    p.coin += minutesPassed / 30 * 10;
+                    System.out.println(p.coin);
+                    ProfileSource s = SourceLocator.getInstance().getSource(ProfileSource.class);
+                    s.updateProfile(p).join();
+                } catch (ExecutionException e) {
+                    throw new RuntimeException(e);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                if(minutesPassed / 30 * 15 > 0){
+                    PopUpDialog d = new PopUpDialog(ChooseTemplateActivity.this, R.style.Theme_BilStudy_Notepad_PopUp, "Notepad", minutesPassed / 30 * 10);
+                    d.show();
+                }
+                else{
+                    Intent home = new Intent(ChooseTemplateActivity.this, MainActivity.class);
+                    startActivity(home);
+                }
             }
         });
         standardNotes.setOnClickListener(new View.OnClickListener() {

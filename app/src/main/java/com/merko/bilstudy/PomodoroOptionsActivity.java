@@ -10,23 +10,33 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.merko.bilstudy.data.SourceLocator;
+import com.merko.bilstudy.dialog.PopUpDialog;
 import com.merko.bilstudy.pomodoro.PomodoroPreset;
 import com.merko.bilstudy.pomodoro.PomodoroSource;
+import com.merko.bilstudy.social.Profile;
+import com.merko.bilstudy.social.ProfileSource;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 public class PomodoroOptionsActivity extends AppCompatActivity {
     static List<PomodoroPreset> pomodoroOptions;
     RecyclerView recyclerView;
     PomodoroAdapter adapter;
+    long startTime;
+    long endTime;
+    long difference;
+
+    long minutesPassed;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        startTime = System.currentTimeMillis();
         setContentView(R.layout.activity_pomodoro_options);
         recyclerView = findViewById(R.id.PomodoroRecyclerView);
         pomodoroOptions = new ArrayList<PomodoroPreset>();
@@ -44,8 +54,27 @@ public class PomodoroOptionsActivity extends AppCompatActivity {
         });
 
         backButton.setOnClickListener((View view) -> {
-            Intent home = new Intent(getBaseContext(), MainActivity.class);
-            startActivity(home);
+            endTime = System.currentTimeMillis();
+            difference = endTime - startTime;
+            minutesPassed = difference / 60000;
+            try {
+                Profile p = SourceLocator.getInstance().getSource(ProfileSource.class).getLoggedInProfile().get();
+                p.coin += minutesPassed / 30 * 15;
+                ProfileSource s = SourceLocator.getInstance().getSource(ProfileSource.class);
+                s.updateProfile(p).join();
+            } catch (ExecutionException e) {
+                throw new RuntimeException(e);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            if(minutesPassed / 30 * 15 > 0){
+                PopUpDialog d = new PopUpDialog(PomodoroOptionsActivity.this, R.style.Theme_BilStudy_Pomodoro_PopUp, "Pomodoro Timer", minutesPassed / 30 * 15);
+                d.show();
+            }
+            else{
+                Intent home = new Intent(PomodoroOptionsActivity.this, MainActivity.class);
+                startActivity(home);
+            }
         });
     }
 

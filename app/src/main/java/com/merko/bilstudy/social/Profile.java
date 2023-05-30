@@ -1,5 +1,7 @@
 package com.merko.bilstudy.social;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -15,6 +17,8 @@ public class Profile {
     /** Coins of the user */
     public int coin;
 
+    public List<UUID> purchasedItems;
+
     public Profile() {}
 
     /**
@@ -26,5 +30,6 @@ public class Profile {
         this.name = original.name;
         this.imageUuid = original.imageUuid;
         this.coin = original.coin;
+        this.purchasedItems = original.purchasedItems;
     }
 }

@@ -1,11 +1,11 @@
 package com.merko.bilstudy.social;
-
 import android.util.Log;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.merko.bilstudy.utils.Globals;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
@@ -44,7 +44,7 @@ public class LocalProfileSource extends ProfileSource {
         File profileFolder = new File(rootFolder, PROFILE_PATH);
         profileFolder.mkdirs();
         profileFile = new File(profileFolder, PROFILE_FILE_NAME);
-        if(profileFile.isFile()) {
+        if(profileFile.isFile() && profileFile.length() > 0) {
             try {
                 profile = mapper.readValue(profileFile, Profile.class);
             } catch (Exception e) {
@@ -57,7 +57,8 @@ public class LocalProfileSource extends ProfileSource {
             profile.name = "User";
             profile.imageUuid = null;
             profile.coin = 0;
-            saveIfAutoSave();
+            profile.purchasedItems = new ArrayList<>();
+            save();
         }
         return true;
     }
@@ -82,7 +83,7 @@ public class LocalProfileSource extends ProfileSource {
         return CompletableFuture.supplyAsync(() -> {
             if(this.profile.uuid.equals(profile.uuid)) {
                 this.profile = profile;
-                saveIfAutoSave();
+                save();
             }
             return true;
         });

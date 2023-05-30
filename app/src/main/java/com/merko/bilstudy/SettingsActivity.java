@@ -29,8 +29,8 @@ public class SettingsActivity extends AppCompatActivity {
         playSound = findViewById(R.id.buttonPlay);
         stopSound = findViewById(R.id.buttonStop);
         backButton = findViewById(R.id.backButtonPomodoro);
-        notificationsOff = findViewById(R.id.buttonOFF);
-        notificationsOn = findViewById(R.id.buttonOn);
+        notificationsOff = findViewById(R.id.buttonStop);
+        notificationsOn = findViewById(R.id.buttonPlay);
         selectTime = findViewById(R.id.buttonSelectTime);
 
         backButton.setOnClickListener(new View.OnClickListener() {
