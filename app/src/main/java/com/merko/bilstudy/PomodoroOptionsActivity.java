@@ -60,8 +60,10 @@ public class PomodoroOptionsActivity extends AppCompatActivity {
             try {
                 Profile p = SourceLocator.getInstance().getSource(ProfileSource.class).getLoggedInProfile().get();
                 p.coin += minutesPassed / 30 * 15;
+
                 p.durations.add((int) minutesPassed);
                 p.types.add("pomodoro");
+
                 ProfileSource s = SourceLocator.getInstance().getSource(ProfileSource.class);
                 s.updateProfile(p).join();
             } catch (ExecutionException e) {
@@ -69,14 +71,15 @@ public class PomodoroOptionsActivity extends AppCompatActivity {
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            if(minutesPassed / 30 * 15 > 0){
+            //if(minutesPassed / 30 * 15 > 0){
                 PopUpDialog d = new PopUpDialog(PomodoroOptionsActivity.this, R.style.Theme_BilStudy_Pomodoro_PopUp, "Pomodoro Timer", minutesPassed / 30 * 15);
                 d.show();
-            }
-            else{
+           // }
+            /*
+            * else{
                 Intent home = new Intent(PomodoroOptionsActivity.this, MainActivity.class);
                 startActivity(home);
-            }
+            }*/
         });
     }
 

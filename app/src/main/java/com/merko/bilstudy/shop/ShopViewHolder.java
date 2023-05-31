@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.merko.bilstudy.ProfileActivity;
 import com.merko.bilstudy.R;
 import com.merko.bilstudy.ShopActivity;
 import com.merko.bilstudy.data.SourceLocator;

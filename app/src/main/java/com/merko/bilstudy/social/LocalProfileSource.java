@@ -45,6 +45,7 @@ public class LocalProfileSource extends ProfileSource {
         File profileFolder = new File(rootFolder, PROFILE_PATH);
         profileFolder.mkdirs();
         profileFile = new File(profileFolder, PROFILE_FILE_NAME);
+        boolean reset = false;
         if(profileFile.isFile()) {
             try {
                 this.profile = mapper.readValue(profileFile, Profile.class);

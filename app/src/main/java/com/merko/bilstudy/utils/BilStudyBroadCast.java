@@ -20,7 +20,7 @@ public class BilStudyBroadCast extends BroadcastReceiver {
         Intent repeating = new Intent(context, MainActivity.class);
         repeating.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-        PendingIntent pending = PendingIntent.getActivity(context, 0, repeating, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pending = PendingIntent.getActivity(context, 0, repeating, PendingIntent.FLAG_IMMUTABLE);
         NotificationCompat.Builder build = new NotificationCompat.Builder(context, "Notification")
                 .setContentIntent(pending)
                 .setSmallIcon(R.drawable.baseline_assignment_turned_in_24)

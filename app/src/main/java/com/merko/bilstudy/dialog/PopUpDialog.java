@@ -11,6 +11,11 @@ import androidx.cardview.widget.CardView;
 
 import com.merko.bilstudy.MainActivity;
 import com.merko.bilstudy.R;
+import com.merko.bilstudy.data.SourceLocator;
+import com.merko.bilstudy.social.Profile;
+import com.merko.bilstudy.social.ProfileSource;
+
+import java.util.concurrent.ExecutionException;
 
 
 public class PopUpDialog extends Dialog {
@@ -42,6 +47,15 @@ public class PopUpDialog extends Dialog {
         currentBalance = findViewById(R.id.currentBalance);
 
         coinText.setText(coins + " coins have been added to your balance \nfor studying with the " + type);
+
+        try {
+            Profile p = SourceLocator.getInstance().getSource(ProfileSource.class).getLoggedInProfile().get();
+            currentBalance.setText("" + p.coin);
+        } catch (ExecutionException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
 
         closeButton.setOnClickListener(v -> {
             Intent intent = new Intent(context, MainActivity.class);

@@ -4,13 +4,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import com.merko.bilstudy.data.SourceLocator;
+import com.merko.bilstudy.social.Profile;
+import com.merko.bilstudy.social.ProfileSource;
+
 import java.text.DateFormat;
 import java.util.Calendar;
+import java.util.concurrent.ExecutionException;
 
 public class ProfileActivity extends AppCompatActivity {
     Button buttonCal;
@@ -21,7 +27,11 @@ public class ProfileActivity extends AppCompatActivity {
     CardView home;
     CardView settings;
     TextView date;
+    TextView coinText;
     int coins;
+    static ImageView lamp;
+    static ImageView mug;
+    static ImageView pens;
 
 
     @Override
@@ -36,19 +46,24 @@ public class ProfileActivity extends AppCompatActivity {
         buttonHist = findViewById(R.id.buttonAdd);
         backButton = findViewById(R.id.backButtonPomodoro);
         settings = findViewById(R.id.settingBut);
-        home = findViewById(R.id.homeBut);
+        coinText = findViewById(R.id.coinsText);
+        mug = findViewById(R.id.mug);
+        lamp = findViewById(R.id.lamp);
+        pens = findViewById(R.id.pen);
+        try {
+            Profile p = SourceLocator.getInstance().getSource(ProfileSource.class).getLoggedInProfile().get();
+            coinText.setText("Coins: " + p.coin);
+        } catch (ExecutionException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
 
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ProfileActivity.this, SettingsActivity.class);
-                startActivity(intent);
-            }
-        });
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -61,14 +76,15 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        buttonStat = findViewById(R.id.button1);
-        buttonStat.setOnClickListener(new View.OnClickListener() {
+        //buttonStat = findViewById(R.id.button1);
+        /*
+        * buttonStat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ProfileActivity.this,StudyStatisticsActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
         buttonCal = findViewById(R.id.button2);
         buttonCal.setOnClickListener(new View.OnClickListener() {
@@ -95,13 +111,6 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(homepage);
             }
         });
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent homepage = new Intent(getBaseContext(), MainActivity.class);
-                startActivity(homepage);
-            }
-        });
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -109,5 +118,37 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(homepage);
             }
         });
+
+
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ProfileActivity.this, SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        mug.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ProfileActivity.this, PomodoroOptionsActivity.class);
+                startActivity(intent);
+            }
+        });
+        pens.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ProfileActivity.this, ChooseTemplateActivity.class);
+                startActivity(intent);
+            }
+        });
+        lamp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileActivity.this, LeitnerHomeActivity.class);
+                startActivity(intent);
+            }
+        });
     }
+
 }

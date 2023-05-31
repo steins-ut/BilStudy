@@ -76,7 +76,7 @@ public class ShopActivity extends AppCompatActivity {
         shopItems.add(new ShopItem("p", "BilStudy Pen Set", "150", R.drawable.shop_pen_set2, 8));
         shopItems.add(new ShopItem("p", "BilStudy Colorful Pen Set", "170", R.drawable.shop_pen_set, 9));
         shopItems.add(new ShopItem("p", "BilStudy Classic Pen Set", "190", R.drawable.shop_pen_set3, 10));
-        shopItems.add(new ShopItem("k", "BilStudy Normal Pen Set", "10", R.drawable.shop_pen_set3, 11));
+        shopItems.add(new ShopItem("k", "BilStudy Normal Pen Set", "1000", R.drawable.shop_pen_set3, 11));
 
         List<ShopItem> lamps = new ArrayList<>();
         List<ShopItem> mugs = new ArrayList<>();

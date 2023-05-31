@@ -47,7 +47,10 @@ public class ChooseTemplateActivity extends AppCompatActivity {
                     Profile p = SourceLocator.getInstance().getSource(ProfileSource.class).getLoggedInProfile().get();
                     System.out.println(p.coin);
                     p.coin += minutesPassed / 30 * 10;
-                    System.out.println(p.coin);
+
+                    p.durations.add((int) minutesPassed);
+                    p.types.add("notepad");
+
                     ProfileSource s = SourceLocator.getInstance().getSource(ProfileSource.class);
                     s.updateProfile(p).join();
                 } catch (ExecutionException e) {
@@ -55,14 +58,15 @@ public class ChooseTemplateActivity extends AppCompatActivity {
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
-                if(minutesPassed / 30 * 15 > 0){
+                //if(minutesPassed / 30 * 15 > 0){
                     PopUpDialog d = new PopUpDialog(ChooseTemplateActivity.this, R.style.Theme_BilStudy_Notepad_PopUp, "Notepad", minutesPassed / 30 * 10);
                     d.show();
-                }
-                else{
+                //}
+                /*
+                * else{
                     Intent home = new Intent(ChooseTemplateActivity.this, MainActivity.class);
                     startActivity(home);
-                }
+                }*/
             }
         });
         standardNotes.setOnClickListener(new View.OnClickListener() {

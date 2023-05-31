@@ -80,22 +80,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <Button
-                android:id="@+id/notificationsButton"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:elevation="4dp"
-                android:text="@string/notifications_button_name"
-                android:textAlignment="center"
-                android:textAppearance="?android:attr/textAppearance"
-                app:cornerRadius="12dp"
-                app:icon="@drawable/ic_mail"
-                app:iconGravity="start"
-                app:iconPadding="?attr/iconPadding" />
-
             <Space
-                android:layout_width="10dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content" />
 
             <Button

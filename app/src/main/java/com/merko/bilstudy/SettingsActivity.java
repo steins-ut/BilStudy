@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AlertDialog;
@@ -54,13 +55,12 @@ public class SettingsActivity extends AppCompatActivity {
                     play.prepare();
                 }
                 catch(Exception e){
-                    Log.d(toString(), e.getMessage());
                 }
                 try {
                     play.start();
                 }
                 catch (IllegalStateException e) {
-                    Log.d(toString(), e.getMessage());
+
                 }
             });
             alert.setPositiveButton("LoFi", (dialogInterface, i) -> {
@@ -69,35 +69,34 @@ public class SettingsActivity extends AppCompatActivity {
                     play2.release();
                 }
                 catch(Exception e) {
-                    Log.d(toString(), e.getMessage());
                 }
                 try {
                     play2.reset();
                 }
                 catch(Exception e) {
-                    Log.d(toString(), e.getMessage());
                 }
                 play2 = MediaPlayer.create(SettingsActivity.this,R.raw.lofi);
                 try {
                     play2.prepare();
                 }
                 catch(Exception e){
-                    Log.d(toString(), e.getMessage());
                 }
                 try {
                     play2.start();
                 }
                 catch (IllegalStateException e) {
-                    Log.d(toString(), e.getMessage());
                 }
 
             });
             AlertDialog alertDialog = alert.create();
             alertDialog.show();
         });
-        stopSound.setOnClickListener(view -> {
-            finish(play);
-            finish(play2);
+        stopSound.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish(play);
+                finish(play2);
+            }
         });
     }
     public void finish(MediaPlayer player) {
@@ -105,7 +104,6 @@ public class SettingsActivity extends AppCompatActivity {
             player.release();
         }
         catch(Exception e) {
-            Log.d(toString(), e.getMessage());
         }
     }
 }
