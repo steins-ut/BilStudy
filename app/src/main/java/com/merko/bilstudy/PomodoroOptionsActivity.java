@@ -60,6 +60,8 @@ public class PomodoroOptionsActivity extends AppCompatActivity {
             try {
                 Profile p = SourceLocator.getInstance().getSource(ProfileSource.class).getLoggedInProfile().get();
                 p.coin += minutesPassed / 30 * 15;
+                p.durations.add((int) minutesPassed);
+                p.types.add("pomodoro");
                 ProfileSource s = SourceLocator.getInstance().getSource(ProfileSource.class);
                 s.updateProfile(p).join();
             } catch (ExecutionException e) {

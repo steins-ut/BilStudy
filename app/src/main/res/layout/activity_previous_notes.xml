@@ -43,10 +43,12 @@
 
         <TextView
             android:id="@+id/notepadTitle"
-            android:layout_width="66dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="11dp"
             android:layout_marginTop="18dp"
+            android:textSize="22sp"
+            android:padding="4dp"
             android:background="@drawable/rounded_corner"
             android:backgroundTint="#FFE600"
             android:clickable="false"

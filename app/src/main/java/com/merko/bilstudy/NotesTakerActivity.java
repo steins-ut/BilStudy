@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -17,7 +18,7 @@ import java.util.Date;
 
 public class NotesTakerActivity extends AppCompatActivity {
     EditText editText_title, editText_notes;
-    ImageView imageView_save;
+    Button save;
     Notes notes;
     boolean isOldNote = false;
     @Override
@@ -25,7 +26,7 @@ public class NotesTakerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notes_taker);
 
-        imageView_save = findViewById(R.id.imageView_save);
+        save = findViewById(R.id.imageView_save);
         editText_title = findViewById(R.id.editText_title);
         editText_notes = findViewById(R.id.editText_notes);
 
@@ -39,7 +40,7 @@ public class NotesTakerActivity extends AppCompatActivity {
         catch (Exception e){
             e.printStackTrace();
         }
-        imageView_save.setOnClickListener(new View.OnClickListener() {
+        save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String title = editText_title.getText().toString();

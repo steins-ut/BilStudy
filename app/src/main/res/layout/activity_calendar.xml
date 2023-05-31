@@ -91,7 +91,7 @@
                     android:layout_weight="4"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:text="Add" />
+                    android:hint="Add" />
 
                 <Button
                     android:id="@+id/buttonAdd"

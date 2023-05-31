@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,7 +11,7 @@
 
     <TextView
         android:id="@+id/notepadTitle"
-        android:layout_width="66dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_corner"
         android:backgroundTint="@color/notepad_primary"
@@ -18,7 +19,9 @@
         android:contentDescription="Notepad title, shown in all notepad screens "
         android:gravity="center"
         android:text="Notepad"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="10dp"
+        android:textSize="22sp"
+        android:padding="4dp"
         android:layout_marginStart="11dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,6 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/notepadTitle"
         android:text="Choose a Template:"
+        android:textSize="18sp"
         android:layout_marginTop="5dp"
         android:layout_marginStart="11dp"/>
 
@@ -41,7 +45,7 @@
         android:layout_below="@+id/choose_template_title"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:clickable="true"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="20dp"
@@ -78,7 +82,7 @@
         android:layout_width="130dp"
         android:layout_height="180dp"
         android:layout_marginLeft="230dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
         android:clickable="true"
         app:cardBackgroundColor="@color/white"
@@ -120,7 +124,7 @@
         android:layout_width="130dp"
         android:layout_height="180dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:clickable="true"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="20dp"
@@ -153,7 +157,7 @@
         android:text="Mind Maps" />
 
     <TextView
-        android:layout_width="78dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/todo"
         android:layout_marginTop="6dp"

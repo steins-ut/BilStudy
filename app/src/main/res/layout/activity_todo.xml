@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FAF7D9"
-    tools:context=".BlankPageActivity">
+    tools:context=".ToDoListActivity">
 
 
         <LinearLayout
@@ -59,10 +59,12 @@
 
     <TextView
         android:id="@+id/notepadTitle"
-        android:layout_width="66dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="11dp"
         android:layout_marginTop="18dp"
+        android:textSize="22sp"
+        android:padding="4dp"
         android:background="@drawable/rounded_corner"
         android:backgroundTint="@color/notepad_primary"
         android:clickable="false"

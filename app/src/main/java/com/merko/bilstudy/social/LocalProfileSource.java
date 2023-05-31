@@ -55,6 +55,8 @@ public class LocalProfileSource extends ProfileSource {
         else {
             profile = new Profile();
             profile.uuid = UUID.randomUUID();
+            profile.types = new ArrayList<String>();
+            profile.durations = new ArrayList<Integer>();
             profile.name = "User";
             profile.imageUuid = null;
             profile.coin = 500;
