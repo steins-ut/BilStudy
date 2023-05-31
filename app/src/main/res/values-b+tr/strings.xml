@@ -32,4 +32,5 @@
     <string name="folder">Klasör</string>
     <string name="question_n">%d. Soru</string>
     <string name="check_answer">Kontrol Et</string>
+    <string name="answer_hint">Cevabınızı buraya yazın...</string>
 </resources>

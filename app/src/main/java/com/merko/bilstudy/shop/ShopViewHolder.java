@@ -16,8 +16,6 @@ import com.merko.bilstudy.data.SourceLocator;
 import com.merko.bilstudy.social.Profile;
 import com.merko.bilstudy.social.ProfileSource;
 
-import java.util.concurrent.ExecutionException;
-
 public class ShopViewHolder extends RecyclerView.ViewHolder {
     ImageView itemImage;
     TextView itemName;

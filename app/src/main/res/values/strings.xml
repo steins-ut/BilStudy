@@ -35,6 +35,7 @@
     <string name="folder">Folder</string>
     <string name="question_n">Question %d</string>
     <string name="check_answer">Check Answer</string>
+    <string name="answer_hint">Type your answer here...</string>
 
 
 </resources>

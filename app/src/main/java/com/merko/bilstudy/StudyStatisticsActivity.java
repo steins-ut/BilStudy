@@ -15,7 +15,6 @@ import com.merko.bilstudy.social.ProfileSource;
 import com.merko.bilstudy.ui.adapter.StatisticsAdapter;
 
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
 
 public class StudyStatisticsActivity extends AppCompatActivity {
     ArrayList<LeitnerStatistics> leitnerStatisticsArrayList = new ArrayList<>();

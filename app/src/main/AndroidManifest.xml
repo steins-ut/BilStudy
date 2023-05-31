@@ -17,17 +17,25 @@
         tools:targetApi="31">
         <activity
             android:name=".PomodoroCountdownActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:configChanges="orientation"
+            android:screenOrientation="sensorPortrait"/>
         <activity
             android:name=".MindMapActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:configChanges="orientation"
+            android:screenOrientation="sensorPortrait"/>
         <activity
             android:name=".NotesTakerActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:configChanges="orientation"
+            android:screenOrientation="sensorPortrait"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.App.Start">
+            android:theme="@style/Theme.App.Start"
+            android:configChanges="orientation"
+            android:screenOrientation="sensorPortrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -37,67 +45,99 @@
         <activity
             android:name=".AddOptionActivity"
             android:exported="true"
-            android:theme="@style/Theme.BilStudy.Main" />
+            android:theme="@style/Theme.BilStudy.Main"
+            android:configChanges="orientation"
+            android:screenOrientation="sensorPortrait"/>
         <activity
             android:name=".LeitnerHomeActivity"
             android:exported="true"
-            android:theme="@style/Theme.BilStudy.Leitner" />
+            android:theme="@style/Theme.BilStudy.Leitner"
+            android:configChanges="orientation"
+            android:screenOrientation="sensorPortrait"/>
         <activity
             android:name=".LeitnerBoxActivity"
             android:exported="true"
-            android:theme="@style/Theme.BilStudy.Leitner" />
+            android:theme="@style/Theme.BilStudy.Leitner"
+            android:configChanges="orientation"
+            android:screenOrientation="sensorPortrait"/>
         <activity
             android:name=".LeitnerFolderActivity"
             android:exported="true"
-            android:theme="@style/Theme.BilStudy.Leitner" />
+            android:theme="@style/Theme.BilStudy.Leitner"
+            android:configChanges="orientation"
+            android:screenOrientation="sensorPortrait"/>
         <activity
             android:name=".LeitnerQuestionMCSActivity"
             android:exported="true"
-            android:theme="@style/Theme.BilStudy.Leitner" />
+            android:theme="@style/Theme.BilStudy.Leitner"
+            android:configChanges="orientation"
+            android:screenOrientation="sensorPortrait"/>
         <activity
             android:name=".QuestionnaireActivity"
             android:exported="true"
-            android:theme="@style/Theme.BilStudy.Main" />
+            android:theme="@style/Theme.BilStudy.Main"
+            android:configChanges="orientation"
+            android:screenOrientation="sensorPortrait"/>
         <activity
             android:name=".QuestionnaireResultsActivity"
             android:exported="true"
-            android:theme="@style/Theme.BilStudy.Main" />
+            android:theme="@style/Theme.BilStudy.Main"
+            android:configChanges="orientation"
+            android:screenOrientation="sensorPortrait"/>
         <activity
             android:name=".ShopActivity"
             android:exported="true"
-            android:theme="@style/Theme.BilStudy.Main" />
+            android:theme="@style/Theme.BilStudy.Main"
+            android:configChanges="orientation"
+            android:screenOrientation="sensorPortrait"/>
         <activity
             android:name=".PomodoroOptionsActivity"
             android:exported="true"
-            android:theme="@style/Theme.BilStudy.Main" />
+            android:theme="@style/Theme.BilStudy.Main"
+            android:configChanges="orientation"
+            android:screenOrientation="sensorPortrait"/>
         <activity
             android:name=".ProfileActivity"
             android:exported="true"
-            android:theme="@style/Theme.BilStudy.Main" />
+            android:theme="@style/Theme.BilStudy.Main"
+            android:configChanges="orientation"
+            android:screenOrientation="sensorPortrait"/>
         <activity
             android:name=".CalendarActivity"
             android:exported="true"
-            android:theme="@style/Theme.BilStudy.Main" />
+            android:theme="@style/Theme.BilStudy.Main"
+            android:configChanges="orientation"
+            android:screenOrientation="sensorPortrait"/>
         <activity
             android:name=".StudyHistoryActivity"
             android:exported="true"
-            android:theme="@style/Theme.BilStudy.Main" />
+            android:theme="@style/Theme.BilStudy.Main"
+            android:configChanges="orientation"
+            android:screenOrientation="sensorPortrait"/>
         <activity
             android:name=".StudyStatisticsActivity"
             android:exported="true"
-            android:theme="@style/Theme.BilStudy.Main" />
+            android:theme="@style/Theme.BilStudy.Main"
+            android:configChanges="orientation"
+            android:screenOrientation="sensorPortrait"/>
         <activity
             android:name=".SettingsActivity"
             android:exported="true"
-            android:theme="@style/Theme.BilStudy.Main" />
+            android:theme="@style/Theme.BilStudy.Main"
+            android:configChanges="orientation"
+            android:screenOrientation="sensorPortrait"/>
         <activity
             android:name=".PreviousNotesActivity"
             android:exported="true"
-            android:theme="@style/Theme.BilStudy.Main" />
+            android:theme="@style/Theme.BilStudy.Main"
+            android:configChanges="orientation"
+            android:screenOrientation="sensorPortrait"/>
         <activity
             android:name=".ChooseTemplateActivity"
             android:exported="true"
-            android:theme="@style/Theme.BilStudy.Main" />
+            android:theme="@style/Theme.BilStudy.Main"
+            android:configChanges="orientation"
+            android:screenOrientation="sensorPortrait"/>
         <activity
             android:name=".ToDoListActivity"
             android:exported="true"

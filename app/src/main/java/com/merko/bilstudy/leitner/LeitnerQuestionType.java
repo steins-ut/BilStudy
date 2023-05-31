@@ -3,7 +3,7 @@ package com.merko.bilstudy.leitner;
 import androidx.annotation.NonNull;
 
 public enum LeitnerQuestionType {
-    TEXT_ASWER("Text Answer"),
+    TEXT_ANSWER("Text Answer"),
     MULTIPLE_CHOICE_SINGLE("Multiple Choice(Single)");
 
     private final String str;

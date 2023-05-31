@@ -18,6 +18,7 @@ import com.merko.bilstudy.leitner.LeitnerContainer;
 import com.merko.bilstudy.leitner.LeitnerQuestion;
 import com.merko.bilstudy.leitner.LeitnerSource;
 import com.merko.bilstudy.ui.adapter.LeitnerQuestionAdapter;
+import com.merko.bilstudy.utils.LeitnerUtils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -82,15 +83,7 @@ public class LeitnerBoxActivity extends AppCompatActivity {
             if(questions.size() < 1) {
                 return;
             }
-            Intent intent;
-            switch(questions.get(0).type) {
-                case MULTIPLE_CHOICE_SINGLE:
-                    intent = new Intent(LeitnerBoxActivity.this, LeitnerQuestionMCSActivity.class);
-                    break;
-                default:
-                    intent = new Intent(LeitnerBoxActivity.this, LeitnerQuestionMCSActivity.class);
-                    break;
-            }
+            Intent intent = LeitnerUtils.getQuestionIntent(this, questions.get(0).type);
             intent.putExtra("BOX_ID", boxId.toString());
             startActivity(intent);
         });

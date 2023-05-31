@@ -17,7 +17,6 @@ import com.merko.bilstudy.ui.adapter.HistoryAdapter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.concurrent.ExecutionException;
 
 public class StudyHistoryActivity extends AppCompatActivity {
     ArrayList<OldStudies>oldStudiesArrayList = new ArrayList<>();
