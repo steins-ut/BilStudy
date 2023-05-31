@@ -21,6 +21,7 @@ import com.merko.bilstudy.leitner.LeitnerContainer;
 import com.merko.bilstudy.leitner.LeitnerQuestion;
 import com.merko.bilstudy.leitner.LeitnerQuestionType;
 import com.merko.bilstudy.leitner.LeitnerSource;
+import com.merko.bilstudy.social.ProfileSource;
 import com.merko.bilstudy.ui.adapter.LeitnerQuestionMCSAdapter;
 import com.merko.bilstudy.utils.LeitnerUtils;
 
@@ -47,6 +48,7 @@ public class LeitnerQuestionMCSActivity extends AppCompatActivity {
 
         SourceLocator locator = SourceLocator.getInstance();
         LeitnerSource source = locator.getSource(LeitnerSource.class);
+        ProfileSource profileSource = locator.getSource(ProfileSource.class);
 
         questions = new ArrayList<>();
         currQuestion = getIntent().getIntExtra("QUESTION_NUMBER", 0);
@@ -99,7 +101,9 @@ public class LeitnerQuestionMCSActivity extends AppCompatActivity {
 
             String msg;
             if(questions.get(currQuestion).correctChoices.contains(previousChoice)) {
-                msg = "Correct!";
+                msg = "Correct! +5 coins";
+                profileSource.getLoggedInProfile().join().coin += 5;
+                profileSource.updateProfile(profileSource.getLoggedInProfile().join());
             }
             else {
                 msg = "False!";

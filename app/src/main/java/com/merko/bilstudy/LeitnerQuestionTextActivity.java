@@ -17,6 +17,7 @@ import com.merko.bilstudy.leitner.LeitnerContainer;
 import com.merko.bilstudy.leitner.LeitnerQuestion;
 import com.merko.bilstudy.leitner.LeitnerQuestionType;
 import com.merko.bilstudy.leitner.LeitnerSource;
+import com.merko.bilstudy.social.ProfileSource;
 import com.merko.bilstudy.utils.LeitnerUtils;
 
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ public class LeitnerQuestionTextActivity extends AppCompatActivity {
 
     private TextView questionNumberText;
     private TextView questionText;
+    private TextView answerText;
     private Button checkButton;
     private ArrayList<LeitnerQuestion> questions;
     private int currQuestion = 0;
@@ -39,12 +41,14 @@ public class LeitnerQuestionTextActivity extends AppCompatActivity {
         setContentView(R.layout.activity_leitner_text);
 
         SourceLocator locator = SourceLocator.getInstance();
+        ProfileSource profileSource = locator.getSource(ProfileSource.class);
         LeitnerSource source = locator.getSource(LeitnerSource.class);
 
         questions = new ArrayList<>();
         currQuestion = getIntent().getIntExtra("QUESTION_NUMBER", 0);
         questionNumberText  = findViewById(R.id.lnQuestionTextNumber);
         questionText = findViewById(R.id.lnQuestionTextText);
+        answerText = findViewById(R.id.lnQuestionTextAnswer);
         checkButton = findViewById(R.id.lnQuestionTextCheckAnswer);
 
         if(getIntent().hasExtra("BOX_ID")) {
@@ -77,8 +81,10 @@ public class LeitnerQuestionTextActivity extends AppCompatActivity {
             }
 
             String msg;
-            if(questions.get(currQuestion).choices.contains(previousChoice)) {
-                msg = "Correct!";
+            if(questions.get(currQuestion).choices.contains(answerText.getText().toString())) {
+                msg = "Correct! +5 coins";
+                profileSource.getLoggedInProfile().join().coin += 5;
+                profileSource.updateProfile(profileSource.getLoggedInProfile().join());
             }
             else {
                 msg = "False!";
