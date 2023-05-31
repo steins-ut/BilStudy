@@ -1,7 +1,10 @@
 package com.merko.bilstudy.leitner;
 
+import android.util.Log;
+
 import com.merko.bilstudy.data.BilStudyDatabase;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
@@ -66,6 +69,17 @@ public class RoomLeitnerSource extends LeitnerSource {
     }
 
     @Override
+    public CompletableFuture<Void> updateContainer(LeitnerContainer container) {
+        return CompletableFuture.runAsync(() -> {
+           LeitnerContainerEntity entity = BilStudyDatabase.getInstance().leitnerDao().getContainerEntity(container.uuid);
+           entity.name = container.name;
+           entity.tags = container.tags;
+           entity.objectIds = container.objectIds;
+           BilStudyDatabase.getInstance().leitnerDao().updateContainer(entity);
+        });
+    }
+
+    @Override
     public CompletableFuture<Void> deleteContainer(UUID id) {
         return CompletableFuture.runAsync(() -> BilStudyDatabase.getInstance().leitnerDao().deleteContainer(id));
     }
@@ -110,6 +124,14 @@ public class RoomLeitnerSource extends LeitnerSource {
         return CompletableFuture.supplyAsync(() -> {
             question.uuid = UUID.randomUUID();
             BilStudyDatabase.getInstance().leitnerDao().putQuestion(question);
+            LeitnerContainerEntity entity = BilStudyDatabase.getInstance().leitnerDao().getContainerEntity(question.containerId);
+            entity.objectIds = new ArrayList<>(entity.objectIds);
+            entity.objectIds.add(question.uuid);
+            try {
+                BilStudyDatabase.getInstance().leitnerDao().updateContainer(entity);
+            } catch (Exception e) {
+                Log.d(toString(), e.getLocalizedMessage());
+            }
             return question.uuid;
         });
     }

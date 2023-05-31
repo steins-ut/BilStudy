@@ -15,10 +15,23 @@ import java.util.List;
 public class LeitnerQuestionMCSAdapter extends RecyclerView.Adapter<LeitnerQuestionMCSHolder> {
 
     private List<String> choices;
-    private LeitnerQuestionMCSHolder.ClickListener listener;
+    private final LeitnerQuestionMCSHolder.ClickListener listener;
+    private final boolean editable;
+
+    public LeitnerQuestionMCSAdapter(List<String> choices, LeitnerQuestionMCSHolder.ClickListener listener, boolean editable) {
+        this.editable = editable;
+        this.choices = choices;
+        this.listener = listener;
+    }
 
     public LeitnerQuestionMCSAdapter(List<String> choices, LeitnerQuestionMCSHolder.ClickListener listener) {
+        this.editable = false;
+        this.choices = choices;
         this.listener = listener;
+    }
+
+    public List<String> getChoices() {
+        return choices;
     }
 
     public void setChoices(List<String> choices) {
@@ -29,7 +42,11 @@ public class LeitnerQuestionMCSAdapter extends RecyclerView.Adapter<LeitnerQuest
     @NonNull
     @Override
     public LeitnerQuestionMCSHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-       View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.entry_leitner_question_choice, parent, false);
+        int id = R.layout.entry_leitner_question_choice;
+        if(editable) {
+            id = R.layout.entry_leitner_add_question_choice;
+        }
+       View view = LayoutInflater.from(parent.getContext()).inflate(id, parent, false);
        return new LeitnerQuestionMCSHolder(view, listener);
     }
 

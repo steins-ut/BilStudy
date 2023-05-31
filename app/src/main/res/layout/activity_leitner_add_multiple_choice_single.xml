@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:theme="@style/Theme.BilStudy.Leitner"
+    tools:context=".LeitnerHomeActivity">
+
+    <TextView
+        android:id="@+id/lnAddQuestionMCS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/rounded_corner"
+        android:backgroundTint="?attr/colorOnPrimary"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center"
+        android:paddingStart="10dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="4dp"
+        android:text="@string/leitner_card_name"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/lnAddQuestionMCSDisplay"
+        android:layout_width="0dp"
+        android:layout_height="233dp"
+        android:layout_marginTop="11dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lnAddQuestionMCS">
+
+        <TextView
+            android:id="@+id/lnAddQuestionMCSNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:text="@string/question_n"
+            android:textAppearance="?android:attr/textAppearance"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/lnAddQuestionMCSCard"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="8dp"
+            android:background="#A4C7FB"
+            android:backgroundTint="#A4C7FB"
+            app:cardBackgroundColor="#A4C7FB"
+            app:cardCornerRadius="12dp"
+            app:layout_constraintBottom_toTopOf="@+id/view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lnAddQuestionMCSNumber">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#A4C7FB">
+
+                <EditText
+                    android:id="@+id/lnAddQuestionMCSQuestion"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="@string/question_hint"
+                    android:inputType="textMultiLine"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:background="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="11dp"
+        android:layout_marginBottom="143dp"
+        android:background="@null"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lnAddQuestionMCSDisplay">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/lnAddQuestionAddChoice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:clickable="true"
+            android:focusable="auto"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:foregroundTint="#232323"
+            app:cardBackgroundColor="?attr/colorPrimary"
+            app:cardCornerRadius="9dp"
+            app:cardElevation="4dp"
+            app:contentPadding="9dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null">
+
+                <TextView
+                    android:id="@+id/lnAddQuestionChoiceEntryChoice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="7dp"
+                    android:background="@null"
+                    android:text="@string/add_choice"
+                    android:textAppearance="?android:attr/textAppearance"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/lnQuestionChoiceEntryOrder"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/lnQuestionChoiceEntryOrder"
+                    android:layout_width="39dp"
+                    android:layout_height="39dp"
+                    android:background="@drawable/rounded_corner_8dp"
+                    android:backgroundTint="?attr/colorOnPrimary"
+                    android:foreground="@drawable/ic_add"
+                    android:foregroundTint="@android:color/white"
+                    android:gravity="center"
+                    android:textAppearance="?android:attr/textAppearance"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/lnAddQuestionMCSChoices"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/lnAddQuestionMCSSave"
+        android:layout_width="80dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="23dp"
+        android:contentDescription="@string/save"
+        android:foreground="@android:drawable/ic_menu_save"
+        android:foregroundGravity="center"
+        app:backgroundTint="?attr/colorAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/lnAddQuestionMCSDelete"
+        android:layout_width="80dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginBottom="23dp"
+        android:contentDescription="@string/delete"
+        android:foreground="@android:drawable/ic_menu_delete"
+        android:foregroundGravity="center"
+        app:backgroundTint="?attr/colorAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

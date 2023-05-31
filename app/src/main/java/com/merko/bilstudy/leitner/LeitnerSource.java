@@ -11,6 +11,7 @@ public abstract class LeitnerSource extends AbstractSource {
         public abstract CompletableFuture<LeitnerContainer[]> getAllContainers();
         public abstract CompletableFuture<UUID> putContainer(LeitnerContainer container);
         public abstract CompletableFuture<UUID[]> putContainers(LeitnerContainer... containers);
+        public abstract CompletableFuture<Void> updateContainer(LeitnerContainer container);
         public abstract CompletableFuture<Void> deleteContainer(UUID id);
         public abstract CompletableFuture<Void> deleteContainers(UUID... ids);
         public abstract CompletableFuture<LeitnerQuestion> getQuestion(UUID id);

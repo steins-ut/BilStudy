@@ -14,6 +14,9 @@ import java.util.UUID;
 public class RoomTypeConverters {
     @TypeConverter
     public static String uuidToString(UUID id) {
+        if(id == null) {
+            return null;
+        }
         return id.toString();
     }
 

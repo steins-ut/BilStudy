@@ -4,6 +4,7 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import java.util.UUID;
 
@@ -11,6 +12,8 @@ import java.util.UUID;
 public abstract class LeitnerDao {
     @Query("SELECT * FROM " + LeitnerContainerEntity.TABLE_NAME + " WHERE uuid = :id")
     public abstract LeitnerContainer getContainer(UUID id);
+    @Query("SELECT * FROM " + LeitnerContainerEntity.TABLE_NAME + " WHERE uuid = :id")
+    public abstract LeitnerContainerEntity getContainerEntity(UUID id);
     @Query("SELECT * FROM " + LeitnerContainerEntity.TABLE_NAME + " WHERE uuid IN (:ids)")
     public abstract LeitnerContainer[] getContainers(UUID... ids);
     @Query("SELECT * FROM " + LeitnerContainerEntity.TABLE_NAME)
@@ -19,6 +22,8 @@ public abstract class LeitnerDao {
     public abstract void putContainer(LeitnerContainer container);
     @Insert(onConflict = OnConflictStrategy.IGNORE, entity = LeitnerContainerEntity.class)
     public abstract void putContainers(LeitnerContainer... containers);
+    @Update
+    public abstract void updateContainer(LeitnerContainerEntity container);
     @Query("DELETE FROM " + LeitnerContainerEntity.TABLE_NAME + " WHERE uuid = :id")
     public abstract void deleteContainer(UUID id);
     @Query("DELETE FROM " + LeitnerContainerEntity.TABLE_NAME + " WHERE uuid IN (:ids)")

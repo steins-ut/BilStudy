@@ -32,5 +32,11 @@
     <string name="folder">Klasör</string>
     <string name="question_n">%d. Soru</string>
     <string name="check_answer">Kontrol Et</string>
-    <string name="answer_hint">Cevabınızı buraya yazın...</string>
+    <string name="answer_hint">Cevabınızı buraya yazın…</string>
+    <string name="add_question">Soru Ekle</string>
+    <string name="text_answer">Yazılı Cevap</string>
+    <string name="multiple_choice_single">Çoktan Seçmeli (Tekli)</string>
+    <string name="add_choice">Seçenek Ekle</string>
+    <string name="save">Kaydet</string>
+    <string name="question_hint">Sorunuzu buraya yazın…</string>
 </resources>

@@ -157,7 +157,7 @@
         android:layout_marginStart="11dp"
         android:layout_marginTop="7dp"
         android:layout_marginEnd="11dp"
-        android:layout_marginBottom="143dp"
+        android:layout_marginBottom="156dp"
         android:background="@null"
         app:cardBackgroundColor="@android:color/transparent"
         app:cardElevation="0dp"
@@ -186,6 +186,32 @@
         app:backgroundTint="?attr/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/lnBoxSaveButton"
+        android:layout_width="80dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginBottom="23dp"
+        android:contentDescription="@string/delete"
+        android:foreground="@android:drawable/ic_menu_save"
+        android:foregroundGravity="center"
+        app:backgroundTint="?attr/colorAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/lnBoxAddButton"
+        android:layout_width="80dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="23dp"
+        android:contentDescription="@string/delete"
+        android:foreground="@drawable/ic_add"
+        android:foregroundGravity="center"
+        app:backgroundTint="?attr/colorAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/lnBoxSaveButton" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/lnBoxBackButton"

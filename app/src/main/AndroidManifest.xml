@@ -73,6 +73,18 @@
             android:configChanges="orientation"
             android:screenOrientation="sensorPortrait"/>
         <activity
+            android:name=".LeitnerQuestionTextActivity"
+            android:exported="true"
+            android:theme="@style/Theme.BilStudy.Leitner"
+            android:configChanges="orientation"
+            android:screenOrientation="sensorPortrait"/>
+        <activity
+            android:name=".LeitnerAddQuestionMCSActivity"
+            android:exported="true"
+            android:theme="@style/Theme.BilStudy.Leitner"
+            android:configChanges="orientation"
+            android:screenOrientation="sensorPortrait"/>
+        <activity
             android:name=".QuestionnaireActivity"
             android:exported="true"
             android:theme="@style/Theme.BilStudy.Main"

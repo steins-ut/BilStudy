@@ -13,9 +13,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.merko.bilstudy.data.SourceLocator;
+import com.merko.bilstudy.dialog.LeitnerQuestionAddDialog;
 import com.merko.bilstudy.dialog.LoadingDialog;
 import com.merko.bilstudy.leitner.LeitnerContainer;
 import com.merko.bilstudy.leitner.LeitnerQuestion;
+import com.merko.bilstudy.leitner.LeitnerQuestionType;
 import com.merko.bilstudy.leitner.LeitnerSource;
 import com.merko.bilstudy.ui.adapter.LeitnerQuestionAdapter;
 import com.merko.bilstudy.utils.LeitnerUtils;
@@ -44,6 +46,8 @@ public class LeitnerBoxActivity extends AppCompatActivity {
         RecyclerView questionRecycler = findViewById(R.id.lnBoxQuestionsRecycler);
         FloatingActionButton backButton = findViewById(R.id.lnBoxBackButton);
         FloatingActionButton playButton = findViewById(R.id.lnBoxPlayButton);
+        FloatingActionButton addButton = findViewById(R.id.lnBoxAddButton);
+        FloatingActionButton saveButton = findViewById(R.id.lnBoxSaveButton);
         FloatingActionButton editButton = findViewById(R.id.lnBoxEditButton);
         TextView boxName = findViewById(R.id.lnBoxName);
         TextView boxTags = findViewById(R.id.lnBoxTags);
@@ -88,6 +92,33 @@ public class LeitnerBoxActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        editButton.setOnClickListener((View view) -> {
+            editButton.hide();
+            playButton.hide();
+            saveButton.show();
+            addButton.show();
+        });
+
+        saveButton.setOnClickListener((View view) -> {
+            editButton.show();
+            playButton.show();
+            saveButton.hide();
+            addButton.hide();
+        });
+
+        addButton.setOnClickListener((View view) -> {
+            LeitnerQuestionAddDialog addDialog = new LeitnerQuestionAddDialog(this);
+            addDialog.setOnClickListener((LeitnerQuestionType type) -> {
+                Intent intent = LeitnerUtils.getAddQuestionIntent(this, type);
+                intent.putExtra("QUESTION_NUMBER", 0);
+                intent.putExtra("BOX_ID", boxId.toString());
+                startActivity(intent);
+            });
+            addDialog.show();
+        });
+
+        saveButton.hide();
+        addButton.hide();
         backButton.show();
         playButton.show();
         editButton.show();
