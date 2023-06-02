@@ -7,7 +7,7 @@
     </style>
 
     <!-- Base application theme. -->
-    <style name="Theme.BilStudy.Main" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="Theme.BilStudy.Main" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/bilstudy_gray</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/black</item>
@@ -44,4 +44,19 @@
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:textSize">22sp</item>
     </style>
+
+    <style name="Theme.BilStudy.Pomodoro.PopUp" parent="Theme.BilStudy.Main">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:backgroundTint">@color/lightred</item>
+        <item name="android:popupBackground">@color/white</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="Theme.BilStudy.Notepad.PopUp" parent="Theme.BilStudy.Main">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:backgroundTint">@color/notepad_light_yellow</item>
+        <item name="android:popupBackground">@color/white</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
 </resources>

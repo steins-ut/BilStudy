@@ -42,6 +42,11 @@
     <string name="add_choice">Add Choice</string>
     <string name="save">Save</string>
     <string name="question_hint">Type your question here…</string>
+    <string name="add_container">Add Container</string>
+    <string name="box">Box</string>
+    <string name="new_box">New Box</string>
+    <string name="new_folder">New Folder</string>
+    <string name="edit">Edit</string>
 
 
 </resources>

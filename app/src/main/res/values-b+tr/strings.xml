@@ -39,4 +39,9 @@
     <string name="add_choice">Seçenek Ekle</string>
     <string name="save">Kaydet</string>
     <string name="question_hint">Sorunuzu buraya yazın…</string>
+    <string name="add_container">Konteyner Ekle</string>
+    <string name="box">Kutu</string>
+    <string name="new_box">Yeni Kutu</string>
+    <string name="new_folder">Yeni Klasör</string>
+    <string name="edit">Düzenle</string>
 </resources>

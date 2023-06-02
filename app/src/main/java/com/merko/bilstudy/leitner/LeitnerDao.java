@@ -10,6 +10,8 @@ import java.util.UUID;
 
 @Dao
 public abstract class LeitnerDao {
+    @Query("SELECT EXISTS(SELECT * FROM " + LeitnerContainerEntity.TABLE_NAME + " WHERE uuid = :id LIMIT 1)")
+    public abstract Boolean hasContainer(UUID id);
     @Query("SELECT * FROM " + LeitnerContainerEntity.TABLE_NAME + " WHERE uuid = :id")
     public abstract LeitnerContainer getContainer(UUID id);
     @Query("SELECT * FROM " + LeitnerContainerEntity.TABLE_NAME + " WHERE uuid = :id")

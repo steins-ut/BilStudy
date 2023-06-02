@@ -1,7 +1,5 @@
 package com.merko.bilstudy.leitner;
 
-import android.util.Log;
-
 import com.merko.bilstudy.data.BilStudyDatabase;
 
 import java.util.ArrayList;
@@ -24,6 +22,11 @@ public class RoomLeitnerSource extends LeitnerSource {
     @Override
     protected boolean unloadImpl() {
         return true;
+    }
+
+    @Override
+    public CompletableFuture<Boolean> hasContainer(UUID id) {
+        return CompletableFuture.supplyAsync(() -> BilStudyDatabase.getInstance().leitnerDao().hasContainer(id));
     }
 
     @Override
@@ -81,7 +84,24 @@ public class RoomLeitnerSource extends LeitnerSource {
 
     @Override
     public CompletableFuture<Void> deleteContainer(UUID id) {
-        return CompletableFuture.runAsync(() -> BilStudyDatabase.getInstance().leitnerDao().deleteContainer(id));
+        return CompletableFuture.runAsync(() -> {
+            LeitnerContainer container = BilStudyDatabase.getInstance().leitnerDao().getContainer(id);
+            if(BilStudyDatabase.getInstance().leitnerDao().hasContainer(container.parentUuid)) {
+                LeitnerContainerEntity entity = BilStudyDatabase.getInstance().leitnerDao().getContainerEntity(container.parentUuid);
+                entity.objectIds = new ArrayList<>(entity.objectIds);
+                entity.objectIds.remove(id);
+                BilStudyDatabase.getInstance().leitnerDao().updateContainer(entity);
+            }
+            if(container.type == LeitnerContainerType.FOLDER) {
+                for(UUID objectId: container.objectIds) {
+                    deleteContainer(objectId);
+                }
+            }
+            else {
+                deleteQuestions(container.objectIds.toArray(new UUID[0]));
+            }
+            BilStudyDatabase.getInstance().leitnerDao().deleteContainer(id);
+        });
     }
 
     @Override
@@ -127,11 +147,7 @@ public class RoomLeitnerSource extends LeitnerSource {
             LeitnerContainerEntity entity = BilStudyDatabase.getInstance().leitnerDao().getContainerEntity(question.containerId);
             entity.objectIds = new ArrayList<>(entity.objectIds);
             entity.objectIds.add(question.uuid);
-            try {
-                BilStudyDatabase.getInstance().leitnerDao().updateContainer(entity);
-            } catch (Exception e) {
-                Log.d(toString(), e.getLocalizedMessage());
-            }
+            BilStudyDatabase.getInstance().leitnerDao().updateContainer(entity);
             return question.uuid;
         });
     }
@@ -151,7 +167,14 @@ public class RoomLeitnerSource extends LeitnerSource {
 
     @Override
     public CompletableFuture<Void> deleteQuestion(UUID id) {
-        return CompletableFuture.runAsync(() -> BilStudyDatabase.getInstance().leitnerDao().deleteQuestion(id));
+        return CompletableFuture.runAsync(() -> {
+            LeitnerQuestion question = BilStudyDatabase.getInstance().leitnerDao().getQuestion(id);
+            LeitnerContainerEntity entity = BilStudyDatabase.getInstance().leitnerDao().getContainerEntity(question.containerId);
+            entity.objectIds = new ArrayList<>(entity.objectIds);
+            entity.objectIds.remove(question.uuid);
+            BilStudyDatabase.getInstance().leitnerDao().updateContainer(entity);
+            BilStudyDatabase.getInstance().leitnerDao().deleteQuestion(id);
+        });
     }
 
     @Override

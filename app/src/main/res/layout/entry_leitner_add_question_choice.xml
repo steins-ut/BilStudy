@@ -32,6 +32,7 @@
                 android:layout_height="39dp"
                 android:background="@drawable/rounded_corner_8dp"
                 android:backgroundTint="?attr/colorOnPrimary"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:gravity="center"
                 android:text="n."
                 android:textAppearance="?android:attr/textAppearance"
@@ -51,6 +52,7 @@
                 android:inputType="textMultiLine"
                 android:textAppearance="?android:attr/textAppearance"
                 android:textSize="16sp"
+                android:importantForAutofill="no"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/lnQuestionChoiceEntryOrder"
                 app:layout_constraintTop_toTopOf="parent" />

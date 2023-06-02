@@ -83,7 +83,8 @@
             android:exported="true"
             android:theme="@style/Theme.BilStudy.Leitner"
             android:configChanges="orientation"
-            android:screenOrientation="sensorPortrait"/>
+            android:screenOrientation="sensorPortrait"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".QuestionnaireActivity"
             android:exported="true"

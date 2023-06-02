@@ -6,6 +6,7 @@ import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
 public abstract class LeitnerSource extends AbstractSource {
+        public abstract CompletableFuture<Boolean> hasContainer(UUID id);
         public abstract CompletableFuture<LeitnerContainer> getContainer(UUID id);
         public abstract CompletableFuture<LeitnerContainer[]> getContainers(LeitnerContainer container);
         public abstract CompletableFuture<LeitnerContainer[]> getAllContainers();

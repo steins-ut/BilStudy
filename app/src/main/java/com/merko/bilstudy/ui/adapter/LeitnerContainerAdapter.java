@@ -17,10 +17,16 @@ import java.util.List;
 public class LeitnerContainerAdapter extends RecyclerView.Adapter<LeitnerContainerHolder> {
 
     private List<LeitnerContainer> containers;
-    private LeitnerContainerHolder.ClickListener listener;
+    private final LeitnerContainerHolder.ClickListener listener;
 
-    public LeitnerContainerAdapter(List<LeitnerContainer> containers) {
-        this.containers = new ArrayList<>(containers);
+    public LeitnerContainerAdapter(List<LeitnerContainer> containers, LeitnerContainerHolder.ClickListener listener) {
+        if(containers != null) {
+            this.containers = new ArrayList<>(containers);
+        }
+        else {
+            this.containers = new ArrayList<>();
+        }
+        this.listener = listener;
     }
 
     @NonNull
@@ -40,7 +46,8 @@ public class LeitnerContainerAdapter extends RecyclerView.Adapter<LeitnerContain
         return containers.size();
     }
 
-    public void setOnClickListener(LeitnerContainerHolder.ClickListener listener) {
-        this.listener = listener;
+    public void setContainers(List<LeitnerContainer> containers) {
+        this.containers = containers;
+        notifyDataSetChanged();
     }
 }

@@ -13,6 +13,7 @@
         android:background="@drawable/rounded_corner"
         app:cardBackgroundColor="?android:attr/background"
         app:cardCornerRadius="?attr/cornerRadius"
+        app:cardElevation="4dp"
         app:contentPadding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,7 +25,7 @@
             android:background="@null">
 
             <Button
-                android:id="@+id/lnQuestionAddClose"
+                android:id="@+id/lnContainerAddClose"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
@@ -55,19 +56,19 @@
                 android:paddingTop="8dp">
 
                 <TextView
-                    android:id="@+id/lnQuestionAddTitle"
+                    android:id="@+id/lnContainerAddTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
                     android:background="@null"
                     android:fontFamily="sans-serif"
                     android:gravity="center"
-                    android:text="@string/add_question"
+                    android:text="@string/add_container"
                     android:textAppearance="?android:attr/textAppearance"
                     android:textSize="20sp" />
 
                 <Button
-                    android:id="@+id/lnQuestionAddText"
+                    android:id="@+id/lnContainerAddBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
@@ -75,13 +76,14 @@
                     android:layout_marginBottom="12dp"
                     android:background="@drawable/rounded_corner"
                     android:fontFamily="sans-serif-medium"
-                    android:text="@string/text_answer"
+                    android:minWidth="240dp"
+                    android:text="@string/box"
                     android:textAppearance="?android:attr/textAppearance"
                     android:textColor="@android:color/black"
                     android:textSize="20sp" />
 
                 <Button
-                    android:id="@+id/lnQuestionAddMCS"
+                    android:id="@+id/lnContainerAddFolder"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
@@ -89,7 +91,8 @@
                     android:layout_marginBottom="12dp"
                     android:background="@drawable/rounded_corner"
                     android:fontFamily="sans-serif-medium"
-                    android:text="@string/multiple_choice_single"
+                    android:minWidth="240dp"
+                    android:text="@string/folder"
                     android:textAppearance="?android:attr/textAppearance"
                     android:textColor="@android:color/black"
                     android:textSize="20sp" />

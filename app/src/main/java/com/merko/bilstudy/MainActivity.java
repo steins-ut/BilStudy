@@ -128,14 +128,12 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
                 channelNotification();
 
                 Calendar calendar = Calendar.getInstance();
-                calendar.set(Calendar.HOUR_OF_DAY,11);
-                calendar.set(Calendar.MINUTE,27);
-                calendar.set(Calendar.SECOND,0);
+                calendar.set(Calendar.HOUR_OF_DAY,14);
+                calendar.set(Calendar.MINUTE,16);
+                calendar.set(Calendar.SECOND,00);
                 if(Calendar.getInstance().after(calendar)) {
                     calendar.add(Calendar.DAY_OF_MONTH,1);
                 }

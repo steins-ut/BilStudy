@@ -9,10 +9,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.merko.bilstudy.R;
 import com.merko.bilstudy.leitner.LeitnerQuestion;
 
-public class LeitnerQuestionHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class LeitnerQuestionHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
 
     public interface ClickListener {
         void onItemClick(int position);
+        boolean onItemLongClick(int position);
     }
 
     private final ClickListener listener;
@@ -22,6 +23,7 @@ public class LeitnerQuestionHolder extends RecyclerView.ViewHolder implements Vi
         this.listener = listener;
 
         itemView.setOnClickListener(this);
+        itemView.setOnLongClickListener(this);
     }
 
     public void setQuestion(LeitnerQuestion question) {
@@ -39,5 +41,13 @@ public class LeitnerQuestionHolder extends RecyclerView.ViewHolder implements Vi
         if(listener != null) {
             listener.onItemClick(getAdapterPosition());
         }
+    }
+
+    @Override
+    public boolean onLongClick(View view) {
+        if(listener != null && getAdapterPosition() != RecyclerView.NO_POSITION) {
+            return listener.onItemLongClick(getAdapterPosition());
+        }
+        return false;
     }
 }

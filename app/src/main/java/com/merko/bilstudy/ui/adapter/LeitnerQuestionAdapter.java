@@ -16,10 +16,11 @@ import java.util.List;
 public class LeitnerQuestionAdapter extends RecyclerView.Adapter<LeitnerQuestionHolder> {
 
     private List<LeitnerQuestion> questions;
-    private LeitnerQuestionHolder.ClickListener listener;
+    private final LeitnerQuestionHolder.ClickListener listener;
 
-    public LeitnerQuestionAdapter(List<LeitnerQuestion> questions) {
+    public LeitnerQuestionAdapter(List<LeitnerQuestion> questions, LeitnerQuestionHolder.ClickListener listener) {
         this.questions = questions;
+        this.listener = listener;
     }
 
     @NonNull
@@ -37,10 +38,6 @@ public class LeitnerQuestionAdapter extends RecyclerView.Adapter<LeitnerQuestion
     public void setQuestions(List<LeitnerQuestion> questions) {
         this.questions = questions;
         notifyDataSetChanged();
-    }
-
-    public void setOnClickListener(LeitnerQuestionHolder.ClickListener listener) {
-        this.listener = listener;
     }
 
     @Override

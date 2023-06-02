@@ -26,8 +26,8 @@ public class LeitnerQuestionAddDialog extends Dialog {
         getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
         getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         setContentView(R.layout.dialog_leitner_add_question);
-        setCanceledOnTouchOutside(false);
-        setCancelable(false);
+        setCanceledOnTouchOutside(true);
+        setCancelable(true);
     }
 
     public void setOnClickListener(ClickListener listener) {

@@ -12,9 +12,11 @@ import com.merko.bilstudy.R;
 import com.merko.bilstudy.leitner.LeitnerContainer;
 import com.merko.bilstudy.leitner.LeitnerContainerType;
 
-public class LeitnerContainerHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class LeitnerContainerHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
+
     public interface ClickListener {
         void onItemClick(int position);
+        boolean onItemLongClick(int position);
     }
 
     private final ImageView boxImage;
@@ -35,6 +37,7 @@ public class LeitnerContainerHolder extends RecyclerView.ViewHolder implements V
         containerText = itemView.findViewById(R.id.lnContainerBoxCount);
 
         itemView.setOnClickListener(this);
+        itemView.setOnLongClickListener(this);
     }
 
     public void setContainer(LeitnerContainer container) {
@@ -61,4 +64,11 @@ public class LeitnerContainerHolder extends RecyclerView.ViewHolder implements V
         }
     }
 
+    @Override
+    public boolean onLongClick(View view) {
+        if(listener != null && getAdapterPosition() != RecyclerView.NO_POSITION) {
+            return listener.onItemLongClick(getAdapterPosition());
+        }
+        return false;
+    }
 }
