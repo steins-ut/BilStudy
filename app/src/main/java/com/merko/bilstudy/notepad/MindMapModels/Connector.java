@@ -68,11 +68,4 @@ public class Connector {
     public int getArgExt() {
         return argExt;
     }
-
-    public void setArgExt(int argExt) {
-        this.argExt = argExt;
-    }
-
-
-
 }

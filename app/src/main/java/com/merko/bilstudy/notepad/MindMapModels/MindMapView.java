@@ -1,11 +1,14 @@
 package com.merko.bilstudy.notepad.MindMapModels;
 
+//The classes MindMapView, Connector, Item and ItemLocation are
+//the idea of JagarYousef, which can be found from the link https://github.com/JagarYousef/Mindo.
+//This code for BilStudy adjusts a large portion of his work "mindmappinglibrary" to fit for a better
+//UI experience.
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
@@ -34,7 +37,6 @@ public class MindMapView extends RelativeLayout {
     private ArrayList<Connector> leftItems = new ArrayList<>();
     private ArrayList<Connector> rightItems = new ArrayList<>();
     private ArrayList<Connector> bottomItems = new ArrayList<>();
-    private ArrayList<CustomConnector> customConnectors = new ArrayList<>();
     private int connectionWidth = 10, connectionArrowSize = 30, connectionCircRadius = 20, connectionArgSize = 30;
     private String connectionColor = "#000000";
     private MindMapView mindMapView;
@@ -99,45 +101,22 @@ public class MindMapView extends RelativeLayout {
         this.radioGroup = radioGroup;
     }
 
-    public String getConnectionColor() {
-        return connectionColor;
-    }
-
     public void setConnectionColor(String connectionColor) {
         this.connectionColor = connectionColor;
-    }
-
-    public int getConnectionWidth() {
-        return connectionWidth;
     }
 
     public void setConnectionWidth(int connectionWidth) {
         this.connectionWidth = connectionWidth;
     }
 
-    public int getConnectionArrowSize() {
-        return connectionArrowSize;
-    }
-
     public void setConnectionArrowSize(int connectionArrowSize) {
         this.connectionArrowSize = connectionArrowSize;
-    }
-
-    public int getConnectionCircRadius() {
-        return connectionCircRadius;
     }
 
     public void setConnectionCircRadius(int connectionCircSize) {
         this.connectionCircRadius = connectionCircSize;
     }
 
-    public int getConnectionArgSize() {
-        return connectionArgSize;
-    }
-
-    public void setConnectionArgSize(int connectionArgSize) {
-        this.connectionArgSize = connectionArgSize;
-    }
     @Override
     protected void onMeasure (int widthMeasureSpec,
                               int heightMeasureSpec){
@@ -248,7 +227,11 @@ public class MindMapView extends RelativeLayout {
         item.setOnClickListener(onClickListener);
 
     }
-    /*Make any item drag able, This will make issues with
+    /*
+    * ***This method is the work of JagarYousef, which is inside
+    the mindmappinglibrary in the website https://github.com/JagarYousef/Mindo.***
+    *
+    Make any item drag able, This will make issues with
     a simple call of OnClickListener on the Item objects so you set it off to call the normal onclicklistener
     the custom OnItemClicked*/
     @SuppressLint("ClickableViewAccessibility")
@@ -319,7 +302,10 @@ public class MindMapView extends RelativeLayout {
         item.assignOnTouchListener(onTouchListener);
     }
 
-    //Adding an item that has the parent already on the view
+    //
+    // * ***This method is the work of JagarYousef, which is inside
+    //    the mindmappinglibrary in the website https://github.com/JagarYousef/Mindo.***
+    //    * Adding an item that has the parent already on the view
     public void addItem(Item item, Item parent, int distance, int spacing, int location,
                         boolean dragAble){
         item.setBackground(shape);
@@ -465,10 +451,13 @@ public class MindMapView extends RelativeLayout {
         drawLeftLines(canvas);
         drawRightLines(canvas);
         drawBottomLines(canvas);
-        drawCustomConnection(canvas);
+        invalidate();
     }
 
-    //Draw connections (default)
+    //* ***All of the draw methods are the work of JagarYousef, which is inside
+    //    the mindmappinglibrary in the website https://github.com/JagarYousef/Mindo.***
+    //    *
+    // Draw connections (default)
     private void drawTopLines(Canvas canvas) {
 
         for (Connector connector : topItems){
@@ -856,103 +845,6 @@ public class MindMapView extends RelativeLayout {
         if (argExt > 0){
             canvas.drawCircle(x2, y2_to_trg, radius, paint2);
         }
-
-    }
-
-    //Adding custom connection (straight line with 2 circles)
-    public void addCustomConnection(Item item1, int position1, Item item2, int position2,
-                                    int width, String color, int circRadius1, int circRadius2){
-        CustomConnector customConnector = new CustomConnector(item1, item2, width, circRadius1,
-                circRadius2, color, position1, position2);
-        customConnectors.add(customConnector);
-
-    }
-    public void drawCustomConnection(Canvas canvas){
-
-        for (CustomConnector customConnector : customConnectors){
-
-
-
-            Item item1 = customConnector.getItem1();
-            int position1 = customConnector.getPosition1();
-            Item item2 = customConnector.getItem2();
-            int position2 = customConnector.getPosition2();
-            int custom_width = customConnector.getWidth();
-            String custom_color = customConnector.getColor();
-            int custom_circRadius2 = customConnector.getCircRadius2();
-            int custom_circRadius1 = customConnector.getCircRadius1();
-
-
-
-
-
-            Point start_point = new Point(0,0), end_point = new Point(0,0);
-            if (position1 == ItemLocation.RIGHT){
-                start_point = new Point((int) item1.getX()+item1.getWidth()+custom_circRadius1, (int) item1.getY()+item1.getHeight()/2);
-
-            }
-            else if (position1 == ItemLocation.TOP){
-                start_point = new Point((int) item1.getX()+item1.getWidth()/2, (int) item1.getY()-custom_circRadius1);
-
-            }
-            else if (position1 == ItemLocation.LEFT){
-                start_point = new Point((int) item1.getX()-custom_circRadius1, (int) item1.getY()+item1.getHeight()/2);
-
-            }
-            else if (position1 == ItemLocation.BOTTOM){
-                start_point = new Point((int) item1.getX()+item1.getWidth()/2, (int) item1.getY()+item1.getHeight()+custom_circRadius1);
-
-            }
-
-            if (position2 == ItemLocation.RIGHT){
-
-                end_point = new Point((int) item2.getX()+item2.getWidth()+custom_circRadius2, (int) item2.getY()+item2.getHeight()/2);
-
-
-            }
-            else if (position2 == ItemLocation.TOP){
-
-
-                end_point = new Point((int) item2.getX()+item2.getWidth()/2, (int) item2.getY()-custom_circRadius2);
-
-            }
-            else if (position2 == ItemLocation.LEFT){
-
-
-                end_point = new Point((int) item2.getX()-custom_circRadius2, (int) item2.getY()+item2.getHeight()/2);
-
-            }
-            else if (position2 == ItemLocation.BOTTOM){
-
-
-                end_point = new Point((int) item2.getX()+item2.getWidth()/2, (int) item2.getY()+item2.getHeight()+custom_circRadius2);
-
-            }
-
-
-            Paint paint  = new Paint();
-            paint.setAntiAlias(true);
-            paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeWidth(custom_width);
-            paint.setColor(Color.parseColor(custom_color));
-            paint.setStrokeCap(Paint.Cap.ROUND);
-
-            paint.setPathEffect(new DashPathEffect(new float[] {10,20}, 0));
-
-            Path path = new Path();
-            path.moveTo(start_point.x, start_point.y);
-            path.lineTo(end_point.x, end_point.y);
-            path.close();
-            canvas.drawLine(start_point.x, start_point.y, end_point.x, end_point.y, paint);
-
-
-            paint.setStyle(Paint.Style.FILL);
-            canvas.drawCircle(start_point.x, start_point.y, custom_circRadius1, paint);
-            canvas.drawCircle(end_point.x, end_point.y, custom_circRadius2, paint);
-
-        }
-
-        invalidate();
 
     }
 
