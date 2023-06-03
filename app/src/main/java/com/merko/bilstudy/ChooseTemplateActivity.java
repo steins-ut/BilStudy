@@ -45,11 +45,21 @@ public class ChooseTemplateActivity extends AppCompatActivity {
                 minutesPassed = difference / 60000;
                 try {
                     Profile p = SourceLocator.getInstance().getSource(ProfileSource.class).getLoggedInProfile().get();
-                    System.out.println(p.coin);
                     p.coin += minutesPassed / 30 * 10;
+                    if(minutesPassed > 0){
+                        p.durations.add((int) minutesPassed);
+                        p.types.add("notepad");
+                    }
 
-                    p.durations.add((int) minutesPassed);
-                    p.types.add("notepad");
+                    if(minutesPassed / 30 * 10 > 0){
+                        PopUpDialog d = new PopUpDialog(ChooseTemplateActivity.this, R.style.Theme_BilStudy_Notepad_PopUp, "Notepad", minutesPassed / 30 * 10);
+                        d.show();
+                    }
+
+                    else{
+                        Intent home = new Intent(ChooseTemplateActivity.this, MainActivity.class);
+                        startActivity(home);
+                    }
 
                     ProfileSource s = SourceLocator.getInstance().getSource(ProfileSource.class);
                     s.updateProfile(p).join();
@@ -58,15 +68,7 @@ public class ChooseTemplateActivity extends AppCompatActivity {
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
-                //if(minutesPassed / 30 * 15 > 0){
-                    PopUpDialog d = new PopUpDialog(ChooseTemplateActivity.this, R.style.Theme_BilStudy_Notepad_PopUp, "Notepad", minutesPassed / 30 * 10);
-                    d.show();
-                //}
-                /*
-                * else{
-                    Intent home = new Intent(ChooseTemplateActivity.this, MainActivity.class);
-                    startActivity(home);
-                }*/
+
             }
         });
         standardNotes.setOnClickListener(new View.OnClickListener() {
