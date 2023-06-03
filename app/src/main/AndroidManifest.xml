@@ -135,12 +135,6 @@
             android:configChanges="orientation"
             android:screenOrientation="sensorPortrait"/>
         <activity
-            android:name=".StudyStatisticsActivity"
-            android:exported="true"
-            android:theme="@style/Theme.BilStudy.Main"
-            android:configChanges="orientation"
-            android:screenOrientation="sensorPortrait"/>
-        <activity
             android:name=".SettingsActivity"
             android:exported="true"
             android:theme="@style/Theme.BilStudy.Main"

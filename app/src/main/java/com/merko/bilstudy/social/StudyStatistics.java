@@ -1,9 +1,9 @@
 package com.merko.bilstudy.social;
 
 public class StudyStatistics {
-    public LeitnerStatisticsNew leitnerStatistics;
+    public LeitnerStatistics leitnerStatistics;
 
     public StudyStatistics() {
-        leitnerStatistics = new LeitnerStatisticsNew();
+        leitnerStatistics = new LeitnerStatistics();
     }
 }

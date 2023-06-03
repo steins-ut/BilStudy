@@ -1,28 +1,21 @@
 package com.merko.bilstudy.social;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
 public class LeitnerStatistics {
-    String folder;
-    int allCards;
-    int cardsStudied;
-    int accuracy;
+    public long totalQuestionsSolved;
+    public long totalTimeStudied;
+    public Map<UUID, LeitnerBoxStatistics> containerStatistics;
 
-    public LeitnerStatistics(String folder, int allCards, int cardsStudied, int accuracy) {
-        this.folder = folder;
-        this.allCards = allCards;
-        this.cardsStudied = cardsStudied;
-        this.accuracy = accuracy;
+    public LeitnerStatistics() {
+        containerStatistics = new HashMap<>();
     }
 
-    public String getFolder() {
-        return folder;
+    public LeitnerStatistics(LeitnerStatistics original) {
+        this.totalQuestionsSolved = original.totalQuestionsSolved;
+        this.totalTimeStudied = original.totalTimeStudied;
+        this.containerStatistics = new HashMap<>(original.containerStatistics);
     }
-
-    public int getAllCards() {
-        return allCards;
-    }
-
-    public int getCardsStudied() { return cardsStudied; }
-
-    public int getAccuracy() { return accuracy; }
-
 }

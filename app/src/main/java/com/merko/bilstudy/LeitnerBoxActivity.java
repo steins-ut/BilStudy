@@ -31,7 +31,7 @@ import com.merko.bilstudy.leitner.LeitnerQuestionType;
 import com.merko.bilstudy.leitner.LeitnerSource;
 import com.merko.bilstudy.social.LeitnerBoxStatistics;
 import com.merko.bilstudy.social.LeitnerQuestionStatistics;
-import com.merko.bilstudy.social.LeitnerStatisticsNew;
+import com.merko.bilstudy.social.LeitnerStatistics;
 import com.merko.bilstudy.social.Profile;
 import com.merko.bilstudy.social.ProfileSource;
 import com.merko.bilstudy.ui.adapter.LeitnerQuestionAdapter;
@@ -297,7 +297,7 @@ public class LeitnerBoxActivity extends AppCompatActivity implements LeitnerQues
     private void checkUserForStatistics() {
         ProfileSource source = SourceLocator.getInstance().getSource(ProfileSource.class);
         Profile profile = source.getLoggedInProfile().join();
-        LeitnerStatisticsNew leitnerStatistics = profile.statistics.leitnerStatistics;
+        LeitnerStatistics leitnerStatistics = profile.statistics.leitnerStatistics;
         if(!leitnerStatistics.containerStatistics.containsKey(box.uuid)) {
             leitnerStatistics.containerStatistics.put(box.uuid, new LeitnerBoxStatistics());
         }
