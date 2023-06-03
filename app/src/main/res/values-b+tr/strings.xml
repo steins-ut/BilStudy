@@ -44,4 +44,6 @@
     <string name="new_box">Yeni Kutu</string>
     <string name="new_folder">Yeni Klasör</string>
     <string name="edit">Düzenle</string>
+    <string name="enter_text">Yazı Gir</string>
+    <string name="type_hint">Buraya yaz...</string>
 </resources>

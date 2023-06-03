@@ -30,18 +30,22 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/lnFolderDisplay"
         android:layout_width="0dp"
-        android:layout_height="233dp"
+        android:layout_height="256dp"
         android:layout_marginTop="11dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lnFolder">
 
-        <TextView
+        <EditText
             android:id="@+id/lnFolderName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/name"
             android:fontFamily="sans-serif-black"
             android:gravity="center"
+            android:hint="@string/name"
+            android:inputType="text|textNoSuggestions"
+            android:singleLine="true"
             android:text="Name goes here"
             android:textAppearance="?android:attr/textAppearance"
             android:textSize="24sp"
@@ -49,18 +53,27 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/lnFolderTags"
-            android:layout_width="0dp"
+        <HorizontalScrollView
+            android:id="@+id/lnFolderTagsScroll"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-black"
-            android:gravity="center"
-            android:text="#tags #go #here"
-            android:textAppearance="?android:attr/textAppearance"
-            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lnFolderName" />
+            app:layout_constraintTop_toBottomOf="@+id/lnFolderName">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/lnFolderTagChipGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    app:singleLine="true">
+
+                </com.google.android.material.chip.ChipGroup>
+            </LinearLayout>
+        </HorizontalScrollView>
 
         <ImageView
             android:id="@+id/lnFolderImage"
@@ -70,7 +83,7 @@
             app:layout_constraintBottom_toTopOf="@+id/lnFolderBoxes"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lnFolderTags"
+            app:layout_constraintTop_toBottomOf="@+id/lnFolderTagsScroll"
             app:srcCompat="@drawable/leitner_folder" />
 
         <TextView

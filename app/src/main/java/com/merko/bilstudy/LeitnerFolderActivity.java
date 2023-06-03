@@ -1,9 +1,13 @@
 package com.merko.bilstudy;
 
 import android.content.Intent;
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
@@ -12,8 +16,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.merko.bilstudy.data.SourceLocator;
+import com.merko.bilstudy.dialog.EnterTextDialog;
 import com.merko.bilstudy.dialog.LoadingDialog;
 import com.merko.bilstudy.leitner.LeitnerContainer;
 import com.merko.bilstudy.leitner.LeitnerContainerType;
@@ -33,10 +40,13 @@ public class LeitnerFolderActivity extends AppCompatActivity implements LeitnerC
     private FloatingActionButton editButton;
     private FloatingActionButton saveButton;
     private FloatingActionButton addButton;
-    private TextView folderName;
-    private TextView folderTags;
+    private EditText folderName;
+    private ChipGroup folderTagChips;
     private TextView folderContainerCount;
     private List<LeitnerContainer> containers;
+    private List<Chip> tagChips;
+    private Chip addTagChip;
+    private Drawable defaultEditDrawable;
     private UUID containerId;
     private LeitnerContainer container;
     private LeitnerContainerAdapter adapter;
@@ -55,8 +65,15 @@ public class LeitnerFolderActivity extends AppCompatActivity implements LeitnerC
         saveButton = findViewById(R.id.lnFolderSaveButton);
         addButton = findViewById(R.id.lnFolderAddButton);
         folderName = findViewById(R.id.lnFolderName);
-        folderTags = findViewById(R.id.lnFolderTags);
         folderContainerCount = findViewById(R.id.lnFolderBoxes);
+        folderTagChips = findViewById(R.id.lnFolderTagChipGroup);
+        tagChips = new ArrayList<>();
+        defaultEditDrawable = folderName.getBackground();
+
+        folderName.setClickable(false);
+        folderName.setFocusable(false);
+        folderName.setFocusableInTouchMode(false);
+        folderName.setBackground(null);
 
         SourceLocator locator = SourceLocator.getInstance();
         LeitnerSource source = locator.getSource(LeitnerSource.class);
@@ -66,6 +83,26 @@ public class LeitnerFolderActivity extends AppCompatActivity implements LeitnerC
 
         containerRecycler.setAdapter(adapter);
         containerRecycler.setLayoutManager(new LinearLayoutManager(this));
+
+        int[] attrs = new int[] { androidx.appcompat.R.attr.colorPrimary };
+        TypedArray a = obtainStyledAttributes(attrs);
+        int colorId = a.getResourceId(0, R.color.bilstudy_gray);
+        addTagChip = new Chip(this);
+        addTagChip.setText("Add Tag");
+        addTagChip.setTextColor(getColor(R.color.black));
+        addTagChip.setTextAppearance(R.style.Theme_BilStudy_Leitner_TextAppearance);
+        addTagChip.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f);
+        addTagChip.setChipBackgroundColorResource(colorId);
+        addTagChip.setCloseIconVisible(false);
+        addTagChip.setChipIconResource(R.drawable.ic_add);
+        addTagChip.setOnClickListener((View view) -> {
+            EnterTextDialog dialog = new EnterTextDialog(this);
+
+            dialog.setOnClickListener((String text) -> {
+                createTagChip(text);
+            });
+            dialog.show();
+        });
 
         addButton.setOnClickListener((View view) -> {
             LeitnerContainer newContainer = new LeitnerContainer();
@@ -85,6 +122,15 @@ public class LeitnerFolderActivity extends AppCompatActivity implements LeitnerC
 
         editButton.setOnClickListener((View view) -> {
             editing = true;
+            folderName.setClickable(true);
+            folderName.setFocusable(true);
+            folderName.setFocusableInTouchMode(true);
+            folderName.setBackground(defaultEditDrawable);
+            folderName.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f);
+            for(Chip chip: tagChips) {
+                chip.setCloseIconVisible(true);
+            }
+            folderTagChips.addView(addTagChip, 0);
 
             editButton.hide();
             addButton.show();
@@ -93,6 +139,19 @@ public class LeitnerFolderActivity extends AppCompatActivity implements LeitnerC
 
         saveButton.setOnClickListener((View view) -> {
             editing = false;
+            folderName.setClickable(false);
+            folderName.setFocusable(false);
+            folderName.setFocusableInTouchMode(false);
+            folderName.setBackground(null);
+            folderName.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22f);
+            container.name = folderName.getText().toString();
+            folderTagChips.removeViewAt(0);
+            container.tags = new ArrayList<>();
+            for(Chip chip: tagChips) {
+                chip.setCloseIconVisible(editing);
+                container.tags.add(chip.getText().toString());
+            }
+            source.updateContainer(container);
 
             editButton.show();
             addButton.hide();
@@ -103,6 +162,28 @@ public class LeitnerFolderActivity extends AppCompatActivity implements LeitnerC
         backButton.show();
         addButton.hide();
         saveButton.hide();
+    }
+
+    private void createTagChip(String text) {
+        int[] attrs = new int[] { androidx.appcompat.R.attr.colorPrimary };
+        TypedArray a = obtainStyledAttributes(attrs);
+        int colorId = a.getResourceId(0, R.color.bilstudy_gray);
+        Chip chip = new Chip(this);
+        chip.setText(text);
+        chip.setTextColor(getColor(R.color.black));
+        chip.setTextAppearance(R.style.Theme_BilStudy_Leitner_TextAppearance);
+        chip.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f);
+        chip.setChipBackgroundColorResource(colorId);
+        chip.setCloseIconVisible(editing);
+        int finalI = tagChips.size();
+        chip.setOnClickListener((View view) -> {
+            if(editing) {
+                tagChips.remove(finalI);
+                folderTagChips.removeViewAt(finalI + 1);
+            }
+        });
+        tagChips.add(chip);
+        folderTagChips.addView(chip);
     }
 
     private void reloadContainer() {
@@ -116,11 +197,14 @@ public class LeitnerFolderActivity extends AppCompatActivity implements LeitnerC
 
         container = future.join();
         folderName.setText(container.name);
-        StringBuilder tags = new StringBuilder();
-        for(String t: container.tags) {
-            tags.append("#").append(t).append(" ");
+        tagChips.clear();
+        folderTagChips.removeAllViews();
+        if(editing) {
+            folderTagChips.addView(addTagChip, 0);
         }
-        folderTags.setText(tags.toString());
+        for(int i = 0; i < container.tags.size(); i++) {
+            createTagChip(container.tags.get(i));
+        }
         folderContainerCount.setText(getString(R.string.n_boxes, container.objectIds.size()));
         reloadSubContainers();
     }

@@ -1,10 +1,14 @@
 package com.merko.bilstudy;
 
 import android.content.Intent;
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
@@ -14,8 +18,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.merko.bilstudy.data.SourceLocator;
+import com.merko.bilstudy.dialog.EnterTextDialog;
 import com.merko.bilstudy.dialog.LeitnerQuestionAddDialog;
 import com.merko.bilstudy.dialog.LoadingDialog;
 import com.merko.bilstudy.leitner.LeitnerContainer;
@@ -46,16 +53,19 @@ public class LeitnerBoxActivity extends AppCompatActivity implements LeitnerQues
     private FloatingActionButton addButton;
     private FloatingActionButton saveButton;
     private FloatingActionButton editButton;
-    private TextView boxName;
-    private TextView boxTags;
+    private EditText boxName;
+    private ChipGroup boxTagChipGroup;
     private TextView boxQuestionCount;
     private Button allButton;
     private Button weeklyButton;
     private Button thridailyButton;
     private Button dailyButton;
+    private Drawable defaultEditDrawable;
     private LeitnerQuestionAdapter adapter;
     private List<LeitnerQuestion> questions;
     private List<LeitnerQuestion> filteredQuestions;
+    private List<Chip> tagChips;
+    private Chip addTagChip;
     private LeitnerContainer box;
     private boolean editing = false;
     private boolean allSolved = false;
@@ -67,6 +77,8 @@ public class LeitnerBoxActivity extends AppCompatActivity implements LeitnerQues
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leitner_box);
 
+        SourceLocator locator = SourceLocator.getInstance();
+
         questionRecycler = findViewById(R.id.lnBoxQuestionsRecycler);
         backButton = findViewById(R.id.lnBoxBackButton);
         playButton = findViewById(R.id.lnBoxPlayButton);
@@ -74,17 +86,38 @@ public class LeitnerBoxActivity extends AppCompatActivity implements LeitnerQues
         saveButton = findViewById(R.id.lnBoxSaveButton);
         editButton = findViewById(R.id.lnBoxEditButton);
         boxName = findViewById(R.id.lnBoxName);
-        boxTags = findViewById(R.id.lnBoxTags);
+        boxTagChipGroup = findViewById(R.id.lnBoxTagChipGroup);
         boxQuestionCount = findViewById(R.id.lnBoxQuestions);
         allButton = findViewById(R.id.lnBoxAll);
         weeklyButton =findViewById(R.id.lnBoxWeekly);
         thridailyButton = findViewById(R.id.lnBoxThridaily);
         dailyButton = findViewById(R.id.lnBoxDaily);
 
+        tagChips = new ArrayList<>();
+        defaultEditDrawable = boxName.getBackground();
         adapter = new LeitnerQuestionAdapter(null, this);
         questionRecycler.setAdapter(adapter);
         questionRecycler.setLayoutManager(new LinearLayoutManager(this));
 
+        int[] attrs = new int[] { androidx.appcompat.R.attr.colorPrimary };
+        TypedArray a = obtainStyledAttributes(attrs);
+        int colorId = a.getResourceId(0, R.color.bilstudy_gray);
+        addTagChip = new Chip(this);
+        addTagChip.setText("Add Tag");
+        addTagChip.setTextColor(getColor(R.color.black));
+        addTagChip.setTextAppearance(R.style.Theme_BilStudy_Leitner_TextAppearance);
+        addTagChip.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f);
+        addTagChip.setChipBackgroundColorResource(colorId);
+        addTagChip.setCloseIconVisible(false);
+        addTagChip.setChipIconResource(R.drawable.ic_add);
+        addTagChip.setOnClickListener((View view) -> {
+            EnterTextDialog dialog = new EnterTextDialog(this);
+
+            dialog.setOnClickListener((String text) -> {
+                createTagChip(text);
+            });
+            dialog.show();
+        });
         reloadBox();
 
         backButton.setOnClickListener((View view) -> finish());
@@ -108,6 +141,15 @@ public class LeitnerBoxActivity extends AppCompatActivity implements LeitnerQues
 
         editButton.setOnClickListener((View view) -> {
             editing = true;
+            boxName.setClickable(true);
+            boxName.setFocusable(true);
+            boxName.setFocusableInTouchMode(true);
+            boxName.setBackground(defaultEditDrawable);
+            boxName.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f);
+            for(Chip chip: tagChips) {
+                chip.setCloseIconVisible(true);
+            }
+            boxTagChipGroup.addView(addTagChip, 0);
 
             editButton.hide();
             playButton.hide();
@@ -117,6 +159,19 @@ public class LeitnerBoxActivity extends AppCompatActivity implements LeitnerQues
 
         saveButton.setOnClickListener((View view) -> {
             editing = false;
+            boxName.setClickable(false);
+            boxName.setFocusable(false);
+            boxName.setFocusableInTouchMode(false);
+            boxName.setBackground(null);
+            boxName.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22f);
+            box.name = boxName.getText().toString();
+            boxTagChipGroup.removeViewAt(0);
+            box.tags = new ArrayList<>();
+            for(Chip chip: tagChips) {
+                chip.setCloseIconVisible(false);
+                box.tags.add(chip.getText().toString());
+            }
+            locator.getSource(LeitnerSource.class).updateContainer(box);
 
             editButton.show();
             playButton.show();
@@ -156,6 +211,29 @@ public class LeitnerBoxActivity extends AppCompatActivity implements LeitnerQues
         backButton.show();
         playButton.show();
         editButton.show();
+
+    }
+
+    private void createTagChip(String text) {
+        int[] attrs = new int[] { androidx.appcompat.R.attr.colorPrimary };
+        TypedArray a = obtainStyledAttributes(attrs);
+        int colorId = a.getResourceId(0, R.color.bilstudy_gray);
+        Chip chip = new Chip(this);
+        chip.setText(text);
+        chip.setTextColor(getColor(R.color.black));
+        chip.setTextAppearance(R.style.Theme_BilStudy_Leitner_TextAppearance);
+        chip.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f);
+        chip.setChipBackgroundColorResource(colorId);
+        chip.setCloseIconVisible(editing);
+        int finalI = tagChips.size();
+        chip.setOnClickListener((View view) -> {
+            if(editing) {
+                tagChips.remove(finalI);
+                boxTagChipGroup.removeViewAt(finalI + 1);
+            }
+        });
+        tagChips.add(chip);
+        boxTagChipGroup.addView(chip);
     }
 
     private void reloadBox() {
@@ -169,13 +247,29 @@ public class LeitnerBoxActivity extends AppCompatActivity implements LeitnerQues
         containerDialog.show();
 
         box = containerFuture.join();
-        boxName.setText(box.name);
-        StringBuilder tags = new StringBuilder();
-        for(String t: box.tags) {
-            tags.append("#").append(t).append(" ");
+
+        tagChips.clear();
+        boxTagChipGroup.removeAllViews();
+        if(editing) {
+            boxTagChipGroup.addView(addTagChip, 0);
+            boxName.setClickable(true);
+            boxName.setFocusable(true);
+            boxName.setFocusableInTouchMode(true);
+            boxName.setBackground(defaultEditDrawable);
+            boxName.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f);
         }
-        boxTags.setText(tags.toString());
+        else {
+            boxName.setText(box.name);
+            boxName.setClickable(false);
+            boxName.setFocusable(false);
+            boxName.setFocusableInTouchMode(false);
+            boxName.setBackground(null);
+        }
+        for(int i = 0; i < box.tags.size(); i++) {
+            createTagChip(box.tags.get(i));
+        }
         boxQuestionCount.setText(getString(R.string.n_questions, box.objectIds.size()));
+        box.objectIds = new ArrayList<>(box.objectIds);
 
         LoadingDialog questionDialog = new LoadingDialog(this);
         CompletableFuture<LeitnerQuestion[]> questionFuture = source.getQuestions(box);
@@ -257,10 +351,11 @@ public class LeitnerBoxActivity extends AppCompatActivity implements LeitnerQues
 
             PopupMenu menu = new PopupMenu(this, holder.itemView);
             menu.setOnMenuItemClickListener((MenuItem item) -> {
-                LeitnerQuestion question = questions.get(position);
-                questions.remove(position);
-                source.deleteQuestion(question.uuid);
-                adapter.notifyDataSetChanged();
+                LeitnerQuestion question = filteredQuestions.get(position);
+                questions.remove(question);
+                box.objectIds.remove(question.uuid);
+                source.deleteQuestion(question.uuid).join();
+                adapter.setQuestions(questions);
                 return true;
             });
 

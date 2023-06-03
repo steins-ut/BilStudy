@@ -47,6 +47,8 @@
     <string name="new_box">New Box</string>
     <string name="new_folder">New Folder</string>
     <string name="edit">Edit</string>
+    <string name="enter_text">Enter Text</string>
+    <string name="type_hint">Type here...</string>
 
 
 </resources>

@@ -2,9 +2,9 @@ package com.merko.bilstudy.social;
 
 public class LeitnerQuestionStatistics {
     public enum Frequency {
-        WEEKLY(0, 7),
+        DAILY(0, 1),
         THRIDAILY(1, 3),
-        DAILY(2, 1);
+        WEEKLY(2, 7);
 
         private int index;
         private int dayInterval;
@@ -42,7 +42,7 @@ public class LeitnerQuestionStatistics {
 
     public LeitnerQuestionStatistics() {
         solved = Solved.UNSOLVED;
-        frequency = Frequency.WEEKLY;
+        frequency = Frequency.DAILY;
         solveDate = -1;
         correctCount = 0;
     }

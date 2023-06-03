@@ -43,11 +43,18 @@ public class LeitnerContainerHolder extends RecyclerView.ViewHolder implements V
     public void setContainer(LeitnerContainer container) {
         Context context = itemView.getContext();
         nameText.setText(container.name);
-        StringBuilder tags = new StringBuilder();
-        for(String t: container.tags) {
-            tags.append("#").append(t).append(" ");
+        if(container.tags.size() > 0) {
+            StringBuilder tags = new StringBuilder();
+            for(String t: container.tags) {
+                tags.append("#").append(t).append(" ");
+            }
+            tagText.setText(tags.toString());
+            tagText.setVisibility(View.VISIBLE);
         }
-        tagText.setText(tags.toString());
+        else {
+            tagText.setVisibility(View.GONE);
+        }
+
         solvedText.setText(context.getString(R.string.n_solved, container.objectIds.size()));
         if(container.type == LeitnerContainerType.BOX) {
             containerText.setText(context.getString(R.string.n_questions, container.objectIds.size()));
