@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.merko.bilstudy.LeitnerAddQuestionMCSActivity;
+import com.merko.bilstudy.LeitnerAddQuestionTextActivity;
 import com.merko.bilstudy.LeitnerQuestionMCSActivity;
 import com.merko.bilstudy.LeitnerQuestionTextActivity;
 import com.merko.bilstudy.leitner.LeitnerQuestionType;
@@ -29,6 +30,9 @@ public class LeitnerUtils {
         switch(type) {
             case MULTIPLE_CHOICE_SINGLE:
                 intent = new Intent(context, LeitnerAddQuestionMCSActivity.class);
+                break;
+            case TEXT_ANSWER:
+                intent = new Intent(context, LeitnerAddQuestionTextActivity.class);
                 break;
             default:
                 intent = new Intent(context, LeitnerAddQuestionMCSActivity.class);

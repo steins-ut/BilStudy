@@ -39,7 +39,6 @@ public class LeitnerQuestionTextActivity extends AppCompatActivity {
     private LeitnerQuestionStatistics questionStatistics;
     private LeitnerQuestion question;
     private int currQuestion = 0;
-    private int previousChoice = -1;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,7 +50,7 @@ public class LeitnerQuestionTextActivity extends AppCompatActivity {
         ProfileSource profileSource = locator.getSource(ProfileSource.class);
 
         questions = new ArrayList<>();
-        currQuestion = getIntent().getIntExtra("QUESTION_NUMBER", 0);
+        currQuestion = getIntent().getIntExtra("QUESTION_NUMBER", 0) - 1;
         questionNumberText  = findViewById(R.id.lnQuestionTextNumber);
         questionText = findViewById(R.id.lnQuestionTextText);
         answerText = findViewById(R.id.lnQuestionTextAnswer);
@@ -149,7 +148,6 @@ public class LeitnerQuestionTextActivity extends AppCompatActivity {
                     nextQuestion();
                 }
                 else {
-                    previousChoice = -1;
                     setupUI();
                 }
             }

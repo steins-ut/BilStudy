@@ -47,8 +47,8 @@ public class LeitnerFolderActivity extends AppCompatActivity implements LeitnerC
     private List<Chip> tagChips;
     private Chip addTagChip;
     private Drawable defaultEditDrawable;
-    private UUID containerId;
-    private LeitnerContainer container;
+    private UUID folderId;
+    private LeitnerContainer folder;
     private LeitnerContainerAdapter adapter;
     private boolean editing = false;
     @Override
@@ -57,7 +57,7 @@ public class LeitnerFolderActivity extends AppCompatActivity implements LeitnerC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leitner_folder);
 
-        containerId = UUID.fromString(getIntent().getStringExtra("CONTAINER_ID"));
+        folderId = UUID.fromString(getIntent().getStringExtra("CONTAINER_ID"));
 
         containerRecycler = findViewById(R.id.lnFolderBoxRecycler);
         backButton = findViewById(R.id.lnFolderBackButton);
@@ -87,6 +87,7 @@ public class LeitnerFolderActivity extends AppCompatActivity implements LeitnerC
         int[] attrs = new int[] { androidx.appcompat.R.attr.colorPrimary };
         TypedArray a = obtainStyledAttributes(attrs);
         int colorId = a.getResourceId(0, R.color.bilstudy_gray);
+        a.recycle();
         addTagChip = new Chip(this);
         addTagChip.setText("Add Tag");
         addTagChip.setTextColor(getColor(R.color.black));
@@ -110,11 +111,11 @@ public class LeitnerFolderActivity extends AppCompatActivity implements LeitnerC
             newContainer.type = LeitnerContainerType.BOX;
             newContainer.tags = new ArrayList<>();
             newContainer.objectIds = new ArrayList<>();
-            newContainer.parentUuid = containerId;
-            container.objectIds = new ArrayList<>(container.objectIds);
+            newContainer.parentUuid = folderId;
+            folder.objectIds = new ArrayList<>(folder.objectIds);
             CompletableFuture<UUID> newUuidFuture = source.putContainer(newContainer);
-            container.objectIds.add(newUuidFuture.join());
-            source.updateContainer(container);
+            folder.objectIds.add(newUuidFuture.join());
+            source.updateContainer(folder);
             reloadContainer();
         });
 
@@ -144,14 +145,14 @@ public class LeitnerFolderActivity extends AppCompatActivity implements LeitnerC
             folderName.setFocusableInTouchMode(false);
             folderName.setBackground(null);
             folderName.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22f);
-            container.name = folderName.getText().toString();
+            folder.name = folderName.getText().toString();
             folderTagChips.removeViewAt(0);
-            container.tags = new ArrayList<>();
+            folder.tags = new ArrayList<>();
             for(Chip chip: tagChips) {
                 chip.setCloseIconVisible(editing);
-                container.tags.add(chip.getText().toString());
+                folder.tags.add(chip.getText().toString().substring(1));
             }
-            source.updateContainer(container);
+            source.updateContainer(folder);
 
             editButton.show();
             addButton.hide();
@@ -168,8 +169,9 @@ public class LeitnerFolderActivity extends AppCompatActivity implements LeitnerC
         int[] attrs = new int[] { androidx.appcompat.R.attr.colorPrimary };
         TypedArray a = obtainStyledAttributes(attrs);
         int colorId = a.getResourceId(0, R.color.bilstudy_gray);
+        a.recycle();
         Chip chip = new Chip(this);
-        chip.setText(text);
+        chip.setText("#" + text);
         chip.setTextColor(getColor(R.color.black));
         chip.setTextAppearance(R.style.Theme_BilStudy_Leitner_TextAppearance);
         chip.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f);
@@ -191,21 +193,21 @@ public class LeitnerFolderActivity extends AppCompatActivity implements LeitnerC
         LeitnerSource source = locator.getSource(LeitnerSource.class);
 
         LoadingDialog dialog = new LoadingDialog(this);
-        CompletableFuture<LeitnerContainer> future = source.getContainer(containerId);
+        CompletableFuture<LeitnerContainer> future = source.getContainer(folderId);
         dialog.addFutures(future);
         dialog.show();
 
-        container = future.join();
-        folderName.setText(container.name);
+        folder = future.join();
+        folderName.setText(folder.name);
         tagChips.clear();
         folderTagChips.removeAllViews();
         if(editing) {
             folderTagChips.addView(addTagChip, 0);
         }
-        for(int i = 0; i < container.tags.size(); i++) {
-            createTagChip(container.tags.get(i));
+        for(int i = 0; i < folder.tags.size(); i++) {
+            createTagChip(folder.tags.get(i));
         }
-        folderContainerCount.setText(getString(R.string.n_boxes, container.objectIds.size()));
+        folderContainerCount.setText(getString(R.string.n_boxes, folder.objectIds.size()));
         reloadSubContainers();
     }
 
@@ -214,7 +216,7 @@ public class LeitnerFolderActivity extends AppCompatActivity implements LeitnerC
         LeitnerSource source = locator.getSource(LeitnerSource.class);
 
         LoadingDialog dialog = new LoadingDialog(this);
-        CompletableFuture<LeitnerContainer[]> future = source.getContainers(container);
+        CompletableFuture<LeitnerContainer[]> future = source.getContainers(folder);
         dialog.addFutures(future);
         dialog.show();
 

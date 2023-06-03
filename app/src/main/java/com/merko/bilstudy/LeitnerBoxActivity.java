@@ -102,6 +102,7 @@ public class LeitnerBoxActivity extends AppCompatActivity implements LeitnerQues
         int[] attrs = new int[] { androidx.appcompat.R.attr.colorPrimary };
         TypedArray a = obtainStyledAttributes(attrs);
         int colorId = a.getResourceId(0, R.color.bilstudy_gray);
+        a.recycle();
         addTagChip = new Chip(this);
         addTagChip.setText("Add Tag");
         addTagChip.setTextColor(getColor(R.color.black));
@@ -169,7 +170,7 @@ public class LeitnerBoxActivity extends AppCompatActivity implements LeitnerQues
             box.tags = new ArrayList<>();
             for(Chip chip: tagChips) {
                 chip.setCloseIconVisible(false);
-                box.tags.add(chip.getText().toString());
+                box.tags.add(chip.getText().toString().substring(1));
             }
             locator.getSource(LeitnerSource.class).updateContainer(box);
 
@@ -190,21 +191,13 @@ public class LeitnerBoxActivity extends AppCompatActivity implements LeitnerQues
             addDialog.show();
         });
 
-        allButton.setOnClickListener((View view) -> {
-            setFilterFrequency(null);
-        });
+        allButton.setOnClickListener((View view) -> setFilterFrequency(null));
 
-        weeklyButton.setOnClickListener((View view) -> {
-            setFilterFrequency(LeitnerQuestionStatistics.Frequency.WEEKLY);
-        });
+        weeklyButton.setOnClickListener((View view) -> setFilterFrequency(LeitnerQuestionStatistics.Frequency.WEEKLY));
 
-        thridailyButton.setOnClickListener((View view) -> {
-            setFilterFrequency(LeitnerQuestionStatistics.Frequency.THRIDAILY);
-        });
+        thridailyButton.setOnClickListener((View view) -> setFilterFrequency(LeitnerQuestionStatistics.Frequency.THRIDAILY));
 
-        dailyButton.setOnClickListener((View view) -> {
-            setFilterFrequency(LeitnerQuestionStatistics.Frequency.DAILY);
-        });
+        dailyButton.setOnClickListener((View view) -> setFilterFrequency(LeitnerQuestionStatistics.Frequency.DAILY));
 
         saveButton.hide();
         addButton.hide();
@@ -218,8 +211,9 @@ public class LeitnerBoxActivity extends AppCompatActivity implements LeitnerQues
         int[] attrs = new int[] { androidx.appcompat.R.attr.colorPrimary };
         TypedArray a = obtainStyledAttributes(attrs);
         int colorId = a.getResourceId(0, R.color.bilstudy_gray);
+        a.recycle();
         Chip chip = new Chip(this);
-        chip.setText(text);
+        chip.setText("#" + text);
         chip.setTextColor(getColor(R.color.black));
         chip.setTextAppearance(R.style.Theme_BilStudy_Leitner_TextAppearance);
         chip.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f);
