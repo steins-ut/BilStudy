@@ -1,0 +1,58 @@
+22/02/2023
+*The project idea was finalized.
+
+15/03/2023
+*We as a group wrote the Requirements Report.
+
+18/04/2023 - 25/04/2023
+*Designed the Leitner sections of the project in Figma.
+
+26/04/2023
+*Did the UI presentation with my group.
+*Uploaded the initial commit for the project.
+
+07/05/2023 - 09/05/2023
+*Designed the home screen.
+*Added classes for data access. (AbstractProvider and ProviderLocator)
+
+14/05/2023
+*Added some leitner related classes.
+*ProviderLocator was updated.
+*Did some refactoring.
+*Upgraded project and updated jackson
+
+15/05/2023
+*Filled LeitnerDao
+*Added and implemented some room related classes
+
+17/05/2023
+*Renamed Provider classes to say Source instead of Provider
+
+18/05/2023
+*Added a loading screen and made all sources return CompletableFutures for async code
+*Designed my part of the UML diagram.
+
+28/05/2023
+*Updated ProfileSource and implemented LocalProfileSource
+*Added Leitner home page.
+*Added some Turkish  translations.
+*Did some fixes and clean up.
+
+30/05/2023
+*Mostly finished leitner box page and the leitner folder page.
+*Moved classes around.
+*Fixed some stuff.
+
+31/05/2023
+*Added leitner multiple choice and text question pages.
+Also added question adding page for multiple choice question.
+
+02/06/2023
+*Made progress on the edit mode of leitner box and folder screens.
+*Removed some unused files.
+*Remade the box image in Adobe Illustrator.
+
+03/06/2023
+*Finished the leitner section of the app.
+*Remade the folder image in Adobe Illustrator.
+*Removed some more unused files.
