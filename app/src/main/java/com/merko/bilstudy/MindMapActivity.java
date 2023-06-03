@@ -43,7 +43,6 @@ public class MindMapActivity extends AppCompatActivity {
         radioGroup = findViewById(R.id.toolbar);
         title = findViewById(R.id.notepadTitle);
 
-
         Item item = new Item(MindMapActivity.this);
 
         mindMapView.setConnectionWidth(3);
@@ -57,10 +56,11 @@ public class MindMapActivity extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mindMapView.setDrawingCacheEnabled(true);
                 ((ViewGroup)v.getParent()).removeView(title);
                 ((ViewGroup)v.getParent()).removeView(radioGroup);
                 ((ViewGroup)v.getParent()).removeView(save);
-                mindMapView.setDrawingCacheEnabled(true);
+                v.invalidate();
                 Bitmap b = mindMapView.getDrawingCache();
                 saveImageToGallery(b);
                 mindMapView.addView(title);

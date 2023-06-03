@@ -25,6 +25,7 @@ import android.widget.RelativeLayout;
 
 import com.merko.bilstudy.R;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class MindMapView extends RelativeLayout {
@@ -116,6 +117,7 @@ public class MindMapView extends RelativeLayout {
     public void setConnectionCircRadius(int connectionCircSize) {
         this.connectionCircRadius = connectionCircSize;
     }
+    public ArrayList<Item> getAllItems(){return this.allItems;}
 
     @Override
     protected void onMeasure (int widthMeasureSpec,
@@ -197,7 +199,6 @@ public class MindMapView extends RelativeLayout {
                     else{
                         Connector connector = new Connector(temp2, temp1);
                         bottomItems.add(connector);
-                        temp1.addParent(temp2, ItemLocation.BOTTOM);
                         temp1.addConnection(temp2, ItemLocation.BOTTOM, connector);
                     }
                     wasClickedOnce = false;
@@ -336,7 +337,6 @@ public class MindMapView extends RelativeLayout {
 
             Connector connector = new Connector(item, parent);
             topItems.add(connector);
-            item.addParent(parent, ItemLocation.TOP);
             item.addConnection(parent, ItemLocation.TOP, connector);
 
             if (dragAble)
@@ -367,7 +367,6 @@ public class MindMapView extends RelativeLayout {
 
             Connector connector = new Connector(item, parent);
             leftItems.add(connector);
-            item.addParent(parent, ItemLocation.LEFT);
             item.addConnection(parent, ItemLocation.LEFT, connector);
 
             if (dragAble)
@@ -398,7 +397,6 @@ public class MindMapView extends RelativeLayout {
 
             Connector connector = new Connector(item, parent);
             rightItems.add(connector);
-            item.addParent(parent, ItemLocation.RIGHT);
             item.addConnection(parent, ItemLocation.RIGHT, connector);
 
             if (dragAble)
@@ -429,7 +427,6 @@ public class MindMapView extends RelativeLayout {
 
             Connector connector = new Connector(item, parent);
             bottomItems.add(connector);
-            item.addParent(parent, ItemLocation.BOTTOM);
             item.addConnection(parent, ItemLocation.BOTTOM, connector);
 
             if (dragAble)

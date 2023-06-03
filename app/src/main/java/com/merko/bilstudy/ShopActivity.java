@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.merko.bilstudy.data.SourceLocator;
-import com.merko.bilstudy.shop.ShopAdapter;
-import com.merko.bilstudy.shop.ShopItem;
+import com.merko.bilstudy.social.shop.ShopAdapter;
+import com.merko.bilstudy.social.shop.ShopItem;
 import com.merko.bilstudy.social.Profile;
 import com.merko.bilstudy.social.ProfileSource;
 

@@ -107,6 +107,7 @@ public class PreviousNotesActivity extends AppCompatActivity implements PopupMen
                 notes.clear();
                 notes.addAll(notepadSource.getAllNotes().join());
                 notesListAdapter.notifyDataSetChanged();
+                notesListAdapter.notifyItemInserted(notes.size()-1);
             }
         }
         else if(requestCode == 102){
@@ -118,6 +119,7 @@ public class PreviousNotesActivity extends AppCompatActivity implements PopupMen
                 notes.clear();
                 notes.addAll(notepadSource.getAllNotes().join());
                 notesListAdapter.notifyDataSetChanged();
+                notesListAdapter.notifyItemChanged(notes.indexOf(new_notes));
             }
         }
     }
