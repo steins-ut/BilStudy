@@ -9,6 +9,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,8 +22,14 @@ import com.merko.bilstudy.leitner.LeitnerContainer;
 import com.merko.bilstudy.leitner.LeitnerQuestion;
 import com.merko.bilstudy.leitner.LeitnerQuestionType;
 import com.merko.bilstudy.leitner.LeitnerSource;
+import com.merko.bilstudy.social.LeitnerBoxStatistics;
+import com.merko.bilstudy.social.LeitnerQuestionStatistics;
+import com.merko.bilstudy.social.LeitnerStatisticsNew;
+import com.merko.bilstudy.social.Profile;
+import com.merko.bilstudy.social.ProfileSource;
 import com.merko.bilstudy.ui.adapter.LeitnerQuestionAdapter;
 import com.merko.bilstudy.ui.holder.LeitnerQuestionHolder;
+import com.merko.bilstudy.utils.Globals;
 import com.merko.bilstudy.utils.LeitnerUtils;
 
 import java.util.ArrayList;
@@ -48,16 +55,17 @@ public class LeitnerBoxActivity extends AppCompatActivity implements LeitnerQues
     private Button dailyButton;
     private LeitnerQuestionAdapter adapter;
     private List<LeitnerQuestion> questions;
+    private List<LeitnerQuestion> filteredQuestions;
     private LeitnerContainer box;
     private boolean editing = false;
+    private boolean allSolved = false;
+    private LeitnerBoxStatistics boxStatistics;
+    private LeitnerQuestionStatistics.Frequency filterFrequency;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leitner_box);
-
-        SourceLocator locator = SourceLocator.getInstance();
-        LeitnerSource source = locator.getSource(LeitnerSource.class);
 
         questionRecycler = findViewById(R.id.lnBoxQuestionsRecycler);
         backButton = findViewById(R.id.lnBoxBackButton);
@@ -82,6 +90,15 @@ public class LeitnerBoxActivity extends AppCompatActivity implements LeitnerQues
         backButton.setOnClickListener((View view) -> finish());
         playButton.setOnClickListener((View view) -> {
             if(questions.size() < 1) {
+                return;
+            }
+            if(allSolved) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage("All questions are solved.\nWait until the next time you can solve one.");
+                builder.setPositiveButton("OK", null);
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
                 return;
             }
             Intent intent = LeitnerUtils.getQuestionIntent(this, questions.get(0).type);
@@ -118,6 +135,22 @@ public class LeitnerBoxActivity extends AppCompatActivity implements LeitnerQues
             addDialog.show();
         });
 
+        allButton.setOnClickListener((View view) -> {
+            setFilterFrequency(null);
+        });
+
+        weeklyButton.setOnClickListener((View view) -> {
+            setFilterFrequency(LeitnerQuestionStatistics.Frequency.WEEKLY);
+        });
+
+        thridailyButton.setOnClickListener((View view) -> {
+            setFilterFrequency(LeitnerQuestionStatistics.Frequency.THRIDAILY);
+        });
+
+        dailyButton.setOnClickListener((View view) -> {
+            setFilterFrequency(LeitnerQuestionStatistics.Frequency.DAILY);
+        });
+
         saveButton.hide();
         addButton.hide();
         backButton.show();
@@ -130,12 +163,12 @@ public class LeitnerBoxActivity extends AppCompatActivity implements LeitnerQues
         SourceLocator locator = SourceLocator.getInstance();
         LeitnerSource source = locator.getSource(LeitnerSource.class);
 
-        LoadingDialog dialog = new LoadingDialog(this);
-        CompletableFuture<LeitnerContainer> future = source.getContainer(boxId);
-        dialog.addFutures(future);
-        dialog.show();
+        LoadingDialog containerDialog = new LoadingDialog(this);
+        CompletableFuture<LeitnerContainer> containerFuture = source.getContainer(boxId);
+        containerDialog.addFutures(containerFuture);
+        containerDialog.show();
 
-        box = future.join();
+        box = containerFuture.join();
         boxName.setText(box.name);
         StringBuilder tags = new StringBuilder();
         for(String t: box.tags) {
@@ -144,12 +177,55 @@ public class LeitnerBoxActivity extends AppCompatActivity implements LeitnerQues
         boxTags.setText(tags.toString());
         boxQuestionCount.setText(getString(R.string.n_questions, box.objectIds.size()));
 
-        LoadingDialog dialog2 = new LoadingDialog(this);
-        CompletableFuture<LeitnerQuestion[]> future2 = source.getQuestions(box);
-        dialog2.addFutures(future2);
-        dialog2.show();
-        questions = new ArrayList<>(Arrays.asList(future2.join()));
-        adapter.setQuestions(questions);
+        LoadingDialog questionDialog = new LoadingDialog(this);
+        CompletableFuture<LeitnerQuestion[]> questionFuture = source.getQuestions(box);
+        questionDialog.addFutures(questionFuture);
+        questionDialog.show();
+        questions = new ArrayList<>(Arrays.asList(questionFuture.join()));
+        checkUserForStatistics();
+        filterQuestions();
+    }
+
+    private void setFilterFrequency(LeitnerQuestionStatistics.Frequency frequency) {
+        filterFrequency = frequency;
+        filterQuestions();
+    }
+
+    private void filterQuestions() {
+        if(filterFrequency != null) {
+            filteredQuestions = new ArrayList<>();
+            for(LeitnerQuestion question: questions) {
+                if(boxStatistics.questionStatistics.get(question.uuid).frequency == filterFrequency) {
+                    filteredQuestions.add(question);
+                }
+            }
+        }
+        else {
+            filteredQuestions = new ArrayList<>(questions);
+        }
+        adapter.setQuestions(filteredQuestions);
+    }
+
+    private void checkUserForStatistics() {
+        ProfileSource source = SourceLocator.getInstance().getSource(ProfileSource.class);
+        Profile profile = source.getLoggedInProfile().join();
+        LeitnerStatisticsNew leitnerStatistics = profile.statistics.leitnerStatistics;
+        if(!leitnerStatistics.containerStatistics.containsKey(box.uuid)) {
+            leitnerStatistics.containerStatistics.put(box.uuid, new LeitnerBoxStatistics());
+        }
+        boxStatistics = leitnerStatistics.containerStatistics.get(box.uuid);
+        int solvedCount = 0;
+        for(LeitnerQuestion question: questions) {
+            if(!boxStatistics.questionStatistics.containsKey(question.uuid)) {
+                boxStatistics.questionStatistics.put(question.uuid, new LeitnerQuestionStatistics());
+            }
+            LeitnerQuestionStatistics.Frequency frequency = boxStatistics.questionStatistics.get(question.uuid).frequency;
+            if(System.currentTimeMillis() - boxStatistics.questionStatistics.get(question.uuid).solveDate < frequency.getDayInterval() * Globals.DAY_TO_SECONDS) {
+                solvedCount++;
+            }
+            allSolved = solvedCount == questions.size();
+        }
+        source.updateProfile(profile);
     }
 
     @Override

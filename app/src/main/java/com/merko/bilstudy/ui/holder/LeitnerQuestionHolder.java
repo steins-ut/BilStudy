@@ -1,15 +1,25 @@
 package com.merko.bilstudy.ui.holder;
 
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.merko.bilstudy.R;
+import com.merko.bilstudy.data.SourceLocator;
 import com.merko.bilstudy.leitner.LeitnerQuestion;
+import com.merko.bilstudy.social.LeitnerQuestionStatistics;
+import com.merko.bilstudy.social.Profile;
+import com.merko.bilstudy.social.ProfileSource;
 
 public class LeitnerQuestionHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
+
+    private TextView orderText;
+    private TextView questionText;
+    private TextView questionTypeText;
+    private ImageView questionStatus;
 
     public interface ClickListener {
         void onItemClick(int position);
@@ -20,6 +30,10 @@ public class LeitnerQuestionHolder extends RecyclerView.ViewHolder implements Vi
 
     public LeitnerQuestionHolder(@NonNull View itemView, ClickListener listener) {
         super(itemView);
+        orderText = itemView.findViewById(R.id.lnQuestionEntryOrder);
+        questionText = itemView.findViewById(R.id.lnQuestionEntryText);
+        questionTypeText = itemView.findViewById(R.id.lnQuestionEntryAnswerType);
+        questionStatus = itemView.findViewById(R.id.lnQuestionEntryStatus);
         this.listener = listener;
 
         itemView.setOnClickListener(this);
@@ -27,13 +41,28 @@ public class LeitnerQuestionHolder extends RecyclerView.ViewHolder implements Vi
     }
 
     public void setQuestion(LeitnerQuestion question) {
-        TextView orderText = itemView.findViewById(R.id.lnQuestionEntryOrder);
-        TextView questionText = itemView.findViewById(R.id.lnQuestionEntryText);
-        TextView questionTypeText = itemView.findViewById(R.id.lnQuestionEntryAnswerType);
+        ProfileSource source = SourceLocator.getInstance().getSource(ProfileSource.class);
+        Profile profile = source.getLoggedInProfile().join();
+        LeitnerQuestionStatistics statistics = profile.statistics
+                .leitnerStatistics.containerStatistics.get(question.containerId)
+                .questionStatistics.get(question.uuid);
 
         orderText.setText(getAdapterPosition() + 1 + ".");
         questionText.setText(question.question);
         questionTypeText.setText(question.type.toString());
+        int imageId;
+        switch(statistics.solved) {
+            case CORRECT:
+                imageId = R.drawable.ic_question_correct;
+                break;
+            case INCORRECT:
+                imageId = R.drawable.ic_question_incorrect;
+                break;
+            default:
+                imageId = R.drawable.ic_question_unsolved;
+                break;
+        }
+        questionStatus.setImageResource(imageId);
     }
 
     @Override

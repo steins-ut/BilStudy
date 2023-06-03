@@ -4,12 +4,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class LeitnerContainerStatistics {
+public class LeitnerBoxStatistics {
     public Map<UUID, LeitnerQuestionStatistics> questionStatistics;
 
-    public LeitnerContainerStatistics() {}
+    public LeitnerBoxStatistics() {
+        questionStatistics = new HashMap<>();
+    }
 
-    public LeitnerContainerStatistics(LeitnerContainerStatistics original) {
+    public LeitnerBoxStatistics(LeitnerBoxStatistics original) {
         this.questionStatistics = new HashMap<>(original.questionStatistics);
     }
 }

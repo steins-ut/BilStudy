@@ -19,7 +19,7 @@ public class LeitnerContainerHolder extends RecyclerView.ViewHolder implements V
         boolean onItemLongClick(int position);
     }
 
-    private final ImageView boxImage;
+    private final ImageView containerImage;
     private final TextView nameText;
     private final TextView tagText;
     private final TextView solvedText;
@@ -30,7 +30,7 @@ public class LeitnerContainerHolder extends RecyclerView.ViewHolder implements V
         super(itemView);
 
         this.listener = listener;
-        boxImage = itemView.findViewById(R.id.lnContainerImage);
+        containerImage = itemView.findViewById(R.id.lnContainerImage);
         nameText = itemView.findViewById(R.id.lnContainerName);
         tagText = itemView.findViewById(R.id.lnContainerTags);
         solvedText = itemView.findViewById(R.id.lnContainerSolved);
@@ -51,9 +51,11 @@ public class LeitnerContainerHolder extends RecyclerView.ViewHolder implements V
         solvedText.setText(context.getString(R.string.n_solved, container.objectIds.size()));
         if(container.type == LeitnerContainerType.BOX) {
             containerText.setText(context.getString(R.string.n_questions, container.objectIds.size()));
+            containerImage.setImageResource(R.drawable.leitner_box);
         }
         else {
             containerText.setText(context.getString(R.string.n_boxes, container.objectIds.size()));
+            containerImage.setImageResource(R.drawable.leitner_folder);
         }
     }
 

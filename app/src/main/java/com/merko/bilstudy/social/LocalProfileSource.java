@@ -1,4 +1,5 @@
 package com.merko.bilstudy.social;
+
 import android.util.Log;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -48,7 +49,10 @@ public class LocalProfileSource extends ProfileSource {
         boolean reset = false;
         if(profileFile.isFile()) {
             try {
-                this.profile = mapper.readValue(profileFile, Profile.class);
+                profile = mapper.readValue(profileFile, Profile.class);
+                profile.types = new ArrayList<>(profile.types);
+                profile.durations = new ArrayList<>(profile.durations);
+                profile.purchasedItems = new ArrayList<>(profile.purchasedItems);
             } catch (Exception e) {
                 Log.e(toString(), e.getLocalizedMessage());
             }
@@ -62,6 +66,7 @@ public class LocalProfileSource extends ProfileSource {
             profile.imageUuid = null;
             profile.coin = 500;
             profile.purchasedItems = new ArrayList<>();
+            profile.statistics = new StudyStatistics();
             save();
         }
 

@@ -22,7 +22,7 @@ public class Profile {
     public ArrayList<Integer>cardsStudied;
     public ArrayList<Integer>accuracy;
     public ArrayList<Integer> purchasedItems;
-
+    public StudyStatistics statistics;
 
     public Profile() {}
 
@@ -44,6 +44,7 @@ public class Profile {
         this.allCards = original.allCards;
         this.accuracy = original.accuracy;
         this.cardsStudied = original.cardsStudied;
+        this.statistics = original.statistics;
     }
 
     public void addToDurations(int duration) {

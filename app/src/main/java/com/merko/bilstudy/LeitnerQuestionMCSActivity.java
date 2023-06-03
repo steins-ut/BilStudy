@@ -21,8 +21,11 @@ import com.merko.bilstudy.leitner.LeitnerContainer;
 import com.merko.bilstudy.leitner.LeitnerQuestion;
 import com.merko.bilstudy.leitner.LeitnerQuestionType;
 import com.merko.bilstudy.leitner.LeitnerSource;
+import com.merko.bilstudy.social.LeitnerQuestionStatistics;
+import com.merko.bilstudy.social.Profile;
 import com.merko.bilstudy.social.ProfileSource;
 import com.merko.bilstudy.ui.adapter.LeitnerQuestionMCSAdapter;
+import com.merko.bilstudy.utils.Globals;
 import com.merko.bilstudy.utils.LeitnerUtils;
 
 import java.util.ArrayList;
@@ -38,8 +41,11 @@ public class LeitnerQuestionMCSActivity extends AppCompatActivity {
     private Button checkButton;
     private LeitnerQuestionMCSAdapter adapter;
     private ArrayList<LeitnerQuestion> questions;
-    private int currQuestion = 0;
-    private int previousChoice = -1;
+    private Profile profile;
+    private LeitnerQuestionStatistics questionStatistics;
+    private LeitnerQuestion question;
+    private int currQuestion;
+    private int previousChoice;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,8 +56,9 @@ public class LeitnerQuestionMCSActivity extends AppCompatActivity {
         LeitnerSource source = locator.getSource(LeitnerSource.class);
         ProfileSource profileSource = locator.getSource(ProfileSource.class);
 
+        previousChoice = -1;
         questions = new ArrayList<>();
-        currQuestion = getIntent().getIntExtra("QUESTION_NUMBER", 0);
+        currQuestion = getIntent().getIntExtra("QUESTION_NUMBER", 0) - 1;
         questionNumberText  = findViewById(R.id.lnQuestionMCSNumber);
         questionText = findViewById(R.id.lnQuestionMCSText);
         choiceRecycler = findViewById(R.id.lnQuestionMCSChoices);
@@ -100,31 +107,46 @@ public class LeitnerQuestionMCSActivity extends AppCompatActivity {
             }
 
             String msg;
+            questionStatistics.solveDate = System.currentTimeMillis();
             if(questions.get(currQuestion).correctChoices.contains(previousChoice)) {
                 msg = "Correct! +5 coins";
-                profileSource.getLoggedInProfile().join().coin += 5;
-                profileSource.updateProfile(profileSource.getLoggedInProfile().join());
+                profile.coin += 5;
+                questionStatistics.solved = LeitnerQuestionStatistics.Solved.CORRECT;
+                questionStatistics.correctCount = Math.max(1, questionStatistics.correctCount + 1);
+                if(questionStatistics.correctCount >= Globals.LEITNER_FREQUENCY_CHANGE_COUNT) {
+                    msg += "\nGot question wrong 3 times, moving to lower frequency";
+                    questionStatistics.correctCount = 0;
+                    questionStatistics.frequency = questionStatistics.frequency.getNextFrequency();
+                }
             }
             else {
                 msg = "False!";
+                questionStatistics.solved = LeitnerQuestionStatistics.Solved.INCORRECT;
+                questionStatistics.correctCount = Math.min(-1, questionStatistics.correctCount - 1);
+                if(questionStatistics.correctCount <= -1 * Globals.LEITNER_FREQUENCY_CHANGE_COUNT) {
+                    msg += "\nGot question wrong 3 times, moving to higher frequency";
+                    questionStatistics.correctCount = 0;
+                    questionStatistics.frequency = questionStatistics.frequency.getPreviousFrequency();
+                }
             }
+            profileSource.updateProfile(profile);
 
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage(msg)
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            nextQuestion();
-                        }
-                    });
+                    .setPositiveButton("OK", (DialogInterface dialog, int id) -> nextQuestion());
 
             AlertDialog dialog = builder.create();
             dialog.show();
         });
 
-        setupUI();
+        nextQuestion();
     }
 
     private void nextQuestion() {
+        SourceLocator locator = SourceLocator.getInstance();
+        ProfileSource profileSource = locator.getSource(ProfileSource.class);
+
+        profile = profileSource.getLoggedInProfile().join();
         currQuestion++;
         if(currQuestion >= questions.size()) {
             finish();
@@ -133,12 +155,23 @@ public class LeitnerQuestionMCSActivity extends AppCompatActivity {
             if(questions.get(currQuestion).type != LeitnerQuestionType.MULTIPLE_CHOICE_SINGLE) {
                 Intent intent = LeitnerUtils.getQuestionIntent(this, questions.get(currQuestion).type);
                 intent.putExtra("BOX_ID", getIntent().getStringExtra("BOX_ID"));
+                intent.putExtra("QUESTION_NUMBER", currQuestion);
                 startActivity(intent);
                 finish();
             }
             else {
-                previousChoice = -1;
-                setupUI();
+                question = questions.get(currQuestion);
+                questionStatistics = profile.statistics
+                        .leitnerStatistics.containerStatistics.get(question.containerId)
+                        .questionStatistics.get(question.uuid);
+
+                if(System.currentTimeMillis() - questionStatistics.solveDate < questionStatistics.frequency.getDayInterval() * Globals.DAY_TO_SECONDS) {
+                    nextQuestion();
+                }
+                else {
+                    previousChoice = -1;
+                    setupUI();
+                }
             }
         }
     }
