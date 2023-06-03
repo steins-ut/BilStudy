@@ -21,5 +21,5 @@ public class Globals {
     public static final String PREFERENCES_NAME = "preferences";
     public static final String PREFERENCES_VERSION_CODE_KEY = "version_code";
     public static final int LEITNER_FREQUENCY_CHANGE_COUNT = 3;
-    public static final int DAY_TO_SECONDS = 86400000;
+    public static final long DAY_TO_SECONDS = 86400000;
 }

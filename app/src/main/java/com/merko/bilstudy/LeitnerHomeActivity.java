@@ -60,7 +60,7 @@ public class LeitnerHomeActivity extends AppCompatActivity implements LeitnerCon
                 container.type = type;
                 container.tags = new ArrayList<>();
                 container.objectIds = new ArrayList<>();
-                source.putContainer(container);
+                source.putContainer(container).join();
                 reloadContainers();
             });
             addDialog.show();
