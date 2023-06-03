@@ -2,7 +2,6 @@ package com.merko.bilstudy.notepad.MindMapModels;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable;
 import android.util.AttributeSet;
 import android.view.Gravity;
 
@@ -12,13 +11,11 @@ import java.util.HashMap;
 public class Item extends androidx.appcompat.widget.AppCompatEditText {
 
     Context context;
-    boolean defaultStyle;
     OnTouchListener onTouchListener;
     ArrayList<Item> topChildItems = new ArrayList<>();
     ArrayList<Item> bottomChildItems = new ArrayList<>();
     ArrayList<Item> rightChildItems = new ArrayList<>();
     ArrayList<Item> leftChildItems = new ArrayList<>();
-    HashMap<Connector, Integer> connections = new HashMap<>();
     ArrayList<Connector> connectors = new ArrayList<>();
     HashMap<Item, Integer>  parents = new HashMap<>();
 
@@ -38,11 +35,6 @@ public class Item extends androidx.appcompat.widget.AppCompatEditText {
         super(context, attrs, defStyleAttr);
     }
 
-
-    public void setBorder(int color, int size){
-        GradientDrawable drawable = (GradientDrawable)this.getBackground();
-        drawable.setStroke(size, color);
-    }
     public void assignOnTouchListener(OnTouchListener onTouchListener){
         this.onTouchListener = onTouchListener;
     }
@@ -91,17 +83,6 @@ public class Item extends androidx.appcompat.widget.AppCompatEditText {
         return leftChildItems.get(index);
     }
 
-
-    //If the item default style is true
-    private void setDefaultStyle(){
-        GradientDrawable shape = new GradientDrawable();
-        shape.setColor(Color.GRAY);
-        shape.setCornerRadius(100);
-        this.setBorder(Color.BLACK, 5);
-        this.setGravity(Gravity.CENTER);
-        this.setPadding(50, 20, 50, 20);
-
-    }
     public void addToParentConnections(Item parent, Connector c){
         parent.getConnectors().add(c);
     }
@@ -110,29 +91,12 @@ public class Item extends androidx.appcompat.widget.AppCompatEditText {
         parents.put(parent, location);
     }
 
-    public HashMap<Item, Integer> getParents(){
-        return parents;
-    }
-
     public void addConnection(Item parent, int location, Connector connector){
         connector.setLocation(location);
-        connections.put(connector, location);
         connectors.add(connector);
         addToParentConnections(parent, connector);
     }
 
-    public HashMap<Connector, Integer> getAllConnections(){
-        return connections;
-    }
-
-    public Connector getConnectionByParent(Item parent){
-        if (connections.keySet().iterator().hasNext()){
-            Connector con = connections.keySet().iterator().next();
-            if (con.getParent() == parent)
-                return con;
-        }
-        return null;
-    }
     public ArrayList<Connector> getConnectors(){
         return this.connectors;
     }
