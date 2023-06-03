@@ -6,18 +6,16 @@ import android.util.AttributeSet;
 import android.view.Gravity;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Item extends androidx.appcompat.widget.AppCompatEditText {
 
-    Context context;
-    OnTouchListener onTouchListener;
-    ArrayList<Item> topChildItems = new ArrayList<>();
-    ArrayList<Item> bottomChildItems = new ArrayList<>();
-    ArrayList<Item> rightChildItems = new ArrayList<>();
-    ArrayList<Item> leftChildItems = new ArrayList<>();
-    ArrayList<Connector> connectors = new ArrayList<>();
-    HashMap<Item, Integer>  parents = new HashMap<>();
+    private Context context;
+    private OnTouchListener onTouchListener;
+    private ArrayList<Item> topChildItems = new ArrayList<>();
+    private ArrayList<Item> bottomChildItems = new ArrayList<>();
+    private ArrayList<Item> rightChildItems = new ArrayList<>();
+    private ArrayList<Item> leftChildItems = new ArrayList<>();
+    private ArrayList<Connector> connectors = new ArrayList<>();
 
     public Item(Context context) {
         super(context);
@@ -85,10 +83,6 @@ public class Item extends androidx.appcompat.widget.AppCompatEditText {
 
     public void addToParentConnections(Item parent, Connector c){
         parent.getConnectors().add(c);
-    }
-
-    public void addParent(Item parent, int location){
-        parents.put(parent, location);
     }
 
     public void addConnection(Item parent, int location, Connector connector){

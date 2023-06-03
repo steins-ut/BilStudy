@@ -1,4 +1,4 @@
-package com.merko.bilstudy.shop;
+package com.merko.bilstudy.social.shop;
 
 public class ShopItem {
     String type;

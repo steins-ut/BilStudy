@@ -1,1 +1,35 @@
+** Took part in reports and presentations we had during this semester
+** Requirements, UI Design Detailed Design
 
+Before 15 April: 
+* Learned android studio interface, components, and lists and views
+
+18-25 April:
+* Learned lifecycles, shared preferences, data saving, and device compatibility
+*UI design on figma for profile page and study history.
+
+26-30 April:
+* Developed 1-2 simple projects
+*UI design on figma for calendar and settings
+
+1-7 May:
+* Transferred UI designs to android studio
+
+8-14 May:
+* Created profile,history,calendar,settings activities
+* First commits to our repo
+
+15-21 May:
+* Added listeners and their functions to layouts' activities
+* Added several other methods for the profile
+
+22-28 May:
+* Designed the study room
+* Background sounds are added
+* App notification is set 
+
+28-31 May:
+* Helped the design of leitner layouts 
+* Profile classes are edited
+* Recieved data from pomodoro and notepad classes and displayed on profile
+* Made the presentation for lab demo
